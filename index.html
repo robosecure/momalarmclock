@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mom Alarm Clock — Know they're awake, without yelling upstairs</title>
+<meta name="description" content="Mom Alarm Clock helps parents remotely set alarms, require wake-up verification, and get real-time status when their child is awake. Free on iPhone. Android waitlist open.">
+<meta property="og:title" content="Mom Alarm Clock">
+<meta property="og:description" content="Know they're awake — without yelling, guessing, or walking upstairs five times.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://robosecure.github.io/momalarmclock/avatar.png">
+<link rel="icon" type="image/png" href="avatar.png">
+<!--
+  ============ LINK CONFIG (single place to swap URLs) ============
+  App Store:        https://apps.apple.com/app/id6762470545          (LIVE)
+  Android waitlist: mailto interim -> swap to Kit form URL when ready
+  V2 beta:          mailto interim -> swap to Kit form URL when ready
+  Support:          momalarmclock@gmail.com
+  =================================================================
+-->
+<style>
+  :root{
+    --coral:#FF6B8A; --coral-deep:#DE4E76; --coral-light:#FF8DA3;
+    --ink:#2B2B33; --blush:#FFF5F7; --green:#3FBF87; --blue:#5B8DEF; --gray:#8A8A93;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--blush);line-height:1.55}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px}
+
+  header.hero{background:linear-gradient(135deg,var(--coral-light),var(--coral-deep));color:#fff;text-align:center;padding:56px 0 48px}
+  .hero img.logo{width:96px;height:96px;border-radius:24px;box-shadow:0 6px 24px rgba(43,43,51,.25);margin-bottom:20px}
+  .hero h1{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+  .hero p.sub{font-size:clamp(1rem,3vw,1.15rem);opacity:.95;max-width:540px;margin:0 auto 28px}
+  .brandname{font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;opacity:.9;margin-bottom:10px}
+
+  .btns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
+  .btn{display:block;text-decoration:none;font-weight:700;font-size:1.02rem;padding:15px 22px;border-radius:14px;transition:transform .12s ease, box-shadow .12s ease}
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:#fff;color:var(--coral-deep);box-shadow:0 4px 16px rgba(43,43,51,.18)}
+  .btn.secondary{background:rgba(255,255,255,.16);color:#fff;border:2px solid rgba(255,255,255,.75)}
+  .btn.ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4);font-weight:600;font-size:.95rem;padding:12px 22px}
+
+  section{padding:44px 0}
+  section h2{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;text-align:center;margin-bottom:26px}
+  section h2 .accent{color:var(--coral-deep)}
+
+  .steps{display:flex;flex-direction:column;gap:16px;max-width:480px;margin:0 auto}
+  .step{display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 2px 10px rgba(43,43,51,.06)}
+  .step .num{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--coral);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .step:nth-child(3) .num{background:var(--green)}
+  .step:nth-child(2) .num{background:var(--blue)}
+  .step h3{font-size:1.05rem;margin-bottom:2px}
+  .step p{font-size:.95rem;color:var(--gray)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:560px;margin:0 auto}
+  .chip{background:#fff;border:1.5px solid #f2d5dc;border-radius:999px;padding:9px 16px;font-size:.92rem;font-weight:600;color:var(--ink)}
+
+  .v2{background:#fff}
+  .v2list{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+  .v2item{display:flex;gap:12px;align-items:baseline;font-size:1rem}
+  .v2item .dot{color:var(--coral-deep);font-weight:800}
+  .v2 .note{color:var(--gray);font-size:.88rem;text-align:center;margin-top:18px}
+
+  .cta-bottom{background:linear-gradient(135deg,var(--coral-light),var(--coral-deep));text-align:center;color:#fff}
+  .cta-bottom h2{color:#fff}
+  .cta-bottom p{margin-bottom:22px;opacity:.95}
+
+  footer{padding:34px 0 44px;text-align:center;font-size:.85rem;color:var(--gray)}
+  footer a{color:var(--coral-deep);text-decoration:none;font-weight:600}
+  footer .row{margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="avatar.png" alt="Mom Alarm Clock icon">
+    <div class="brandname">Mom Alarm Clock</div>
+    <h1>Know they're awake — without yelling, guessing, or walking upstairs five times.</h1>
+    <p class="sub">Remotely set alarms on your child's phone, require a wake-up check, and get real-time status when they're actually up.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://apps.apple.com/app/id6762470545">&#63743; Download on the App Store — Free</a>
+      <a class="btn secondary" href="mailto:momalarmclock@gmail.com?subject=Android%20waitlist&body=Please%20add%20me%20to%20the%20Android%20waitlist!%0A%0AParent%20phone%20(iPhone%2FAndroid)%3A%20%0AChild%20phone%20(iPhone%2FAndroid)%3A%20">Join the Android Waitlist</a>
+      <a class="btn secondary" href="mailto:momalarmclock@gmail.com?subject=V2%20beta&body=I%27d%20like%20to%20join%20the%20V2%20beta!%0A%0AiPhone%2C%20Android%2C%20or%20both%3F%3A%20">Join the V2 Beta</a>
+      <a class="btn ghost" href="mailto:momalarmclock@gmail.com?subject=Setup%20help">Get Setup Help</a>
+      <a class="btn ghost" href="mailto:momalarmclock@gmail.com?subject=Feature%20request">Request a Feature</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>How it <span class="accent">works</span></h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h3>Parent sets the alarm</h3><p>From your phone, on their phone. Even record it in your own voice.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Child completes a wake-up check</h3><p>A quick quiz, steps out of bed, or a photo — proof they're really up.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>You get real-time status</h3><p>"Awake &amp; verified" on your phone. No hallway trips required.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <h2>Built for <span class="accent">real mornings</span></h2>
+    <div class="chips">
+      <span class="chip">😴 Heavy sleepers</span>
+      <span class="chip">🎒 School mornings</span>
+      <span class="chip">⚽ Early practices</span>
+      <span class="chip">🚌 Bus mornings</span>
+      <span class="chip">🤝 Co-parenting</span>
+      <span class="chip">✈️ Traveling parents</span>
+      <span class="chip">💛 Caregivers &amp; grandparents</span>
+      <span class="chip">🌱 Kids learning independence</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Coming in <span class="accent">V2</span></h2>
+    <div class="v2list">
+      <div class="v2item"><span class="dot">•</span><span>Ready-for-tomorrow dashboard</span></div>
+      <div class="v2item"><span class="dot">•</span><span>Stronger wake-up proof</span></div>
+      <div class="v2item"><span class="dot">•</span><span>QR verification — scan a code away from the bed</span></div>
+      <div class="v2item"><span class="dot">•</span><span>Co-parent &amp; traveling-parent support</span></div>
+      <div class="v2item"><span class="dot">•</span><span>Android — join the waitlist above</span></div>
+    </div>
+    <p class="note" style="color:var(--gray);font-size:.88rem;text-align:center;margin-top:18px">Not a punishment app. Less yelling, more independence — that's the whole point.</p>
+  </div>
+</section>
+
+<section class="cta-bottom">
+  <div class="wrap">
+    <h2>Smoother mornings start tomorrow.</h2>
+    <p>Free on iPhone today.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://apps.apple.com/app/id6762470545">&#63743; Download on the App Store</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">Support: <a href="mailto:momalarmclock@gmail.com">momalarmclock@gmail.com</a></div>
+    <div class="row"><a href="https://robosecure.github.io/mom-alarm-clock-legal/privacy.html">Privacy Policy</a> · <a href="https://robosecure.github.io/mom-alarm-clock-legal/support.html">Support</a></div>
+    <div class="row">© 2026 Rob Wamsley. Mom Alarm Clock.</div>
+  </div>
+</footer>
+
+</body>
+</html>
