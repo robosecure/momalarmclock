@@ -515,7 +515,7 @@
         <p class="small muted">${escapeHTML(state.alarm.soundLevel)} tone · ${escapeHTML(voiceModes[state.alarm.voiceMode])}${state.alarm.voiceRecorded ? " · recorded sample ready" : ""}</p>
         <p class="small muted">The alarm keeps this morning active until Maya starts the wake check.</p>
         <button class="primary" type="button" data-action="start-check">✓ I'm up</button>
-        ${state.snoozed < state.alarm.snoozes ? `<button class="secondary" style="margin-top:9px" type="button" data-action="snooze">☾ Snooze 5 min (${state.alarm.snoozes - state.snoozed} left)</button>` : ""}
+        ${state.snoozed < state.alarm.snoozes ? `<button class="secondary" style="margin-top:9px" type="button" data-action="snooze">☾ Snooze ${state.alarm.snoozeMinutes} min (${state.alarm.snoozes - state.snoozed} left)</button>` : ""}
         <button class="link-button" style="margin-top:10px" type="button" data-action="no-response">Simulate no response after ${state.alarm.graceMinutes} min</button>
       </div>
     </div>`;
