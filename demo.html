@@ -413,7 +413,7 @@
           <div class="field"><label for="repeatDays">Repeat</label><select id="repeatDays" data-field="repeat"><option ${state.alarm.repeat === "Weekdays" ? "selected" : ""}>Weekdays</option><option ${state.alarm.repeat === "Weekends" ? "selected" : ""}>Weekends</option><option ${state.alarm.repeat === "Every day" ? "selected" : ""}>Every day</option><option ${state.alarm.repeat === "Once" ? "selected" : ""}>Once</option></select></div>
           <div class="field full"><label for="alarmLabel">Alarm name</label><input id="alarmLabel" data-field="label" maxlength="40" value="${escapeHTML(state.alarm.label)}"></div>
         </div>
-        <div class="section-label">How they prove they're awake</div>
+        <div class="section-label">Wake-up check</div>
         <div class="form-grid">
           <div class="field full"><label for="checkType">Wake-up check</label><select id="checkType" data-field="check">${Object.entries(checks).map(([value,check]) => `<option value="${value}" ${state.alarm.check === value ? "selected" : ""}>${check.name} — ${check.detail}</option>`).join("")}</select></div>
           ${state.alarm.check === "game" ? `<div class="field full"><label for="gameStyle">Which game</label><select id="gameStyle" data-field="gameStyle">${Object.entries(gameStyles).map(([value,name]) => `<option value="${value}" ${state.alarm.gameStyle === value ? "selected" : ""}>${name}</option>`).join("")}</select></div>` : ""}
