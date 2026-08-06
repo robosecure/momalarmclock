@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try Mom Alarm Clock — Interactive two-phone demo</title>
+<meta name="description" content="Try an interactive Mom Alarm Clock V2 preview: set an alarm on the parent phone, complete the wake check on the child phone, and see the result update.">
+<link rel="canonical" href="https://robosecure.github.io/momalarmclock/demo.html">
+<meta property="og:title" content="Try the Mom Alarm Clock two-phone demo">
+<meta property="og:description" content="Set the parent alarm, run the wake-up check on the child phone, and watch the result update in this interactive V2 preview.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://robosecure.github.io/momalarmclock/demo.html">
+<meta property="og:image" content="https://robosecure.github.io/momalarmclock/social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Try the Mom Alarm Clock two-phone demo">
+<meta name="twitter:description" content="A playable parent-phone and child-phone wake-up simulation.">
+<meta name="twitter:image" content="https://robosecure.github.io/momalarmclock/social-card.png">
+<meta name="theme-color" content="#11172b">
+<link rel="icon" type="image/png" href="avatar.png">
+<style>
+  :root {
+    color-scheme: light;
+    --page:#f7f4ef;
+    --page-ink:#1c2333;
+    --page-muted:#5e6677;
+    --page-line:#dcd7ce;
+    --page-accent:#6e52e5;
+    --page-accent-dark:#4534a7;
+    --focus:#1677ff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; color:var(--page-ink); background:var(--page); line-height:1.45; }
+  button, input, select { font:inherit; }
+  button { cursor:pointer; }
+  button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+    outline:3px solid var(--focus); outline-offset:3px;
+  }
+  .site-bar {
+    min-height:64px; padding:10px clamp(16px,4vw,44px); display:flex; align-items:center;
+    justify-content:space-between; gap:16px; background:#11172b; color:#fff;
+    position:sticky; top:0; z-index:20; box-shadow:0 6px 24px rgba(17,23,43,.18);
+  }
+  .site-brand { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; }
+  .site-brand img { width:38px; height:38px; border-radius:10px; }
+  .preview-pill { font-size:.78rem; font-weight:800; letter-spacing:.04em; padding:7px 11px; border-radius:999px; background:#2c375f; }
+  .reset-button { border:1px solid rgba(255,255,255,.45); color:#fff; background:transparent; border-radius:999px; padding:8px 13px; font-weight:700; }
+
+  .intro { max-width:980px; margin:0 auto; padding:54px 20px 28px; text-align:center; }
+  .eyebrow { color:var(--page-accent-dark); font-weight:900; letter-spacing:.1em; text-transform:uppercase; font-size:.78rem; }
+  .intro h1 { margin:10px auto 14px; max-width:820px; font-size:clamp(2rem,6vw,4.25rem); line-height:1.02; letter-spacing:-.055em; }
+  .intro p { max-width:720px; margin:0 auto; color:var(--page-muted); font-size:clamp(1rem,2.2vw,1.2rem); }
+  .truth-note { display:inline-flex; align-items:center; gap:8px; margin-top:18px; padding:9px 13px; border:1px solid var(--page-line); border-radius:999px; background:#fff; font-size:.86rem; color:var(--page-muted); }
+
+  .journey { max-width:900px; margin:22px auto 28px; padding:0 20px; }
+  .journey ol { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .journey li { min-height:54px; display:flex; align-items:center; gap:9px; padding:10px; border:1px solid var(--page-line); background:rgba(255,255,255,.6); border-radius:14px; color:var(--page-muted); font-size:.82rem; font-weight:800; }
+  .journey .step-number { width:27px; height:27px; flex:0 0 27px; display:grid; place-items:center; border-radius:50%; background:#e6e2dc; color:#5d5c61; }
+  .journey li.active { color:var(--page-ink); border-color:#a896ff; background:#f0ecff; }
+  .journey li.active .step-number { background:var(--page-accent); color:#fff; }
+  .journey li.done { color:#176448; border-color:#9fd8c3; background:#ecfbf5; }
+  .journey li.done .step-number { background:#228461; color:#fff; }
+
+  .mobile-role-switcher { display:none; width:min(420px,calc(100% - 32px)); margin:0 auto 14px; padding:5px; border:1px solid var(--page-line); border-radius:15px; background:#fff; }
+  .mobile-role-switcher button { width:50%; border:0; border-radius:11px; padding:10px; color:var(--page-muted); background:transparent; font-weight:850; }
+  .mobile-role-switcher button.active { color:#fff; background:#202842; }
+
+  .demo-stage { max-width:1080px; margin:0 auto; padding:0 20px 48px; display:grid; grid-template-columns:repeat(2,minmax(0,420px)); justify-content:center; gap:clamp(20px,4vw,54px); align-items:start; }
+  .device-column { min-width:0; }
+  .device-label { display:flex; justify-content:space-between; align-items:end; gap:12px; margin:0 4px 10px; }
+  .device-label h2 { margin:0; font-size:1rem; }
+  .device-label p { margin:2px 0 0; color:var(--page-muted); font-size:.79rem; }
+  .theme-toggle { border:1px solid var(--page-line); background:#fff; color:var(--page-ink); padding:7px 10px; border-radius:999px; font-size:.76rem; font-weight:800; white-space:nowrap; }
+
+  .phone { --ground:#fff; --surface:#fff; --surface-2:#fff; --edge:#ddd; --depth:#ccc; --ink:#222; --muted:#6d6d72; --accent:#ef8d18; --accent-top:#ffdb82; --accent-deep:#ad6d08; --on-accent:#573100; --ready:#3b9b4b; --warning:#d58809; --blocked:#d44b31; --radius:20px; position:relative; width:100%; height:min(790px,80vh); min-height:640px; border:10px solid #11131a; border-radius:50px; background:#11131a; box-shadow:0 28px 60px rgba(25,29,42,.22),0 8px 20px rgba(25,29,42,.16); overflow:hidden; }
+  .phone::before { content:""; position:absolute; width:34%; height:25px; top:8px; left:33%; z-index:8; border-radius:0 0 18px 18px; background:#11131a; pointer-events:none; }
+  .phone.theme-golden { --surface:linear-gradient(180deg,#fffdf7,#fff3dc); --surface-flat:#fffaf0; --surface-2:#fff3df; --edge:#efd9ae; --depth:#e8c98f; --ink:#5c3a14; --muted:#9a6e38; --accent:#f5a623; --accent-top:#ffe082; --accent-deep:#b9770c; --on-accent:#3d2100; --ready:#298536; --warning:#996105; --blocked:#b82e1a; --radius:20px; }
+  .phone.theme-nova { --surface:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045)); --surface-flat:rgba(255,255,255,.075); --surface-2:rgba(255,255,255,.085); --edge:rgba(160,180,255,.24); --depth:rgba(0,0,0,.55); --ink:#f1f4ff; --muted:#7c89b4; --accent:#7c5cff; --accent-top:#9c82ff; --accent-deep:#22d3ee; --on-accent:#fff; --ready:#34e39b; --warning:#f5b940; --blocked:#ff6b6b; --radius:18px; }
+  .phone-screen { position:relative; height:100%; overflow:hidden; color:var(--ink); }
+  .theme-golden .phone-screen { background:linear-gradient(180deg,#fff 0%,#fffdf8 44%,#fff8ed 100%); }
+  .theme-nova .phone-screen { background:radial-gradient(circle at 16% -8%,rgba(124,92,255,.14),transparent 34%),linear-gradient(180deg,#000 0%,#050711 100%); }
+  .status-bar { position:relative; z-index:7; height:45px; padding:13px 22px 0; display:flex; justify-content:space-between; align-items:flex-start; font-size:.77rem; font-weight:900; }
+  .status-icons { letter-spacing:.08em; }
+  .phone-nav { position:relative; z-index:4; height:48px; padding:0 17px; display:flex; align-items:center; justify-content:space-between; }
+  .phone-nav strong { font-size:1.48rem; letter-spacing:-.03em; }
+  .nav-gear { width:36px; height:36px; display:grid; place-items:center; border:0; border-radius:50%; background:var(--surface-flat); color:var(--accent); box-shadow:0 8px 24px rgba(0,0,0,.08); font-size:1.05rem; }
+  .phone-content { position:absolute; inset:93px 0 72px; overflow:auto; padding:13px 16px 30px; scrollbar-width:thin; overscroll-behavior:contain; }
+  .phone-content::-webkit-scrollbar { width:4px; }
+  .phone-content::-webkit-scrollbar-thumb { background:color-mix(in srgb,var(--muted) 42%,transparent); border-radius:5px; }
+  .stack { display:grid; gap:13px; }
+  .card { position:relative; padding:15px; border:1.5px solid var(--edge); border-radius:var(--radius); background:var(--surface); color:var(--ink); }
+  .theme-golden .card { box-shadow:0 5px 0 var(--depth); }
+  .theme-nova .card { box-shadow:0 12px 28px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter:blur(12px); }
+  .card h3 { margin:0 0 8px; font-size:1rem; }
+  .card p { margin:5px 0; }
+  .muted { color:var(--muted); }
+  .micro { font-size:.73rem; }
+  .small { font-size:.82rem; }
+  .row { display:flex; align-items:center; gap:9px; }
+  .row.between { justify-content:space-between; }
+  .grow { flex:1; min-width:0; }
+  .divider { height:1px; margin:10px 0; background:var(--edge); opacity:.72; }
+  .section-label { margin:12px 0 6px; font-size:.7rem; font-weight:900; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .avatar { width:34px; height:34px; display:grid; place-items:center; border-radius:50%; background:var(--surface-2); border:1px solid var(--edge); }
+  .status-text { font-size:.75rem; font-weight:850; text-align:right; }
+  .status-text.ready { color:var(--ready); }
+  .status-text.warning { color:var(--warning); }
+  .status-text.blocked { color:var(--blocked); }
+  .badge { display:inline-flex; gap:5px; align-items:center; padding:5px 8px; border-radius:999px; border:1px solid color-mix(in srgb,currentColor 32%,transparent); font-size:.7rem; font-weight:850; }
+  .badge.ready { color:var(--ready); background:color-mix(in srgb,var(--ready) 13%,transparent); }
+  .badge.warning { color:var(--warning); background:color-mix(in srgb,var(--warning) 13%,transparent); }
+  .badge.blocked { color:var(--blocked); background:color-mix(in srgb,var(--blocked) 13%,transparent); }
+  .alarm-time { font-size:2.25rem; font-weight:900; letter-spacing:-.06em; line-height:1; }
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .field { display:grid; gap:5px; }
+  .field.full { grid-column:1/-1; }
+  .field label { font-size:.7rem; font-weight:850; color:var(--muted); }
+  .field input:not([type="checkbox"]), .field select { min-width:0; width:100%; border:1px solid var(--edge); border-radius:11px; padding:10px; color:var(--ink); background:var(--surface-flat); }
+  .check-field { display:flex; align-items:center; gap:9px; min-height:42px; }
+  .check-field input { width:20px; height:20px; accent-color:var(--accent); }
+  .theme-nova .field select option { background:#151b3c; color:#fff; }
+  .primary, .secondary, .danger { width:100%; border-radius:14px; padding:12px 13px; font-weight:900; }
+  .primary { border:1px solid var(--accent-deep); color:var(--on-accent); background:linear-gradient(180deg,var(--accent-top),var(--accent),var(--accent-deep)); box-shadow:0 5px 0 color-mix(in srgb,var(--accent-deep) 82%,#000); }
+  .primary:active { transform:translateY(3px); box-shadow:0 2px 0 color-mix(in srgb,var(--accent-deep) 82%,#000); }
+  .theme-nova .primary { color:#fff; box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 48%,transparent); }
+  .secondary { color:var(--ink); background:var(--surface-flat); border:1px solid var(--edge); }
+  .danger { color:var(--blocked); background:color-mix(in srgb,var(--blocked) 10%,var(--surface-flat)); border:1px solid color-mix(in srgb,var(--blocked) 45%,var(--edge)); }
+  .inline-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+  .link-button { border:0; background:transparent; color:var(--accent); font-size:.74rem; font-weight:850; padding:4px; }
+  .message { padding:10px 11px; border-radius:12px; background:color-mix(in srgb,var(--accent) 11%,var(--surface-flat)); font-size:.8rem; }
+  .big-state { text-align:center; padding:18px 10px; }
+  .big-state .icon { display:block; font-size:2.65rem; margin-bottom:6px; }
+  .big-state h3 { font-size:1.35rem; margin:0 0 4px; }
+  .ring-pulse { width:82px; height:82px; margin:2px auto 14px; display:grid; place-items:center; border-radius:50%; color:#fff; background:linear-gradient(145deg,var(--accent-top),var(--accent),var(--accent-deep)); font-size:2rem; animation:pulse 1.3s ease-in-out infinite; }
+  @keyframes pulse { 50% { transform:scale(1.06); box-shadow:0 0 0 16px color-mix(in srgb,var(--accent) 0%,transparent); } }
+  .choices { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .choice { min-height:48px; border:1px solid var(--edge); border-radius:13px; color:var(--ink); background:var(--surface-flat); font-weight:900; }
+  .color-choices { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:12px; }
+  .color-choice { border:2px solid rgba(255,255,255,.54); border-radius:15px; min-height:62px; color:#fff; font-weight:950; text-shadow:0 1px 3px rgba(0,0,0,.4); }
+  .color-choice[data-color="0"] { background:#d9485f; }
+  .color-choice[data-color="1"] { background:#3478d4; }
+  .color-choice[data-color="2"] { background:#268761; }
+  .color-choice[data-color="3"] { background:#9b6b00; }
+  .shake-meter { height:12px; overflow:hidden; border-radius:999px; background:color-mix(in srgb,var(--muted) 18%,transparent); margin:13px 0; }
+  .shake-meter span { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--warning),var(--accent)); transition:width .2s ease; }
+  .timing-track { position:relative; width:100%; height:54px; border:1px solid var(--edge); border-radius:16px; overflow:hidden; background:color-mix(in srgb,var(--surface-flat) 80%,var(--surface)); }
+  .timing-zone { position:absolute; left:36%; width:28%; top:8px; bottom:8px; border-radius:10px; background:color-mix(in srgb,var(--ready) 64%,transparent); }
+  .timing-dot { position:absolute; top:14px; left:0; width:24px; height:24px; border-radius:50%; background:var(--accent); box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 45%,transparent); animation:timing-slide 1.2s linear infinite alternate; }
+  .timing-track.missed { outline:3px solid var(--warning); }
+  @keyframes timing-slide { to { left:calc(100% - 24px); } }
+  .stars { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; padding:5px 10px 8px; }
+  .star { aspect-ratio:1; border:1px solid color-mix(in srgb,var(--accent) 40%,var(--edge)); border-radius:50%; color:#ffe56c; background:color-mix(in srgb,var(--accent) 18%,var(--surface-flat)); font-size:1.7rem; box-shadow:0 6px 14px rgba(0,0,0,.12); }
+  .star.popped { opacity:.18; transform:scale(.68); pointer-events:none; }
+  .celebration { text-align:center; padding:18px 6px; }
+  .celebration .confetti { font-size:2.5rem; letter-spacing:.12em; }
+  .points { font-size:1.4rem; color:var(--ready); font-weight:950; }
+  .theme-picker-mini { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:10px; }
+  .theme-chip { border:1px solid var(--edge); border-radius:15px; padding:8px; text-align:left; color:var(--ink); background:var(--surface-flat); font-size:.71rem; font-weight:850; }
+  .theme-chip.selected { outline:2px solid var(--accent); outline-offset:1px; }
+  .theme-swatch { height:52px; border-radius:11px; margin-bottom:7px; position:relative; overflow:hidden; }
+  .theme-swatch.golden { background:linear-gradient(180deg,#ffb255,#fff0ca); }
+  .theme-swatch.nova { background:radial-gradient(circle at 15% 0,rgba(124,92,255,.65),transparent 50%),linear-gradient(180deg,#1b2454,#090d20); }
+  .theme-swatch::before { content:""; position:absolute; left:12%; right:12%; top:12px; height:15px; border:1px solid rgba(255,255,255,.52); border-radius:6px; background:rgba(255,255,255,.32); }
+  .theme-swatch::after { content:""; position:absolute; left:24%; right:24%; bottom:8px; height:9px; border-radius:5px; background:var(--accent); }
+  .theme-chip small { display:block; margin-top:2px; color:var(--muted); font-weight:650; line-height:1.2; }
+  .bedtime-sound { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid var(--edge); }
+  .bedtime-sound:last-child { border-bottom:0; }
+  .play-dot { width:30px; height:30px; border:0; border-radius:50%; background:var(--accent); color:#fff; }
+  .timer-pills { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin:12px 0; padding:4px; border-radius:14px; background:var(--surface-flat); }
+  .timer-pills button { min-height:34px; border:0; border-radius:10px; color:var(--ink); background:transparent; font-size:.7rem; font-weight:850; }
+  .timer-pills button.selected { background:color-mix(in srgb,var(--ink) 16%,var(--surface-flat)); }
+  .sound-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:4px; padding:11px 5px; border-radius:14px; background:color-mix(in srgb,var(--accent) 10%,var(--surface-flat)); }
+  .sound-choice { min-width:0; min-height:58px; border:1px solid transparent; border-radius:10px; color:var(--ink); background:transparent; font-size:.6rem; font-weight:800; }
+  .sound-choice span { display:block; margin-bottom:3px; font-size:1.35rem; }
+  .sound-choice.selected { border-color:var(--accent); background:color-mix(in srgb,var(--accent) 14%,transparent); }
+  .tab-bar { position:absolute; z-index:6; left:10px; right:10px; bottom:9px; height:56px; display:grid; grid-template-columns:repeat(3,1fr); padding:5px; border:1px solid var(--edge); border-radius:22px; background:color-mix(in srgb,var(--surface-flat) 88%,transparent); box-shadow:0 9px 24px rgba(0,0,0,.16); backdrop-filter:blur(18px); }
+  .tab-bar button { border:0; border-radius:16px; background:transparent; color:var(--muted); font-size:.67rem; font-weight:850; }
+  .tab-bar button span { display:block; font-size:1.08rem; line-height:1.1; }
+  .tab-bar button.active { color:var(--accent); background:color-mix(in srgb,var(--accent) 12%,var(--surface-flat)); }
+  .sync-line { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:.7rem; margin-top:8px; }
+  .sync-dot { width:8px; height:8px; border-radius:50%; background:var(--ready); box-shadow:0 0 0 4px color-mix(in srgb,var(--ready) 16%,transparent); }
+
+  .explain { max-width:900px; margin:0 auto 60px; padding:30px 24px; border:1px solid var(--page-line); border-radius:24px; background:#fff; }
+  .explain h2 { margin:0 0 8px; font-size:clamp(1.45rem,3vw,2.1rem); }
+  .explain > p { margin:0; color:var(--page-muted); }
+  .explain-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+  .explain-card { padding:15px; border-radius:16px; background:#f6f3ff; }
+  .explain-card strong { display:block; margin-bottom:4px; }
+  .explain-card span { color:var(--page-muted); font-size:.85rem; }
+  .cta-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .cta { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:11px 17px; border-radius:13px; text-decoration:none; font-weight:850; }
+  .cta.main { color:#fff; background:#202842; }
+  .cta.alt { color:var(--page-accent-dark); border:1px solid #b7a9ff; background:#f4f1ff; }
+  .availability { margin-top:14px !important; font-size:.8rem; }
+  .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+
+  @media (max-width:820px) {
+    .journey ol { grid-template-columns:repeat(2,1fr); }
+    .mobile-role-switcher { display:flex; }
+    .demo-stage { display:block; max-width:460px; }
+    .device-column { display:none; }
+    .demo-stage[data-mobile-role="parent"] .device-column[data-device="parent"],
+    .demo-stage[data-mobile-role="child"] .device-column[data-device="child"] { display:block; }
+    .phone { height:min(780px,78vh); }
+    .explain { margin-left:16px; margin-right:16px; }
+    .explain-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width:520px) {
+    .site-bar { padding:9px 12px; }
+    .site-brand span { display:none; }
+    .preview-pill { font-size:.69rem; }
+    .intro { padding-top:38px; }
+    .journey li { min-height:48px; }
+    .phone { border-width:7px; border-radius:42px; min-height:600px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="site-brand" href="index.html"><img src="avatar.png" alt=""><span>Mom Alarm Clock</span></a>
+  <span class="preview-pill">Interactive V2 preview</span>
+  <button class="reset-button" type="button" data-action="reset">Reset demo</button>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="eyebrow">Try the morning before you buy</div>
+    <h1>Two phones. One connected wake-up.</h1>
+    <p>Set the alarm on the parent phone, make it ring on the child phone, complete the wake check, and watch the parent view update.</p>
+    <div class="truth-note"><span aria-hidden="true">ⓘ</span> This is a local simulation of V2, which is still in testing.</div>
+  </section>
+
+  <nav class="journey" aria-label="Demo progress">
+    <ol id="journeySteps"></ol>
+  </nav>
+
+  <div class="mobile-role-switcher" aria-label="Choose a simulated phone">
+    <button type="button" class="active" data-action="mobile-role" data-role="parent">Parent phone</button>
+    <button type="button" data-action="mobile-role" data-role="child">Child phone</button>
+  </div>
+
+  <section class="demo-stage" id="demoStage" data-mobile-role="parent" aria-label="Interactive two-phone product simulation">
+    <article class="device-column" data-device="parent">
+      <div class="device-label">
+        <div><h2>Parent phone</h2><p>Creates the alarm and sees the result</p></div>
+        <button class="theme-toggle" type="button" data-action="toggle-theme" data-device="parent">Golden Hour ☀</button>
+      </div>
+      <div class="phone theme-golden" id="parentPhone"><div class="phone-screen" id="parentScreen"></div></div>
+    </article>
+
+    <article class="device-column" data-device="child">
+      <div class="device-label">
+        <div><h2>Child phone</h2><p>Rings and runs the wake-up check</p></div>
+        <button class="theme-toggle" type="button" data-action="toggle-theme" data-device="child">Nova ✦</button>
+      </div>
+      <div class="phone theme-nova" id="childPhone"><div class="phone-screen" id="childScreen"></div></div>
+    </article>
+  </section>
+
+  <section class="explain">
+    <h2>What this preview is showing</h2>
+    <p>The simulator mirrors the current V2 product flow and visual themes. It does not connect to a real device, schedule a real alarm, or collect your entries.</p>
+    <div class="explain-grid">
+      <div class="explain-card"><strong>Parent-managed alarms</strong><span>Choose the time, wake-up check, message, and snooze allowance for the paired child device.</span></div>
+      <div class="explain-card"><strong>Active wake checks</strong><span>The child completes the configured check; an alarm merely firing is not treated as completion.</span></div>
+      <div class="explain-card"><strong>Honest status</strong><span>The parent sees armed, ringing, checking, completed, and no-response states—not a vague success claim.</span></div>
+    </div>
+    <div class="cta-row">
+      <a class="cta main" href="https://apps.apple.com/app/id6762470545">Get the current iPhone &amp; iPad app</a>
+      <a class="cta alt" href="https://mom-alarm-clock.kit.com/7f152f1e88?utm_source=interactive_demo&amp;utm_medium=referral&amp;utm_campaign=android_waitlist">Join the Android waitlist</a>
+    </div>
+    <p class="availability">The public iOS app and this V2 preview are not the same build. V2 and Android availability will be announced only after their store builds are ready.</p>
+  </section>
+</main>
+
+<div class="sr-only" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const checks = {
+    game: { name: "Play a game", detail: "Four quick game styles" },
+    quiz: { name: "Brain quiz", detail: "Three age-adjusted styles" },
+    qr: { name: "Scan a QR code", detail: "Walk to the placed code" },
+    tap: { name: "Tap to confirm", detail: "Simple confirmation" }
+  };
+  const gameStyles = {
+    surpriseMe: "Surprise me (a different game each day)",
+    popTargets: "Pop the stars",
+    sequenceRepeat: "Repeat the colors",
+    shake: "Shake it awake",
+    timingTap: "Tap the moment"
+  };
+  const quizStyles = { math:"Math", pictureMatch:"Picture match", pattern:"Pattern" };
+  const voiceModes = {
+    toneOnly:"Tone only", voiceOnly:"Your voice", voiceThenTone:"Voice, then tone",
+    voiceAfterClear:"Voice after they're up"
+  };
+
+  const makeInitialState = () => ({
+    phase: "setup",
+    alarm: {
+      time: "07:00",
+      repeat: "Weekdays",
+      label: "School morning",
+      check: "game",
+      gameStyle: "surpriseMe",
+      quizStyle: "math",
+      requireVolumeUp: false,
+      soundLevel: "Normal",
+      voiceMode: "toneOnly",
+      voiceRecorded: false,
+      snoozes: 1,
+      snoozeMinutes: 5,
+      graceMinutes: 10,
+      message: "You've got this — school day!"
+    },
+    parentTheme: "golden",
+    childTheme: "nova",
+    parentTab: "parent",
+    childTab: "child",
+    mobileRole: "parent",
+    bedtimeTimer: "30 min",
+    bedtimeSound: "",
+    stars: [false, false, false, false, false],
+    sequence: [0, 1, 2],
+    sequenceProgress: 0,
+    shakes: 0,
+    timingHits: 0,
+    timingStartedAt: 0,
+    timingMiss: false,
+    volumeRaised: false,
+    voiceError: false,
+    snoozed: 0,
+    parentResolved: false
+  });
+
+  let state = makeInitialState();
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const escapeHTML = (value) => String(value).replace(/[&<>'"]/g, character => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+  })[character]);
+  const displayTime = () => {
+    const [hours, minutes] = state.alarm.time.split(":").map(Number);
+    const date = new Date(2026, 7, 10, hours, minutes + state.snoozed * state.alarm.snoozeMinutes);
+    return date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  };
+  const resolvedGameStyle = () => state.alarm.gameStyle === "surpriseMe" ? "popTargets" : state.alarm.gameStyle;
+  const verificationDetail = () => {
+    if (state.alarm.check === "game") {
+      return state.alarm.gameStyle === "surpriseMe"
+        ? `${gameStyles.surpriseMe} · today's preview: ${gameStyles[resolvedGameStyle()]}`
+        : gameStyles[state.alarm.gameStyle];
+    }
+    if (state.alarm.check === "quiz") return `${quizStyles[state.alarm.quizStyle]} quiz`;
+    return checks[state.alarm.check].name;
+  };
+  const phaseIndex = () => ({ setup:0, armed:1, ringing:1, checking:2, verified:3, escalated:3, resolved:3 })[state.phase] ?? 0;
+  const announce = message => { $("#liveRegion").textContent = message; };
+  const statusForPhase = () => {
+    switch (state.phase) {
+      case "setup": return { text:"No alarm yet", tone:"warning" };
+      case "armed": return { text:`Armed for ${displayTime()}`, tone:"ready" };
+      case "ringing": return { text:"Alarm is ringing", tone:"warning" };
+      case "checking": return { text:"Wake check in progress", tone:"warning" };
+      case "verified": return { text:"Wake check complete", tone:"ready" };
+      case "escalated": return { text:"Needs your attention", tone:"blocked" };
+      case "resolved": return { text:"Resolved by you", tone:"ready" };
+      default: return { text:"Pending", tone:"warning" };
+    }
+  };
+
+  function journeyMarkup() {
+    const steps = ["Set the alarm", "Ring on child phone", "Complete wake check", "See the result"];
+    const current = phaseIndex();
+    return steps.map((step, index) => {
+      const className = index < current ? "done" : index === current ? "active" : "";
+      const mark = index < current ? "✓" : index + 1;
+      return `<li class="${className}" ${index === current ? 'aria-current="step"' : ""}><span class="step-number">${mark}</span><span>${step}</span></li>`;
+    }).join("");
+  }
+
+  function statusBar() {
+    return `<div class="status-bar"><span>7:00</span><span class="status-icons">●●● ︽ ▰</span></div>`;
+  }
+
+  function themePicker(device) {
+    const selected = device === "parent" ? state.parentTheme : state.childTheme;
+    return `<div class="card">
+      <h3>${device === "parent" ? "Your look" : "Make it yours"}</h3>
+      <p class="small muted">${device === "parent" ? "Changes the parent screens only — the child picks their own on their tab." : "Pick the look for your screens. Change it any time."}</p>
+      <div class="theme-picker-mini">
+        <button class="theme-chip ${selected === "golden" ? "selected" : ""}" type="button" data-action="set-theme" data-device="${device}" data-theme="golden"><span class="theme-swatch golden"></span>☀ Golden Hour<small>Warm sunrise. Bright and playful.</small></button>
+        <button class="theme-chip ${selected === "nova" ? "selected" : ""}" type="button" data-action="set-theme" data-device="${device}" data-theme="nova"><span class="theme-swatch nova"></span>✦ Nova<small>Deep space. Glowing and calm.</small></button>
+      </div>
+    </div>`;
+  }
+
+  function parentSetup() {
+    return `<div class="stack">
+      <div class="card">
+        <div class="row between"><div class="row"><span class="avatar">👧</span><div><strong>Maya</strong><div class="micro muted">Age 10</div></div></div><span class="badge warning">◷ Not scheduled</span></div>
+      </div>
+      <div class="card">
+        <h3>New alarm for Maya</h3>
+        <div class="section-label">When</div>
+        <div class="form-grid">
+          <div class="field"><label for="alarmTime">Wake time</label><input id="alarmTime" data-field="time" type="time" value="${escapeHTML(state.alarm.time)}"></div>
+          <div class="field"><label for="repeatDays">Repeat</label><select id="repeatDays" data-field="repeat"><option ${state.alarm.repeat === "Weekdays" ? "selected" : ""}>Weekdays</option><option ${state.alarm.repeat === "Weekends" ? "selected" : ""}>Weekends</option><option ${state.alarm.repeat === "Every day" ? "selected" : ""}>Every day</option><option ${state.alarm.repeat === "Once" ? "selected" : ""}>Once</option></select></div>
+          <div class="field full"><label for="alarmLabel">Alarm name</label><input id="alarmLabel" data-field="label" maxlength="40" value="${escapeHTML(state.alarm.label)}"></div>
+        </div>
+        <div class="section-label">How they prove they're awake</div>
+        <div class="form-grid">
+          <div class="field full"><label for="checkType">Wake-up check</label><select id="checkType" data-field="check">${Object.entries(checks).map(([value,check]) => `<option value="${value}" ${state.alarm.check === value ? "selected" : ""}>${check.name} — ${check.detail}</option>`).join("")}</select></div>
+          ${state.alarm.check === "game" ? `<div class="field full"><label for="gameStyle">Which game</label><select id="gameStyle" data-field="gameStyle">${Object.entries(gameStyles).map(([value,name]) => `<option value="${value}" ${state.alarm.gameStyle === value ? "selected" : ""}>${name}</option>`).join("")}</select></div>` : ""}
+          ${state.alarm.check === "quiz" ? `<div class="field full"><label for="quizStyle">Quiz style</label><select id="quizStyle" data-field="quizStyle">${Object.entries(quizStyles).map(([value,name]) => `<option value="${value}" ${state.alarm.quizStyle === value ? "selected" : ""}>${name}</option>`).join("")}</select></div>` : ""}
+          <label class="field full check-field"><input type="checkbox" data-field="requireVolumeUp" ${state.alarm.requireVolumeUp ? "checked" : ""}> Require volume up before completion</label>
+        </div>
+        <div class="section-label">Sound &amp; message</div>
+        <div class="form-grid">
+          <div class="field"><label for="soundLevel">How loud</label><select id="soundLevel" data-field="soundLevel">${["Gentle","Normal","Loud"].map(value => `<option ${state.alarm.soundLevel === value ? "selected" : ""}>${value}</option>`).join("")}</select></div>
+          <div class="field"><label for="voiceMode">Your voice</label><select id="voiceMode" data-field="voiceMode">${Object.entries(voiceModes).map(([value,name]) => `<option value="${value}" ${state.alarm.voiceMode === value ? "selected" : ""}>${name}</option>`).join("")}</select></div>
+          ${state.alarm.voiceMode !== "toneOnly" ? `<div class="field full"><button class="secondary" type="button" data-action="record-voice">${state.alarm.voiceRecorded ? "✓ Sample message recorded — re-record" : "🎙 Simulate recording a voice message"}</button></div>` : ""}
+          ${state.voiceError ? `<div class="field full"><p class="message">Record a sample message, or choose Tone only, before sending this alarm.</p></div>` : ""}
+          <div class="field full"><label for="wakeMessage">Message on their screen</label><input id="wakeMessage" data-field="message" maxlength="70" value="${escapeHTML(state.alarm.message)}"></div>
+        </div>
+        <div class="section-label">Snoozing &amp; no response</div>
+        <div class="form-grid">
+          <div class="field"><label for="snoozes">Snoozes allowed</label><select id="snoozes" data-field="snoozes">${[0,1,2,3].map(value => `<option value="${value}" ${state.alarm.snoozes === value ? "selected" : ""}>${value === 0 ? "None" : value}</option>`).join("")}</select></div>
+          ${state.alarm.snoozes > 0 ? `<div class="field"><label for="snoozeMinutes">Snooze length</label><select id="snoozeMinutes" data-field="snoozeMinutes">${[3,5,10,15].map(value => `<option value="${value}" ${state.alarm.snoozeMinutes === value ? "selected" : ""}>${value} min</option>`).join("")}</select></div>` : ""}
+          <div class="field full"><label for="graceMinutes">Tell parent after no response</label><select id="graceMinutes" data-field="graceMinutes">${[5,10,15,20].map(value => `<option value="${value}" ${state.alarm.graceMinutes === value ? "selected" : ""}>${value} min</option>`).join("")}</select></div>
+        </div>
+        <p class="message">At ${displayTime()} on ${escapeHTML(state.alarm.repeat.toLowerCase())}, Maya completes ${escapeHTML(verificationDetail().toLowerCase())}. If the check is still incomplete after ${state.alarm.graceMinutes} minutes, the parent view needs attention.</p>
+        <button class="primary" type="button" data-action="send-alarm">⏰ Create &amp; send alarm</button>
+      </div>
+      ${themePicker("parent")}
+    </div>`;
+  }
+
+  function parentDashboard() {
+    const status = statusForPhase();
+    const activity = state.phase === "verified"
+      ? `<div class="row between"><span>${escapeHTML(state.alarm.label || "Morning alarm")}</span><strong class="status-text ready">+${state.snoozed ? 15 : 20} pts · complete</strong></div>`
+      : state.phase === "resolved"
+        ? `<div class="row between"><span>${escapeHTML(state.alarm.label || "Morning alarm")}</span><strong class="status-text ready">Parent override</strong></div>`
+        : `<p class="small muted">The finished morning appears here with its outcome and points.</p>`;
+    const attention = state.phase === "escalated" ? `<div class="card">
+      <div class="row"><span class="avatar">⚠️</span><div class="grow"><h3>Maya has not completed the check</h3><p class="small muted">A guardian notification was simulated for this preview.</p></div></div>
+      <button class="danger" type="button" data-action="parent-override">Override → mark completed</button>
+    </div>` : "";
+    return `<div class="stack">
+      <div class="card">
+        <div class="row between"><div class="row"><span class="avatar">👧</span><div><strong>Maya</strong><div class="micro muted">Selected child</div></div></div><button class="link-button" type="button" data-action="edit-alarm">Edit alarm</button></div>
+      </div>
+      <div class="card" aria-label="This morning status">
+        <h3>This morning</h3>
+        <div class="row between"><div class="row"><span>🙂</span><strong>Maya</strong></div><span class="status-text ${status.tone}">${status.text}</span></div>
+      </div>
+      ${attention}
+      <div class="card">
+        <div class="row between"><div><strong>${escapeHTML(state.alarm.label || "Morning alarm")}</strong><div class="alarm-time">${displayTime()}</div></div><span class="badge ${status.tone}">${status.tone === "ready" ? "✓" : status.tone === "blocked" ? "!" : "◷"} ${status.text}</span></div>
+        <p class="small muted">${escapeHTML(state.alarm.repeat)} · ${escapeHTML(verificationDetail())} · ${state.alarm.snoozes} snooze${state.alarm.snoozes === 1 ? "" : "s"}</p>
+        <div class="inline-actions"><button class="secondary" type="button" data-action="edit-alarm">Edit</button><button class="secondary" type="button" data-action="reset">Turn off</button></div>
+        <div class="sync-line"><span class="sync-dot"></span><span>Simulated devices are connected</span></div>
+      </div>
+      <div class="card"><h3>Morning history</h3>${activity}</div>
+      ${themePicker("parent")}
+    </div>`;
+  }
+
+  function parentContent() {
+    return state.phase === "setup" ? parentSetup() : parentDashboard();
+  }
+
+  function parentPhone() {
+    return `${statusBar()}
+      <div class="phone-nav"><strong>Parent</strong><button class="nav-gear" type="button" data-action="scroll-look" data-device="parent" aria-label="Find appearance options">⚙</button></div>
+      <div class="phone-content">${parentContent()}</div>
+      <nav class="tab-bar" aria-label="Parent app tabs">
+        <button type="button" class="active" data-action="mobile-role" data-role="parent"><span>👥</span>Parent</button>
+        <button type="button" data-action="mobile-role" data-role="child"><span>🚶</span>Child</button>
+        <button type="button" data-action="open-bedtime"><span>☾</span>Bedtime</button>
+      </nav>`;
+  }
+
+  function childStandby() {
+    if (state.phase === "setup") return `<div class="stack">
+      <div class="card big-state"><span class="icon">📲</span><h3>Waiting for an alarm</h3><p class="small muted">Create one on the Parent phone. It will appear here as if this were Maya's paired device.</p></div>
+      ${themePicker("child")}
+    </div>`;
+    return `<div class="stack">
+      <div class="card"><div class="row between"><div class="row"><span class="avatar">👧</span><div><strong>Maya</strong><div class="micro muted">Child device</div></div></div><span class="badge ready">✓ Paired</span></div></div>
+      <div class="card">
+        <div class="row between"><div><h3>${escapeHTML(state.alarm.label || "Morning alarm")}</h3><div class="alarm-time">${displayTime()}</div></div><span class="badge ready">⏰ Armed</span></div>
+        <p class="small muted">${escapeHTML(verificationDetail())} · ${escapeHTML(state.alarm.repeat)}</p>
+        <p class="message">“${escapeHTML(state.alarm.message)}”</p>
+        <button class="primary" type="button" data-action="ring-alarm">🔔 Start this simulated morning</button>
+      </div>
+      <div class="card"><h3>My rewards</h3><div class="row between"><span class="small muted">Complete the wake check</span><strong>45 pts</strong></div></div>
+      ${themePicker("child")}
+    </div>`;
+  }
+
+  function ringingContent() {
+    return `<div class="stack">
+      <div class="card big-state">
+        <div class="ring-pulse">🔔</div>
+        <h3>Good morning, Maya</h3>
+        <p class="message">“${escapeHTML(state.alarm.message)}”</p>
+        <p class="small muted">${escapeHTML(state.alarm.soundLevel)} tone · ${escapeHTML(voiceModes[state.alarm.voiceMode])}${state.alarm.voiceRecorded ? " · recorded sample ready" : ""}</p>
+        <p class="small muted">The alarm keeps this morning active until Maya starts the wake check.</p>
+        <button class="primary" type="button" data-action="start-check">✓ I'm up</button>
+        ${state.snoozed < state.alarm.snoozes ? `<button class="secondary" style="margin-top:9px" type="button" data-action="snooze">☾ Snooze 5 min (${state.alarm.snoozes - state.snoozed} left)</button>` : ""}
+        <button class="link-button" style="margin-top:10px" type="button" data-action="no-response">Simulate no response after ${state.alarm.graceMinutes} min</button>
+      </div>
+    </div>`;
+  }
+
+  function challengeContent() {
+    if (state.alarm.requireVolumeUp && !state.volumeRaised) return `<div class="card big-state">
+      <span class="icon">🔊</span><h3>Turn the volume up</h3><p class="small muted">This alarm requires volume up before the wake check can be completed.</p>
+      <button class="primary" type="button" data-action="raise-volume">Simulate volume up</button>
+    </div>`;
+    if (state.alarm.check === "quiz") {
+      const quiz = state.alarm.quizStyle === "pictureMatch"
+        ? `<p class="small muted">Tap the picture that means sunrise.</p><div class="choices"><button class="choice" type="button" data-action="quiz-answer" data-correct="false" aria-label="Moon">🌙</button><button class="choice" type="button" data-action="quiz-answer" data-correct="true" aria-label="Sunrise">🌅</button><button class="choice" type="button" data-action="quiz-answer" data-correct="false" aria-label="Rain">🌧️</button><button class="choice" type="button" data-action="quiz-answer" data-correct="false" aria-label="Snow">❄️</button></div>`
+        : state.alarm.quizStyle === "pattern"
+          ? `<p style="font-size:1.35rem;font-weight:950">2, 4, 6, ?</p><div class="choices"><button class="choice" type="button" data-action="quiz-answer" data-correct="false">7</button><button class="choice" type="button" data-action="quiz-answer" data-correct="true">8</button><button class="choice" type="button" data-action="quiz-answer" data-correct="false">9</button><button class="choice" type="button" data-action="quiz-answer" data-correct="false">10</button></div>`
+          : `<p style="font-size:1.35rem;font-weight:950">8 + 5 = ?</p><div class="choices"><button class="choice" type="button" data-action="quiz-answer" data-correct="false">12</button><button class="choice" type="button" data-action="quiz-answer" data-correct="true">13</button><button class="choice" type="button" data-action="quiz-answer" data-correct="false">14</button><button class="choice" type="button" data-action="quiz-answer" data-correct="false">15</button></div>`;
+      return `<div class="card"><div class="row between"><h3>${quizStyles[state.alarm.quizStyle]} wake check</h3><span class="badge warning">🔥 3-day streak</span></div><p class="message">“${escapeHTML(state.alarm.message)}”</p>${quiz}</div>`;
+    }
+    if (state.alarm.check === "qr") return `<div class="card big-state">
+      <span class="icon">▦</span><h3>Scan the wake-up code</h3><p class="small muted">In the app, the parent places the code somewhere Maya has to walk to. This preview simulates the camera result.</p>
+      <button class="primary" type="button" data-action="complete-check">▦ Simulate a correct scan</button>
+    </div>`;
+    if (state.alarm.check === "tap") return `<div class="card big-state">
+      <span class="icon">✓</span><h3>Wake check</h3><p class="small muted">Maya confirms she is awake.</p>
+      <button class="primary" type="button" data-action="complete-check">I'm awake — confirm</button>
+    </div>`;
+    const style = resolvedGameStyle();
+    if (style === "sequenceRepeat") {
+      const names = ["Red", "Blue", "Green", "Yellow"];
+      return `<div class="card"><div class="row between"><h3>Repeat the colors</h3><span class="badge warning">${state.sequenceProgress}/${state.sequence.length}</span></div><p class="small muted">Watch: ${state.sequence.map(index => names[index]).join(" → ")}. Now tap it back.</p><div class="color-choices">${names.map((name,index) => `<button class="color-choice" type="button" data-action="color-tap" data-color="${index}">${name}</button>`).join("")}</div></div>`;
+    }
+    if (style === "shake") return `<div class="card big-state"><span class="icon">📳</span><h3>Shake it awake</h3><p class="small muted">${state.shakes} of 5 shakes</p><div class="shake-meter"><span style="width:${state.shakes * 20}%"></span></div><button class="primary" type="button" data-action="shake">Simulate a shake</button></div>`;
+    if (style === "timingTap") return `<div class="card"><div class="row between"><h3>Tap the moment</h3><span class="badge warning">${state.timingHits}/3</span></div><p class="small muted">Tap while the moving dot is inside the green zone. Misses simply retry.</p><button class="timing-track ${state.timingMiss ? "missed" : ""}" type="button" data-action="timing-tap" aria-label="Tap while the dot is in the green zone"><span class="timing-zone"></span><span class="timing-dot"></span></button></div>`;
+    const popped = state.stars.filter(Boolean).length;
+    return `<div class="card">
+      <div class="row between"><h3>Pop the stars</h3><span class="badge warning">⭐ ${popped}/5</span></div>
+      <p class="message">“${escapeHTML(state.alarm.message)}”</p>
+      <p class="small muted">Pop every star to turn the simulated alarm off.</p>
+      <div class="stars">${state.stars.map((done,index) => `<button class="star ${done ? "popped" : ""}" type="button" data-action="pop-star" data-star="${index}" aria-label="${done ? "Popped star" : `Pop star ${index + 1}`}">★</button>`).join("")}</div>
+    </div>`;
+  }
+
+  function completedContent() {
+    if (state.phase === "escalated") return `<div class="stack"><div class="card big-state"><span class="icon">⚠️</span><h3>No response yet</h3><p class="small muted">A guardian has been notified in this simulated path. A parent can resolve it on the Parent phone.</p><button class="secondary" type="button" data-action="mobile-role" data-role="parent">Open Parent phone</button></div></div>`;
+    if (state.phase === "resolved") return `<div class="stack"><div class="card big-state"><span class="icon">🤝</span><h3>Resolved by a parent</h3><p class="small muted">The history distinguishes a parent override from a child-completed wake check.</p><button class="secondary" type="button" data-action="reset">Try another morning</button></div></div>`;
+    const earned = state.snoozed ? 15 : 20;
+    return `<div class="stack"><div class="card celebration"><div class="confetti">🎉 ✦ 🎉</div><h3>Nice work, Maya!</h3><div class="points">+${earned} pts</div><p class="small muted">Wake check complete · ${state.snoozed ? `${state.snoozed} snooze${state.snoozed === 1 ? "" : "s"}` : "no snooze"}</p><button class="secondary" type="button" data-action="mobile-role" data-role="parent">See the Parent result</button></div><div class="card"><h3>My rewards</h3><div class="row between"><span>Movie night</span><button class="secondary" style="width:auto;padding:7px 10px" type="button">60 pts</button></div><div class="divider"></div><div class="row between"><span class="small muted">New balance</span><strong>${45 + earned} pts</strong></div></div></div>`;
+  }
+
+  function bedtimeContent() {
+    const timers = ["15 min", "30 min", "60 min", "Until stopped"];
+    const sounds = [["〰", "Brown noise"], ["≋", "White noise"], ["🌧", "Rain"], ["≋", "Ocean"], ["🔥", "Fireplace"]];
+    return `<div class="stack">
+      <div class="card"><div class="row"><span class="avatar">☾</span><div><h3>Wind down</h3><p class="small muted">Pick a sound, set a timer, and let the screen fade into a night scene. A good night is what makes the morning easy.</p></div></div></div>
+      <div class="card"><h3>☾ Bedtime sounds</h3><p class="small muted">Pick a sound to start winding down. The screen dims into a calm night scene.</p><div class="timer-pills">${timers.map(timer => `<button type="button" class="${state.bedtimeTimer === timer ? "selected" : ""}" data-action="bedtime-timer" data-timer="${timer}">${timer}</button>`).join("")}</div><div class="sound-grid">${sounds.map(([icon,name]) => `<button class="sound-choice ${state.bedtimeSound === name ? "selected" : ""}" type="button" data-action="bedtime-sound" data-sound="${name}"><span>${icon}</span>${name}</button>`).join("")}</div><p class="micro muted">Sound playback is visual-only in this webpage preview.</p></div>
+      ${themePicker("child")}
+    </div>`;
+  }
+
+  function childContent() {
+    if (state.childTab === "bedtime") return bedtimeContent();
+    if (state.phase === "setup" || state.phase === "armed") return childStandby();
+    if (state.phase === "ringing") return ringingContent();
+    if (state.phase === "checking") return `<div class="stack">${challengeContent()}</div>`;
+    return completedContent();
+  }
+
+  function childPhone() {
+    const title = state.childTab === "bedtime" ? "Bedtime" : "Child";
+    return `${statusBar()}
+      <div class="phone-nav"><strong>${title}</strong></div>
+      <div class="phone-content">${childContent()}</div>
+      <nav class="tab-bar" aria-label="Child app tabs">
+        <button type="button" data-action="mobile-role" data-role="parent"><span>👥</span>Parent</button>
+        <button type="button" class="${state.childTab === "child" ? "active" : ""}" data-action="child-tab" data-tab="child"><span>🚶</span>Child</button>
+        <button type="button" class="${state.childTab === "bedtime" ? "active" : ""}" data-action="child-tab" data-tab="bedtime"><span>☾</span>Bedtime</button>
+      </nav>`;
+  }
+
+  function updateTheme(device) {
+    const key = device === "parent" ? "parentTheme" : "childTheme";
+    const theme = state[key];
+    const phone = $(`#${device}Phone`);
+    phone.classList.toggle("theme-golden", theme === "golden");
+    phone.classList.toggle("theme-nova", theme === "nova");
+    const button = $(`.theme-toggle[data-device="${device}"]`);
+    button.textContent = theme === "golden" ? "Golden Hour ☀" : "Nova ✦";
+  }
+
+  function render(options = {}) {
+    const parentScroll = $("#parentScreen .phone-content")?.scrollTop || 0;
+    const childScroll = $("#childScreen .phone-content")?.scrollTop || 0;
+    $("#journeySteps").innerHTML = journeyMarkup();
+    $("#parentScreen").innerHTML = parentPhone();
+    $("#childScreen").innerHTML = childPhone();
+    $("#demoStage").dataset.mobileRole = state.mobileRole;
+    document.querySelectorAll('[data-action="mobile-role"]').forEach(button => {
+      if (button.closest(".mobile-role-switcher")) button.classList.toggle("active", button.dataset.role === state.mobileRole);
+    });
+    updateTheme("parent");
+    updateTheme("child");
+    if (options.keepScroll) {
+      const parentContent = $("#parentScreen .phone-content");
+      const childContent = $("#childScreen .phone-content");
+      if (parentContent) parentContent.scrollTop = parentScroll;
+      if (childContent) childContent.scrollTop = childScroll;
+    }
+  }
+
+  function switchMobileRole(role) {
+    state.mobileRole = role;
+    render({ keepScroll:true });
+    if (window.matchMedia("(max-width:820px)").matches) $("#demoStage").scrollIntoView({ block:"start" });
+  }
+
+  function act(action, element) {
+    switch (action) {
+      case "reset":
+        state = makeInitialState();
+        render(); announce("Demo reset. Start by setting the alarm on the parent phone.");
+        break;
+      case "mobile-role": switchMobileRole(element.dataset.role); break;
+      case "toggle-theme": {
+        const key = element.dataset.device === "parent" ? "parentTheme" : "childTheme";
+        state[key] = state[key] === "golden" ? "nova" : "golden";
+        render({ keepScroll:true });
+        announce(`${element.dataset.device} phone changed to ${state[key] === "golden" ? "Golden Hour" : "Nova"}.`);
+        break;
+      }
+      case "set-theme": {
+        const key = element.dataset.device === "parent" ? "parentTheme" : "childTheme";
+        state[key] = element.dataset.theme;
+        render({ keepScroll:true });
+        announce(`${element.dataset.device} theme selected.`);
+        break;
+      }
+      case "parent-tab": state.parentTab = element.dataset.tab; render(); break;
+      case "child-tab": state.childTab = element.dataset.tab; render(); break;
+      case "open-bedtime": state.childTab = "bedtime"; switchMobileRole("child"); announce("Bedtime opened on the child phone."); break;
+      case "scroll-look": {
+        const content = $(`#${element.dataset.device}Screen .phone-content`);
+        if (content) content.scrollTo({ top:content.scrollHeight, behavior:"smooth" });
+        announce("Appearance options are at the bottom of this phone view.");
+        break;
+      }
+      case "record-voice":
+        state.alarm.voiceRecorded = true; state.voiceError = false; render({ keepScroll:true });
+        announce("A local sample recording was simulated. This webpage did not use the microphone or save audio.");
+        break;
+      case "send-alarm":
+        if (state.alarm.voiceMode !== "toneOnly" && !state.alarm.voiceRecorded) {
+          state.voiceError = true; render({ keepScroll:true }); announce("Record a sample message or choose Tone only before sending the alarm."); break;
+        }
+        state.stars = [false, false, false, false, false]; state.sequenceProgress = 0;
+        state.shakes = 0; state.timingHits = 0; state.timingMiss = false; state.volumeRaised = false;
+        state.phase = "armed"; state.childTab = "child"; state.parentTab = "parent"; state.mobileRole = "child";
+        render(); announce(`Alarm sent. Maya's simulated phone is armed for ${displayTime()}.`);
+        break;
+      case "edit-alarm": state.phase = "setup"; state.parentTab = "parent"; state.mobileRole = "parent"; render(); break;
+      case "ring-alarm": state.phase = "ringing"; state.childTab = "child"; render(); announce("The simulated child alarm is ringing. The parent phone now shows Alarm is ringing."); break;
+      case "snooze": state.snoozed += 1; state.phase = "armed"; render(); announce(`Alarm snoozed for ${state.alarm.snoozeMinutes} minutes. It is armed again for ${displayTime()}.`); break;
+      case "start-check":
+        state.phase = "checking"; state.timingStartedAt = performance.now(); render();
+        announce(`${checks[state.alarm.check].name} started. The parent phone shows Wake check in progress.`);
+        break;
+      case "raise-volume": state.volumeRaised = true; render(); announce("Volume requirement met. The wake check is ready."); break;
+      case "pop-star": {
+        state.stars[Number(element.dataset.star)] = true;
+        if (state.stars.every(Boolean)) {
+          state.phase = "verified"; render(); announce("All stars popped. Wake check complete. The parent phone shows the result.");
+        } else render({ keepScroll:true });
+        break;
+      }
+      case "quiz-answer":
+        if (element.dataset.correct === "true") { state.phase = "verified"; render(); announce("Correct answer. Wake check complete."); }
+        else { element.textContent = "Try again"; element.setAttribute("aria-label", "Incorrect. Try again."); announce("That answer was incorrect. Try again."); }
+        break;
+      case "color-tap": {
+        const tapped = Number(element.dataset.color);
+        if (tapped === state.sequence[state.sequenceProgress]) {
+          state.sequenceProgress += 1;
+          if (state.sequenceProgress === state.sequence.length) { state.phase = "verified"; render(); announce("Color sequence complete. Wake check complete."); }
+          else { render({ keepScroll:true }); announce(`Correct color. ${state.sequenceProgress} of ${state.sequence.length}.`); }
+        } else {
+          state.sequenceProgress = 0; render({ keepScroll:true }); announce("That was not the sequence. It has been replayed; try again.");
+        }
+        break;
+      }
+      case "shake":
+        state.shakes += 1;
+        if (state.shakes >= 5) { state.phase = "verified"; render(); announce("Shake goal reached. Wake check complete."); }
+        else { render({ keepScroll:true }); announce(`${state.shakes} of 5 shakes.`); }
+        break;
+      case "timing-tap": {
+        const elapsed = (performance.now() - state.timingStartedAt) % 2400;
+        const position = elapsed <= 1200 ? elapsed / 1200 : 2 - elapsed / 1200;
+        if (position >= .36 && position <= .64) {
+          state.timingHits += 1; state.timingMiss = false;
+          if (state.timingHits >= 3) { state.phase = "verified"; render(); announce("Three timing hits. Wake check complete."); }
+          else { state.timingStartedAt = performance.now(); render({ keepScroll:true }); announce(`${state.timingHits} of 3 timing hits.`); }
+        } else {
+          state.timingMiss = true; state.timingStartedAt = performance.now(); render({ keepScroll:true }); announce("Missed the green zone. Try again; there is no penalty.");
+        }
+        break;
+      }
+      case "complete-check": state.phase = "verified"; render(); announce("Wake check complete. The parent phone now shows the result."); break;
+      case "no-response": state.phase = "escalated"; state.mobileRole = "parent"; render(); announce("No response simulated. The parent phone now needs attention."); break;
+      case "parent-override": state.phase = "resolved"; state.parentResolved = true; render(); announce("Morning marked completed by parent override. The history keeps that distinction."); break;
+      case "bedtime-timer": state.bedtimeTimer = element.dataset.timer; render({ keepScroll:true }); announce(`Bedtime timer set to ${state.bedtimeTimer}.`); break;
+      case "bedtime-sound": state.bedtimeSound = element.dataset.sound; render({ keepScroll:true }); announce(`${state.bedtimeSound} selected. Sound playback is visual only in this webpage preview.`); break;
+    }
+  }
+
+  document.addEventListener("click", event => {
+    const element = event.target.closest("[data-action]");
+    if (!element) return;
+    act(element.dataset.action, element);
+  });
+  function updateField(event) {
+    const field = event.target.dataset.field;
+    if (!field) return false;
+    if (event.target.type === "checkbox") state.alarm[field] = event.target.checked;
+    else if (["snoozes", "snoozeMinutes", "graceMinutes"].includes(field)) state.alarm[field] = Number(event.target.value);
+    else state.alarm[field] = event.target.value;
+    if (field === "voiceMode") state.voiceError = false;
+    return true;
+  }
+  // Text/time inputs update state without replacing the focused form. Re-rendering on blur would
+  // replace the Send button between pointer-down and pointer-up, forcing a confusing second tap.
+  document.addEventListener("input", event => { updateField(event); });
+  document.addEventListener("change", event => {
+    if (!updateField(event)) return;
+    if (event.target.matches("select")) render({ keepScroll:true });
+  });
+
+  window.__momAlarmDemo = {
+    getState: () => JSON.parse(JSON.stringify(state)),
+    reset: () => { state = makeInitialState(); render(); },
+    act: action => {
+      const element = document.querySelector(`[data-action="${action}"]`);
+      if (!element) throw new Error(`Action not available: ${action}`);
+      act(action, element);
+    }
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
