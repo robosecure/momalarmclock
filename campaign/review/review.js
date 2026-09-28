@@ -3,14 +3,15 @@ const REPO = "robosecure/momalarmclock";
 const OWNER = "robosecure";
 const SITE = "https://robosecure.github.io/momalarmclock/";
 const REVIEW = SITE + "campaign/review/";
+const ORGANIC_STATIC_DESTINATION = "https://www.facebook.com/momalarmclock/ | https://www.instagram.com/momalarmclock/ | https://www.youtube.com/@momalarmclock | https://www.tiktok.com/@momalarmclock | https://x.com/momalarmclock";
 function ownedURL(value) { if (typeof value !== "string") return false; try { const url = new URL(value); return url.href.startsWith(SITE) && url.origin === new URL(SITE).origin && !url.username && !url.password; } catch (_) { return false; } }
 function validateItem(item) {
   if (!item || typeof item.id !== "string" || typeof item.version !== "string" || !/^[a-z0-9-]{1,80}$/.test(item.id) || !/^[A-Za-z0-9_-]{1,60}$/.test(item.version) || typeof item.title !== "string" || typeof item.description !== "string") throw new Error("Invalid review item.");
   if (!["pending", "approved_via_chat", "awaiting_asset"].includes(item.status) || item.review_url !== REVIEW + "#" + item.id) throw new Error("Invalid review status or URL.");
   if (item.status === "awaiting_asset") { if (item.asset !== null || item.action_scope !== null) throw new Error("Unfinished items cannot request approval."); return item; }
-  if (!item.asset || typeof item.asset.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(item.asset.sha256) || !ownedURL(item.asset.public_url) || !["video/mp4", "text/html"].includes(item.asset.mime)) throw new Error("Finished review asset is incomplete.");
+  if (!item.asset || typeof item.asset.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(item.asset.sha256) || !ownedURL(item.asset.public_url) || !["video/mp4", "text/html", "image/png"].includes(item.asset.mime)) throw new Error("Finished review asset is incomplete.");
   const scope = item.action_scope;
-  if (!scope || typeof scope.id !== "string" || !/^[a-z0-9_-]{1,80}$/.test(scope.id) || typeof scope.description !== "string" || !scope.description.trim() || scope.description.length > 600 || !ownedURL(scope.destination)) throw new Error("Exact action scope is missing.");
+  if (!scope || typeof scope.id !== "string" || !/^[a-z0-9_-]{1,80}$/.test(scope.id) || typeof scope.description !== "string" || !scope.description.trim() || scope.description.length > 600 || typeof scope.destination !== "string" || (scope.id === "organic_beta_static_v1" ? scope.destination !== ORGANIC_STATIC_DESTINATION : !ownedURL(scope.destination))) throw new Error("Exact action scope is missing.");
   return item;
 }
 function decisionURL(item, action, feedback = "") {
@@ -37,6 +38,7 @@ if (typeof document !== "undefined") {
     const link = element("a", "Direct link to this exact item"); link.href = item.review_url; e.append(link);
     if (item.asset) {
       if (item.asset.mime === "video/mp4") { const video = element("video"); video.controls = true; video.playsInline = true; video.preload = "none"; video.src = item.asset.public_url; video.setAttribute("aria-label", item.title); e.append(video); }
+      if (item.asset.mime === "image/png") { const image = element("img"); image.src = item.asset.public_url; image.alt = item.title; image.title = item.description; image.loading = "lazy"; image.decoding = "async"; e.append(image); }
       const asset = element("a", "Open the finished review file"); asset.href = item.asset.public_url; e.append(asset);
       e.append(element("p", item.action_scope.description, "scope"));
       const details = element("details", undefined, "metadata"); details.append(element("summary", "Exact version and action"), element("p", "Version: " + item.version), element("p", "SHA256: " + item.asset.sha256), element("p", "Action: " + item.action_scope.id), element("p", "Destination: " + item.action_scope.destination)); e.append(details);

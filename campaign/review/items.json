@@ -5,9 +5,27 @@
   "checkpoint_date": "2026-09-28",
   "items": [
     {
+      "id": "beta-alarm-reminder-v1",
+      "version": "v1",
+      "title": "Alarms and everyday reminders · iPhone beta invitation",
+      "description": "Review this exact 1080 × 1350 graphic and its bound caption for owned organic beta posts. Alarms and reminders have equal weight. Public posting requires your exact decision.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-alarm-reminder-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/beta-alarm-reminder-review.png",
+        "sha256": "f0d75c5b49b7a8de8c88222ef87b1294518756739f0c6cb2ae3cbad35ed4b8f8",
+        "mime": "image/png"
+      },
+      "action_scope": {
+        "id": "organic_beta_static_v1",
+        "description": "Publish only this exact PNG (SHA-256 f0d75c5b49b7a8de8c88222ef87b1294518756739f0c6cb2ae3cbad35ed4b8f8) AND the exact caption below to the listed owned Facebook, Instagram, YouTube, TikTok and X organic beta accounts. No paid spend or future versions. Caption: Still waking them up and reminding them about chores? Set their alarms and chore reminders from your phone. Test Mom Alarm Clock with two iPhones: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight first. Feedback: in-app screenshot → Share Beta Feedback.",
+        "destination": "https://www.facebook.com/momalarmclock/ | https://www.instagram.com/momalarmclock/ | https://www.youtube.com/@momalarmclock | https://www.tiktok.com/@momalarmclock | https://x.com/momalarmclock"
+      }
+    },
+    {
       "id": "parent-narrated-gallery-v1",
       "version": "v1",
-      "title": "Parent narrated alarm teaser \u00b7 13 seconds",
+      "title": "Parent narrated alarm teaser · 13 seconds",
       "description": "Alarm-only teaser with natural-speed Emily narration. The combined alarms-and-reminders introduction is separate work in production.",
       "status": "approved_via_chat",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#parent-narrated-gallery-v1",
@@ -25,7 +43,7 @@
     {
       "id": "cartoon-narrated-gallery-v1",
       "version": "v1",
-      "title": "Animated narrated alarm teaser \u00b7 12 seconds",
+      "title": "Animated narrated alarm teaser · 12 seconds",
       "description": "Fictional animated family scene explaining the alarm, child check and recorded-result flow. This is a short review cut, not the full feature film.",
       "status": "approved_via_chat",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-narrated-gallery-v1",
