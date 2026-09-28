@@ -8,8 +8,8 @@
       "id": "beta-alarm-reminder-v1",
       "version": "v1",
       "title": "Alarms and everyday reminders · iPhone beta invitation",
-      "description": "Review this exact 1080 × 1350 graphic and its bound caption for owned organic beta posts. Alarms and reminders have equal weight. Public posting requires your exact decision.",
-      "status": "pending",
+      "description": "This exact 1080 × 1350 alarms-and-reminders graphic and bound owned-organic caption were approved in owner GitHub issue #1. Issue #3 repeated the same approval and expressed preference for other uses; it does not create a second execution or paid activation. The exact Facebook placement was verified published September 28 at 22:54 UTC. Other four static placements are not verified published here; no growth attribution.",
+      "status": "approved_via_review",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-alarm-reminder-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/beta-alarm-reminder-review.png",
@@ -20,14 +20,25 @@
         "id": "organic_beta_static_v1",
         "description": "Publish only this exact PNG (SHA-256 f0d75c5b49b7a8de8c88222ef87b1294518756739f0c6cb2ae3cbad35ed4b8f8) AND the exact caption below to the listed owned Facebook, Instagram, YouTube, TikTok and X organic beta accounts. No paid spend or future versions. Caption: Still waking them up and reminding them about chores? Set their alarms and chore reminders from your phone. Test Mom Alarm Clock with two iPhones: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight first. Feedback: in-app screenshot → Share Beta Feedback.",
         "destination": "https://www.facebook.com/momalarmclock/ | https://www.instagram.com/momalarmclock/ | https://www.youtube.com/@momalarmclock | https://www.tiktok.com/@momalarmclock | https://x.com/momalarmclock"
+      },
+      "approval": {
+        "source": "authenticated_owner_github_issue",
+        "owner": "robosecure",
+        "issue_url": "https://github.com/robosecure/momalarmclock/issues/1",
+        "approved_at": "2026-09-28T22:38:28Z",
+        "verified_at": "2026-09-28T22:47:48+00:00",
+        "item_id": "beta-alarm-reminder-v1",
+        "version": "v1",
+        "asset_sha256": "f0d75c5b49b7a8de8c88222ef87b1294518756739f0c6cb2ae3cbad35ed4b8f8",
+        "scope_sha256": "d54d963af4eb70b95d9ad6ef8ff96a2ce3882ab774eb62ed59b39cae7a31a8c5"
       }
     },
     {
       "id": "parent-narrated-gallery-v1",
       "version": "v1",
       "title": "Parent narrated alarm teaser · 13 seconds",
-      "description": "Alarm-only teaser with natural-speed Emily narration. The combined alarms-and-reminders introduction is separate work in production.",
-      "status": "approved_via_chat",
+      "description": "Alarm-only teaser with natural-speed Emily narration. The approved combined introduction is a separate exact cut. Historical chat approval was for review-gallery hosting. Revision required for the current campaign: this alarm-only ad must include alarms AND reminders before a new launch placement.",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#parent-narrated-gallery-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/parent-narrated-review.mp4",
@@ -38,14 +49,15 @@
         "id": "review_gallery_publication",
         "description": "Already approved via chat and published in the campaign review gallery. This history entry grants no additional placement, future-media or paid-spend authorization.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/"
-      }
+      },
+      "historical_status": "approved_via_chat"
     },
     {
       "id": "cartoon-narrated-gallery-v1",
       "version": "v1",
       "title": "Animated narrated alarm teaser · 12 seconds",
-      "description": "Fictional animated family scene explaining the alarm, child check and recorded-result flow. This is a short review cut, not the full feature film.",
-      "status": "approved_via_chat",
+      "description": "Fictional animated family scene explaining the alarm, child check and recorded-result flow. This is a short review cut, not the full feature film. Historical chat approval was for review-gallery hosting. Revision required for the current campaign: this alarm-only ad must include alarms AND reminders before a new launch placement.",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-narrated-gallery-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-narrated-review.mp4",
@@ -56,14 +68,15 @@
         "id": "review_gallery_publication",
         "description": "Already approved via chat and published in the campaign review gallery. This history entry grants no additional placement, future-media or paid-spend authorization.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/"
-      }
+      },
+      "historical_status": "approved_via_chat"
     },
     {
       "id": "combined-parent-v1",
       "version": "v1",
       "title": "Morning alarms and everyday reminders · 20-second narrated review",
-      "description": "Synthetic adult dramatization and editorial captions with natural 1× Emily narration. The 20-second alarm/reminder short is rendered; technical audio and decode checks passed. Independent review accepted owner-review hosting; human listening and word alignment remain pending. No app UI or calendar demonstration; the longer feature film is unfinished.",
-      "status": "pending",
+      "description": "Owner GitHub issue #2 approved this exact 20-second synthetic adult dramatization and editorial caption cut with natural 1× Emily narration. Technical audio/decode checks passed. Human listening/word alignment and runtime/reminder parity remain required before social publication. No app UI or calendar demonstration; the longer genuine-app feature film is unfinished.",
+      "status": "approved_via_review",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#combined-parent-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/combined-parent-review.mp4",
@@ -74,6 +87,17 @@
         "id": "organic_beta_video_v1",
         "description": "Publish only this exact 20-second cut (SHA-256 dc871a3ead7f246e6cf6449aa3e4c4bf9b6bad4c215ee9af6eae985c7b2560ff) AND this exact caption to owned Facebook, Instagram, YouTube, TikTok and X organic beta posts. No paid spend or future versions. Social publication requires runtime/reminder parity and listening checks. Caption: Another trip to wake them? Another reminder about chores? Set alarms and chore reminders from your phone. Try the iPhone beta: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight first. Feedback: in-app screenshot → Share Beta Feedback.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/customer-preview/"
+      },
+      "approval": {
+        "source": "authenticated_owner_github_issue",
+        "owner": "robosecure",
+        "issue_url": "https://github.com/robosecure/momalarmclock/issues/2",
+        "approved_at": "2026-09-28T22:39:13Z",
+        "verified_at": "2026-09-28T22:47:49+00:00",
+        "item_id": "combined-parent-v1",
+        "version": "v1",
+        "asset_sha256": "dc871a3ead7f246e6cf6449aa3e4c4bf9b6bad4c215ee9af6eae985c7b2560ff",
+        "scope_sha256": "f94a041f2f92e53871d4c7a953501757323f5333a9b998818492febce6a5146f"
       }
     }
   ]
