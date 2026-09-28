@@ -59,14 +59,22 @@
       }
     },
     {
-      "id": "combined-parent-awaiting-export",
-      "version": "awaiting-export",
-      "title": "Morning alarms and everyday reminders together",
-      "description": "The balanced parent introduction is in production. A finished video and precise publication scope must be verified before it becomes a review item.",
-      "status": "awaiting_asset",
-      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#combined-parent-awaiting-export",
-      "asset": null,
-      "action_scope": null
+      "id": "combined-parent-v1",
+      "version": "v1",
+      "title": "Morning alarms and everyday reminders · 20-second narrated review",
+      "description": "Synthetic adult dramatization and editorial captions with natural 1× Emily narration. The 20-second alarm/reminder short is rendered; technical audio and decode checks passed. Independent review accepted owner-review hosting; human listening and word alignment remain pending. No app UI or calendar demonstration; the longer feature film is unfinished.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#combined-parent-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/combined-parent-review.mp4",
+        "sha256": "dc871a3ead7f246e6cf6449aa3e4c4bf9b6bad4c215ee9af6eae985c7b2560ff",
+        "mime": "video/mp4"
+      },
+      "action_scope": {
+        "id": "organic_beta_video_v1",
+        "description": "Publish only this exact 20-second cut (SHA-256 dc871a3ead7f246e6cf6449aa3e4c4bf9b6bad4c215ee9af6eae985c7b2560ff) AND this exact caption to owned Facebook, Instagram, YouTube, TikTok and X organic beta posts. No paid spend or future versions. Social publication requires runtime/reminder parity and listening checks. Caption: Another trip to wake them? Another reminder about chores? Set alarms and chore reminders from your phone. Try the iPhone beta: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight first. Feedback: in-app screenshot → Share Beta Feedback.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/customer-preview/"
+      }
     }
   ]
 }
