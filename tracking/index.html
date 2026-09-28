@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Mom Alarm Clock · Tracking</title>
+  <meta name="description" content="A dated, public read-only view of Mom Alarm Clock downloads, page views, campaign work, and open measurement gaps.">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to tracking data</a>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="../">Mom Alarm Clock<span> / tracking</span></a>
+      <nav aria-label="Site"><a href="../campaign/">Campaign review</a><a href="../">Home</a></nav>
+    </div>
+  </header>
+  <main class="shell" id="main">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">PUBLIC OPERATIONS SNAPSHOT <span class="dot" aria-hidden="true"></span> READ ONLY</p>
+        <h1>Tracking the beta, day by day.</h1>
+        <p class="lede">Actual App Store Connect counts, what was done, and what still needs evidence. This page is a manually published snapshot, not a live feed.</p>
+      </div>
+      <div class="snapshot" aria-label="Snapshot status">
+        <span class="snapshot-label">Latest source pull</span>
+        <strong><time datetime="2026-09-28T17:43:00Z">Sep 28, 2026 · 17:43 UTC</time></strong>
+        <span id="freshness">Daily data through Sep 27 UTC. Check source freshness before making decisions.</span>
+      </div>
+    </header>
+
+    <div id="load-state" class="notice error" role="status">Loading daily data… If this message remains, the snapshot could not be loaded. Metrics are unavailable; retry by refreshing this page.</div>
+
+    <section class="section metric-section" aria-labelledby="daily-title">
+      <div class="section-heading">
+        <div><p class="kicker">01 / APP STORE</p><h2 id="daily-title">Daily acquisition signals</h2><p>App Store Connect Metrics view as observed. The territory, device, and source filter state was not captured. Apple reports these as separate metrics; page views are not a conversion denominator for first-time downloads.</p></div>
+        <a class="source-link" href="https://developer.apple.com/help/app-store-connect-analytics/reference/metrics-definitions">Apple metric definitions ↗</a>
+      </div>
+      <form class="controls" id="metric-controls" aria-label="Daily metric controls">
+        <fieldset class="range-buttons"><legend>Range</legend><button type="button" data-range="7">7 days</button><button type="button" data-range="30">30 days</button><button type="button" data-range="90" aria-pressed="true">90 days</button></fieldset>
+        <label>Metric<select id="metric"><option value="downloads">First-time downloads</option><option value="views">Product page views</option></select></label>
+        <label>From <input id="start-date" type="date" min="2026-06-30" max="2026-09-27"></label>
+        <label>To <input id="end-date" type="date" min="2026-06-30" max="2026-09-27"></label>
+        <button class="apply" type="submit">Apply dates</button>
+      </form>
+      <div class="overview">
+        <div class="series-card">
+          <div class="series-top"><div><p class="card-label" id="metric-name">First-time downloads</p><div class="big-number" id="metric-total">—</div><p id="metric-context" class="small"></p></div><div class="compare" id="comparison">Comparison: —</div></div>
+          <div id="chart" class="chart" role="img" aria-label="Daily data chart. Equivalent values are in the table below."></div>
+          <div class="chart-foot"><span id="chart-range"></span><span><i class="legend-line" aria-hidden="true"></i> Observed days <i class="legend-gap" aria-hidden="true"></i> Unknown days</span></div>
+          <p class="small">“-” is Apple’s display for an unavailable daily value. Gaps are not zeros and lines do not cross them. All dates use UTC.</p>
+        </div>
+        <aside class="attention" aria-labelledby="attention-title">
+          <p class="card-label">TODAY'S READOUT</p><h3 id="attention-title">What needs attention</h3>
+          <ul>
+            <li><strong>Reporting lag.</strong> Sep 28 is absent; recent dates may be revised by Apple.</li>
+            <li><strong>Revenue path.</strong> Trial starts, paid conversions, refunds, and attributable revenue are unreported here.</li>
+            <li><strong>Campaign proof.</strong> No paid campaign is active, so changes in this chart cannot be credited to one.</li>
+          </ul>
+          <a href="#issues">Review the open issues ↓</a>
+        </aside>
+      </div>
+      <details class="data-details"><summary>View daily values and download selected CSV</summary>
+        <p id="table-caption" class="small"></p><button id="download-csv" type="button" class="text-button">Download selected CSV</button>
+        <div class="table-wrap"><table><thead><tr><th scope="col">Date (UTC)</th><th scope="col" id="table-metric-heading">First-time downloads</th><th scope="col">Apple display</th></tr></thead><tbody id="daily-body"></tbody></table></div>
+      </details>
+    </section>
+
+    <section class="section" aria-labelledby="funnel-title">
+      <div class="section-heading"><div><p class="kicker">02 / WHAT THE COUNTS MEAN</p><h2 id="funnel-title">Conversion requires its own report</h2></div></div>
+      <div class="signal-grid">
+        <article class="signal"><span>KNOWN / CURRENT 90-DAY WINDOW</span><strong>229</strong><p>First-time downloads reported for Jun 30–Sep 27 UTC; 15 daily cells unknown.</p></article>
+        <article class="signal"><span>KNOWN / SAME WINDOW</span><strong>689</strong><p>Product page views reported for Jun 30–Sep 27 UTC; 3 daily cells unknown.</p></article>
+        <article class="signal unknown"><span>NOT REPORTED HERE</span><strong>—</strong><p>Apple conversion, activation, trial starts, trial-to-paid, revenue, refunds, and ROAS.</p></article>
+      </div>
+      <p class="method">An earlier Jun 29–Sep 26 overview showed 229 first-time downloads, 686 product page views, approximately 12.4K impressions, 12 redownloads, and Apple's displayed 2.64% average daily conversion. That is a different window and a historical context snapshot. It is not combined with these daily rows or used to calculate a new conversion rate.</p>
+    </section>
+
+    <section class="section" aria-labelledby="channels-title">
+      <div class="section-heading"><div><p class="kicker">03 / CHANNELS & COST</p><h2 id="channels-title">Presence is observable. Impact is not yet attributable.</h2><p>Follower counts are observed snapshots, not growth. Reach, likes, shares, and link clicks have no verified aggregate report in this snapshot.</p></div></div>
+      <div class="table-wrap"><table class="channel-table"><thead><tr><th scope="col">Channel</th><th scope="col">Observed state</th><th scope="col">Beta destination</th><th scope="col">Impact</th></tr></thead><tbody>
+        <tr><th scope="row">Facebook</th><td>35 followers · observed Sep 28</td><td><a href="https://www.facebook.com/momalarmclock/posts/pfbid0wv5oCaSviUKjaCsa2QakvYi82NK3o6AyGaX8cwnZkYaK8j6yrEWyVFR38jTGWWHKl">Live beta post ↗</a></td><td>Unknown</td></tr>
+        <tr><th scope="row">Instagram</th><td>0 followers · observed Sep 28</td><td><a href="https://www.instagram.com/p/Dd1X6K_oD8u/">Live beta post ↗</a></td><td>Unknown</td></tr>
+        <tr><th scope="row">YouTube</th><td>0 comments observed Sep 28 on the checked Community post; lifetime total unknown</td><td><a href="https://www.youtube.com/post/UgkxHWJa9AUuREqgAjhOTFl6colFJms490Ry">Live Community post ↗</a></td><td>Unknown</td></tr>
+        <tr><th scope="row">TikTok</th><td>Follower count not dated in this snapshot</td><td><a href="https://www.tiktok.com/@momalarmclock/photo/7690591495908314381">Live beta photo post ↗</a></td><td>Unknown</td></tr>
+        <tr><th scope="row">X</th><td>0 followers · 0 posts · observed Sep 28</td><td><a href="https://x.com/momalarmclock">Profile only ↗</a></td><td>Unknown</td></tr>
+      </tbody></table></div>
+      <div class="split-cards">
+        <article class="cost-card"><p class="card-label">MANAGED LAUNCH CAMPAIGN</p><strong>$0 <small>spent</small></strong><p>No paid campaign has been activated. The proposed ceiling is $500; the approved active cap is $0. Historical business spend is unknown. Attributable acquisition cost and ROAS are unavailable.</p><div class="ledger-empty"><span>Actual spend ledger</span><b>No rows yet</b><p>Add only source-backed, dated campaign spend and directly attributable outcomes in the same window.</p><div class="table-wrap"><table><thead><tr><th scope="col">Date UTC</th><th scope="col">Campaign / source</th><th scope="col">Actual spend</th><th scope="col">Attributed first-time downloads</th><th scope="col">Attributed revenue / refunds</th><th scope="col">Report pulled UTC</th></tr></thead><tbody></tbody></table></div></div></article>
+        <article class="event-card"><p class="card-label">SEP 28 ACTIONS · IMPACT UNMEASURED</p><ul><li>Existing Facebook, Instagram, and YouTube beta captions refreshed.</li><li>Facebook beta post Featured.</li><li>X and Instagram profile updates.</li><li>Beta-first landing page published.</li></ul><p class="small">These actions occurred after the latest daily source date, Sep 27. No later download day is shown yet, and the actions do not explain earlier changes.</p></article>
+      </div>
+      <div class="experiments"><h3>Proposed measurement experiments</h3><div class="table-wrap"><table><thead><tr><th scope="col">ID</th><th scope="col">Question</th><th scope="col">Evidence needed before an impact claim</th><th scope="col">Status</th></tr></thead><tbody>
+        <tr><td>EXP-01</td><td>Do beta post links bring qualified visits?</td><td>Platform link-click counts plus TestFlight aggregate public-link joins or install reports, if available, with matched observation windows. The current shared beta link cannot assign joins to individual social channels.</td><td>Proposed</td></tr>
+        <tr><td>EXP-02</td><td>Which message prompts useful caregiver feedback?</td><td>Approved exact post, dated post-level reach/replies, manually reviewed useful replies, consistent observation window.</td><td>Proposed</td></tr>
+        <tr><td>EXP-03</td><td>Does a paid test acquire new users efficiently?</td><td>Separate approval, named campaign spend, Apple Ads or link-attributed first-time downloads, matching windows, nonzero denominator.</td><td>Proposed · inactive</td></tr>
+      </tbody></table></div><p class="small">Beta participation and App Store first-time downloads are separate outcomes. An App Store campaign-link report belongs to a later public-launch test, not the TestFlight beta.</p></div>
+    </section>
+
+    <section class="section" id="issues" aria-labelledby="issues-title">
+      <div class="section-heading"><div><p class="kicker">04 / ISSUE LOG</p><h2 id="issues-title">Open measurement and operations gaps</h2><p>No product bug or user complaint is inferred from these entries.</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th scope="col">ID / kind</th><th scope="col">Status · severity</th><th scope="col">Owner / next action</th><th scope="col">As of · source type</th></tr></thead><tbody>
+        <tr><th scope="row">OPS-01 · Launch proof</th><td>Open · high</td><td>Codex prepares the evidence; Rob approves the exact video; release owner verifies public-build feature parity before launch claims.</td><td>Sep 28 · campaign review</td></tr>
+        <tr><th scope="row">OPS-02 · TikTok edit</th><td>Under review · low</td><td>Codex / recheck whether the submitted caption edit becomes visible.</td><td>Sep 28 · platform observation</td></tr>
+        <tr><th scope="row">OPS-03 · YouTube link</th><td>Open · medium</td><td>Codex / prepare and test the link flow; Rob only if identity verification requires account-owner action.</td><td>Sep 28 · platform observation</td></tr>
+        <tr><th scope="row">OPS-04 · Comment routing</th><td>Untested · medium</td><td>Codex / test alert-and-inbox routing per platform and continue manual checks.</td><td>Sep 28 · operations review</td></tr>
+        <tr><th scope="row">MEAS-01 · Trial and revenue</th><td>Open · high</td><td>Codex / retrieve aggregate, dated trial, paid conversion, revenue, and refund reports; ask Rob only if access is missing.</td><td>Sep 28 · reporting gap</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="section" aria-labelledby="feedback-title">
+      <div class="section-heading"><div><p class="kicker">05 / FEEDBACK & REPLIES</p><h2 id="feedback-title">Listen, triage, review</h2><p>No individual comment records were collected for this public snapshot. The reply and moderation queues are empty.</p></div></div>
+      <div class="feedback-grid"><div class="empty-queue"><span>FIRST REPLIES</span><strong>0 queued</strong><p>New public replies require Rob’s initial review before posting.</p></div><div class="empty-queue"><span>MODERATION DECISIONS</span><strong>0 queued</strong><p>Hide, delete, and block decisions require review.</p></div></div>
+      <div class="reply-block"><h3>Example reply templates · drafts only</h3><div class="reply-list">
+        <p><b>Setup problem</b> “Sorry setup is giving you trouble. What step is failing, and which app version are you using? Please do not post a child’s name or schedule here; use the support contact for private details.”</p>
+        <p><b>Feature request</b> “Thanks for the suggestion. Which part of the morning or chore routine would you want this to help with most?”</p>
+        <p><b>Availability</b> “The iPhone beta invitation is available now. The public App Store listing may show a different version; check the beta page for the current TestFlight route.”</p>
+      </div></div>
+      <div class="policy"><h3>Comment handling</h3><p>Keep criticism and bug reports visible. Answer a relevant concern once with useful information. Distinguish persistent abuse, spam, scams, threats, or exposed personal information from disagreement. Queue hide, delete, or block decisions for Rob. Do not offer review incentives. Do not publish child names, schedules, or raw private comments here.</p></div>
+      <div class="draft"><p class="card-label">ENGAGEMENT COPY · DRAFT FOR ROB'S REVIEW</p><blockquote>“What takes more reminders at your house: getting out of bed or starting chores? Tell us what you would want Mom Alarm Clock to get right. If you know a caregiver who could test the iPhone beta, share the invitation with them.”</blockquote><p class="small">One question for useful feedback; this draft has not been published.</p></div>
+      <div class="draft"><p class="card-label">X FIRST TEXT POST · DRAFT AWAITING ROB'S REVIEW</p><blockquote>“Third trip to wake them? Test Mom Alarm Clock: set an alarm on your iPhone, hear it on theirs, then see whether they completed the wake-up check.<br><br>Keep a backup alarm.<br><a href="https://testflight.apple.com/join/j28Ec4ZB">https://testflight.apple.com/join/j28Ec4ZB</a><br>What should we get right?”</blockquote><p class="small">Proposed text only. X still has 0 observed posts in this snapshot.</p></div>
+    </section>
+  </main>
+  <footer><div class="shell"><p>Manual public snapshot · App Store Connect source pulled Sep 28, 2026. No live analytics feed is installed. <a href="./README.md">Data and update method</a> · <a href="../campaign/">Campaign review</a></p></div></footer>
+</body>
+</html>
