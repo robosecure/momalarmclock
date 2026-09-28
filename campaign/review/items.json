@@ -1,0 +1,54 @@
+{
+  "schema": "momalarm-review-registry-v1",
+  "repository": "robosecure/momalarmclock",
+  "owner": "robosecure",
+  "checkpoint_date": "2026-09-28",
+  "items": [
+    {
+      "id": "parent-narrated-gallery-v1",
+      "version": "v1",
+      "title": "Parent narrated alarm teaser \u00b7 13 seconds",
+      "description": "Alarm-only teaser with natural-speed Emily narration. The combined alarms-and-reminders introduction is separate work in production.",
+      "status": "approved_via_chat",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#parent-narrated-gallery-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/parent-narrated-review.mp4",
+        "sha256": "5404f8099a0764bda51a74fef3daf80a8f1f30ffa5f85413ccf7bc41392c5fe8",
+        "mime": "video/mp4"
+      },
+      "action_scope": {
+        "id": "review_gallery_publication",
+        "description": "Already approved via chat and published in the campaign review gallery. This history entry grants no additional placement, future-media or paid-spend authorization.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/"
+      }
+    },
+    {
+      "id": "cartoon-narrated-gallery-v1",
+      "version": "v1",
+      "title": "Animated narrated alarm teaser \u00b7 12 seconds",
+      "description": "Fictional animated family scene explaining the alarm, child check and recorded-result flow. This is a short review cut, not the full feature film.",
+      "status": "approved_via_chat",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-narrated-gallery-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-narrated-review.mp4",
+        "sha256": "8ddf32ba4dd29845bc146aa6e6fc64a373e0d9bf8cac315e4b1e9a2722bafd8d",
+        "mime": "video/mp4"
+      },
+      "action_scope": {
+        "id": "review_gallery_publication",
+        "description": "Already approved via chat and published in the campaign review gallery. This history entry grants no additional placement, future-media or paid-spend authorization.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/"
+      }
+    },
+    {
+      "id": "combined-parent-awaiting-export",
+      "version": "awaiting-export",
+      "title": "Morning alarms and everyday reminders together",
+      "description": "The balanced parent introduction is in production. A finished video and precise publication scope must be verified before it becomes a review item.",
+      "status": "awaiting_asset",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#combined-parent-awaiting-export",
+      "asset": null,
+      "action_scope": null
+    }
+  ]
+}
