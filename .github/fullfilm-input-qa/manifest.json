@@ -1,0 +1,23 @@
+{
+  "schema": "momalarm-fullfilm-input-qa-v1",
+  "inputs": {
+    "assets/narration.mp3": "6b839d387b092fb6a06d836dc7f40524c20748733aee21ec89765e62d8f0f336",
+    "assets/endcard.png": "2238d86d5726c5cb4f9a334951cfc85690d05274774af8763fec55f0f4883d7b"
+  },
+  "voice": {
+    "duration_seconds": 49.56,
+    "sample_rate_hz": 48000,
+    "channels": 1,
+    "bit_rate_bps": 128000,
+    "speed": 1.0
+  },
+  "endcard": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 24,
+    "frames": 72,
+    "duration_seconds": 3,
+    "audio": false
+  },
+  "limits": "Input technical QA only. No full-film output, listening, word alignment, runtime parity, publication or approval implied."
+}
