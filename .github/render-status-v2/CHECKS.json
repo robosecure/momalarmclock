@@ -1,0 +1,24 @@
+{
+  "direct_exit": 0,
+  "script_syntax": "AST PASS; no bytecode",
+  "CLI_check_exit": 0,
+  "negative_cases_rejected": [
+    "pending_timing",
+    "bool_boundary",
+    "changed_input_pin",
+    "wrong_script",
+    "voice_overrun",
+    "input_escape",
+    "wrong_finite_frames",
+    "render_outside_runner"
+  ],
+  "frames": 528,
+  "seconds": 22,
+  "input_count": 14,
+  "input_bytes": 5888678,
+  "workflow": "manual dispatch only; read-only; standard ubuntu; sequential;20min; artifact1day; always retain partial outputs",
+  "graph": "finite; voice-only; no tempo change;11 input indexes",
+  "private_paths": "none in public text files",
+  "media_QA": "NOT_RUN; no local encoder",
+  "independent_refuter": "PENDING"
+}

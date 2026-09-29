@@ -1,0 +1,47 @@
+{
+  "schema": "momalarm-remote-review-v1",
+  "render_script_sha256": "4c4ac00b6a07059596435ea821f7b9930ca41f196b7e3353549aa02e720f022d",
+  "narration_script_sha256": "63bbba1fa2cec34d6c06d56f5a93b56070d3ae5d09a54ddc0a65e52ed07e21ec",
+  "fps": 24,
+  "voice_speed": 1.0,
+  "audio_duration_seconds": 20.52,
+  "decoded_audio_end_seconds": 20.479875,
+  "audio_duration_policy": "Reported duration is under one frame past branded-hold boundary; full 22s stream preserves all speech without stretching.",
+  "timeline": {
+    "state": "ROOT_SELECTED_INFERRED",
+    "frame_boundaries": [
+      0,
+      42,
+      99,
+      175,
+      262,
+      296,
+      336,
+      444,
+      492,
+      528
+    ],
+    "source_proposal_sha256": "13b510890d6c60bd6a35ddf10317ad9ca0957bd47b39f900d8bd72cf4d42c3a1",
+    "word_alignment": "INFERRED from measured pauses; hearing UNVERIFIED"
+  },
+  "inputs": {
+    "assets/parent-scene.mp4": "66485839c97757b2dfeda9e38209437eda9440f747ffae727aa2c05190afa734",
+    "assets/cartoon-scene.mp4": "2a219552717cd0bdebddddc99a8cf21b828c50ff79abc126dc544ac755e69d0c",
+    "assets/narration.mp3": "0fd983148934d6c06b5c150741815e6f75e8682d9d02249f9f4e05094dbb401c",
+    "assets/status-card.png": "361ce0c3aea032856132565f119140357dd5ec816b67c2a37074b2dce8654e66",
+    "assets/parent-opening-1.png": "b67a57d1b96295c79542e8536bd0c62f827011eed9254b0b9be3b636cd01d54c",
+    "assets/parent-opening-2.png": "134bace3aa52e50fdec6afeb93096a05f04fc4692fb60a89dd7bacc9f7202475",
+    "assets/cartoon-opening-1.png": "5cd0476685dd2d88cca24311983dea5c6016792a826da3c51862665466c928e0",
+    "assets/cartoon-opening-2.png": "234143ed8f8c4d13b95f01ed7bc06e42d67b62539a90152839cb68177ccaab67",
+    "assets/alarm-card.png": "5702375feab444d6693b0a07fe105907dea63d82b4d5fe69ad11075eacd0efb6",
+    "assets/reminders-card.png": "684f0d933f6a7f2922be758ec3998b2627124693a83fae7f7d04794bd9fd2d38",
+    "assets/morning-summary-card.png": "4933e3284c4a4aba6a44fe48f91745e2b6f6496339860aa75eee14300df6fb9d",
+    "assets/everyday-summary-card.png": "b2f2ac76f6aec97226d6b6f75ff871de84738264cabc2a02fca0b4da4db0d8bf",
+    "assets/cta-card.png": "bbbc4cb88854aa3947a5c5e649ae83b0ec05c1cc2e548c756f6241b500d4f6a7",
+    "assets/end-hold.png": "2238d86d5726c5cb4f9a334951cfc85690d05274774af8763fec55f0f4883d7b"
+  },
+  "payload_bytes": 5888678,
+  "mix": "voice_only; no music loops uploaded",
+  "publication": "Actions review artifacts only; no Pages deployment or social posting",
+  "approval": "Independent candidate review and root dispatch required; finished movies still need media QA and exact owner review"
+}
