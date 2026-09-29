@@ -8,8 +8,8 @@
       "id": "beta-alarm-reminder-square-v1",
       "version": "v1",
       "title": "Alarms and everyday reminders · square iPhone beta invitation",
-      "description": "New exact 1254 × 1254 square graphic for YouTube review, with equal alarm/reminder panels, blue/yellow branding and both footer lines intact at full size and 360-pixel preview. AI-generated editorial typography; no app UI or physical wakefulness/chore-completion proof. This revision needs its own owner decision; prior graphic approvals do not apply. Before posting, verify the uncropped native preview and TestFlight link route. Sync-qualified status in the bound caption is source-backed, not a runtime or delivery-latency guarantee.",
-      "status": "pending",
+      "description": "New exact 1254 × 1254 square graphic for YouTube review, with equal alarm/reminder panels, blue/yellow branding and both footer lines intact at full size and 360-pixel preview. AI-generated editorial typography; no app UI or physical wakefulness/chore-completion proof.  Before posting, verify the uncropped native preview and TestFlight link route. Sync-qualified status in the bound caption is source-backed, not a runtime or delivery-latency guarantee. Rob explicitly approved this exact asset, caption and recorded organic action scope in chat; approval recorded September 29, 2026 at 12:43:43 UTC. No additional GitHub decision is required for this item. Approval does not mean publication occurred and does not authorize paid spend or future versions.",
+      "status": "approved_via_chat",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-alarm-reminder-square-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/beta-alarm-reminder-square-review.png",
@@ -20,14 +20,24 @@
         "id": "organic_beta_youtube_square_v1",
         "description": "Publish only this exact square PNG and caption to owned YouTube @momalarmclock organic beta posts after uncropped preview/link checks. No paid spend or future versions. Caption: Still making repeat trips to wake them up? Still reminding them about chores?\nSet their alarms and schedule chore reminders from your phone. Get alarm and reminder status updates as both phones sync.\nTry the iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight first. In-app screenshot → Share Beta Feedback.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-alarm-reminder-square-v1"
+      },
+      "chat_approval": {
+        "source": "explicit_owner_chat",
+        "owner_display_name": "Rob",
+        "recorded_at": "2026-09-29T12:43:43.808545+00:00",
+        "item_id": "beta-alarm-reminder-square-v1",
+        "version": "v1",
+        "asset_sha256": "9f340ca11190928955df4bf677ee33e5b7a3b8b259bdb45d3c7dfec4d96a37e4",
+        "scope_sha256": "fc1038c526475fab8faacd80d089a10859dcfe214431e85ef29e1d67f648bcd1",
+        "limits": "Exact current organic action scope only; existing execution checks remain. No paid spend or future versions."
       }
     },
     {
       "id": "parent-status-v2",
       "version": "v2",
       "title": "Parent · alarms, reminders and synced status · 22 seconds",
-      "description": "New rendered 22-second AI-generated adult dramatization with blue/yellow editorial cards, both alarm and reminder benefits, and status updates as both phones sync. Continuous 1× Emily voice; voice-only mix. Technical audio decode/loudness and sampled-frame checks passed. Please listen for wording, pronunciation, pacing and caption alignment; continuous hearing and word alignment remain unverified. No app UI or real-world wakefulness/chore-completion proof. Listening and current-beta runtime parity remain required before organic placement. Prior approvals do not cover this exact successor.",
-      "status": "pending",
+      "description": "New rendered 22-second AI-generated adult dramatization with blue/yellow editorial cards, both alarm and reminder benefits, and status updates as both phones sync. Continuous 1× Emily voice; voice-only mix. Technical audio decode/loudness and sampled-frame checks passed. Continuous hearing, wording, pronunciation, pacing and caption alignment remain execution checks, not pending approval. No app UI or real-world wakefulness/chore-completion proof. Listening and current-beta runtime parity remain required before organic placement. Rob explicitly approved this exact asset, caption and recorded organic action scope in chat; approval recorded September 29, 2026 at 12:43:43 UTC. No additional GitHub decision is required for this item. Approval does not mean publication occurred and does not authorize paid spend or future versions.",
+      "status": "approved_via_chat",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#parent-status-v2",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/parent-status-review.mp4",
@@ -38,14 +48,24 @@
         "id": "organic_beta_parent_status_v2",
         "description": "Publish only this exact 22-second video and caption to owned Facebook, Instagram, YouTube, TikTok and X organic beta accounts after listening/runtime checks. No paid spend or future versions. Caption: Still waking them up? Still chasing chores?\nSet their alarms and chore reminders from your phone. Get live alarm and reminder status updates as both phones sync.\niPhone beta: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight. In-app screenshot → Share Beta Feedback.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/customer-preview/"
+      },
+      "chat_approval": {
+        "source": "explicit_owner_chat",
+        "owner_display_name": "Rob",
+        "recorded_at": "2026-09-29T12:43:43.808545+00:00",
+        "item_id": "parent-status-v2",
+        "version": "v2",
+        "asset_sha256": "f961834bd6906f1a6f7a809b915ed7aa8f4e46c274a8e65f25a4ed4790d304fa",
+        "scope_sha256": "277ca0b39c99f998fbea016e1bf6d9e8ff0494fcba8e95f45545e9f718f715ef",
+        "limits": "Exact current organic action scope only; existing execution checks remain. No paid spend or future versions."
       }
     },
     {
       "id": "cartoon-status-v2",
       "version": "v2",
       "title": "Fictional cartoon · alarms, reminders and synced status · 22 seconds",
-      "description": "New rendered 22-second clearly fictional AI-generated animated family with blue/yellow editorial cards, both alarm and reminder benefits, and status updates as both phones sync. Continuous 1× Emily voice; voice-only mix. Technical audio decode/loudness and sampled-frame checks passed. Please listen for wording, pronunciation, pacing and caption alignment; continuous hearing and word alignment remain unverified. No app UI or real-world wakefulness/chore-completion proof. Listening and current-beta runtime parity remain required before organic placement. Prior approvals do not cover this exact successor.",
-      "status": "pending",
+      "description": "New rendered 22-second clearly fictional AI-generated animated family with blue/yellow editorial cards, both alarm and reminder benefits, and status updates as both phones sync. Continuous 1× Emily voice; voice-only mix. Technical audio decode/loudness and sampled-frame checks passed. Continuous hearing, wording, pronunciation, pacing and caption alignment remain execution checks, not pending approval. No app UI or real-world wakefulness/chore-completion proof. Listening and current-beta runtime parity remain required before organic placement. Rob explicitly approved this exact asset, caption and recorded organic action scope in chat; approval recorded September 29, 2026 at 12:43:43 UTC. No additional GitHub decision is required for this item. Approval does not mean publication occurred and does not authorize paid spend or future versions.",
+      "status": "approved_via_chat",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-status-v2",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-status-review.mp4",
@@ -56,6 +76,16 @@
         "id": "organic_beta_cartoon_status_v2",
         "description": "Publish only this exact 22-second video and caption to owned Facebook, Instagram, YouTube, TikTok and X organic beta accounts after listening/runtime checks. No paid spend or future versions. Caption: Still waking them up? Still chasing chores?\nSet their alarms and chore reminders from your phone. Get live alarm and reminder status updates as both phones sync.\niPhone beta: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight. In-app screenshot → Share Beta Feedback.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/customer-preview/"
+      },
+      "chat_approval": {
+        "source": "explicit_owner_chat",
+        "owner_display_name": "Rob",
+        "recorded_at": "2026-09-29T12:43:43.808545+00:00",
+        "item_id": "cartoon-status-v2",
+        "version": "v2",
+        "asset_sha256": "b97a6af81c6a63c976b54cad16badd85927367feb5520ffbf46346a3456879f0",
+        "scope_sha256": "f35a34d54f036dcad07e2fd54e53c11916929b57ecf61b34145e56702b6c20e1",
+        "limits": "Exact current organic action scope only; existing execution checks remain. No paid spend or future versions."
       }
     },
     {
