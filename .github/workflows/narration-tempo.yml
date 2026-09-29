@@ -1,0 +1,35 @@
+name: Narration tempo successors for exact review
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: narration-tempo-review
+  cancel-in-progress: false
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Fail closed unless both reviewed sources match
+        run: python3 .github/narration-tempo/process.py --check
+      - name: Ensure standard FFmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends -y ffmpeg
+          fi
+      - name: Process beta then GA and decode outputs fully
+        run: python3 .github/narration-tempo/process.py --run
+      - name: Preserve exact review outputs and available failure logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: narration-tempo-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/momalarm-narration-tempo/
+          retention-days: 1
+          if-no-files-found: ignore
+          compression-level: 0

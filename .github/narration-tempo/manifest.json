@@ -1,0 +1,18 @@
+{
+  "schema": "momalarm-narration-tempo-v1",
+  "tempo": 1.05,
+  "inputs": {
+    "beta": {
+      "path": "assets/beta-original.mp3",
+      "sha256": "6b839d387b092fb6a06d836dc7f40524c20748733aee21ec89765e62d8f0f336",
+      "duration_seconds": 49.56
+    },
+    "ga": {
+      "path": "assets/ga-original.mp3",
+      "sha256": "0e938ac9e43fd5f8eae100f1c931b5260846bbced91c40154fbde2ed13943cc4",
+      "duration_seconds": 36.264
+    }
+  },
+  "output_format": "mp3/192kbps/48000Hz/mono",
+  "limits": "Successor audio only; no final-movie, hearing, word alignment, runtime, owner new-hash approval or publication clearance."
+}
