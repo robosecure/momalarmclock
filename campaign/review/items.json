@@ -5,6 +5,24 @@
   "checkpoint_date": "2026-09-28",
   "items": [
     {
+      "id": "beta-alarm-reminder-square-v1",
+      "version": "v1",
+      "title": "Alarms and everyday reminders · square iPhone beta invitation",
+      "description": "New exact 1254 × 1254 square graphic for YouTube review, with equal alarm/reminder panels, blue/yellow branding and both footer lines intact at full size and 360-pixel preview. AI-generated editorial typography; no app UI or physical wakefulness/chore-completion proof. This revision needs its own owner decision; prior graphic approvals do not apply. Before posting, verify the uncropped native preview and TestFlight link route. Sync-qualified status in the bound caption is source-backed, not a runtime or delivery-latency guarantee.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-alarm-reminder-square-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/beta-alarm-reminder-square-review.png",
+        "sha256": "9f340ca11190928955df4bf677ee33e5b7a3b8b259bdb45d3c7dfec4d96a37e4",
+        "mime": "image/png"
+      },
+      "action_scope": {
+        "id": "organic_beta_youtube_square_v1",
+        "description": "Publish only this exact square PNG and caption to owned YouTube @momalarmclock organic beta posts after uncropped preview/link checks. No paid spend or future versions. Caption: Still making repeat trips to wake them up? Still reminding them about chores?\nSet their alarms and schedule chore reminders from your phone. Get alarm and reminder status updates as both phones sync.\nTry the iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB\nUpdate in TestFlight first. In-app screenshot → Share Beta Feedback.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-alarm-reminder-square-v1"
+      }
+    },
+    {
       "id": "parent-status-v2",
       "version": "v2",
       "title": "Parent · alarms, reminders and synced status · 22 seconds",
