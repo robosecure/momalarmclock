@@ -15,7 +15,9 @@ function validateItem(item) {
   if (!item || typeof item.id !== "string" || typeof item.version !== "string" || !/^[a-z0-9-]{1,80}$/.test(item.id) || !/^[A-Za-z0-9_-]{1,60}$/.test(item.version) || typeof item.title !== "string" || typeof item.description !== "string") throw new Error("Invalid review item.");
   if (!["pending", "approved_via_chat", "approved_via_review", "revision_required", "awaiting_asset"].includes(item.status) || item.review_url !== REVIEW + "#" + item.id) throw new Error("Invalid review status or URL.");
   if (item.status === "awaiting_asset") { if (item.asset !== null || item.action_scope !== null) throw new Error("Unfinished items cannot request approval."); return item; }
-  if (!item.asset || typeof item.asset.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(item.asset.sha256) || !ownedURL(item.asset.public_url) || !["video/mp4", "text/html", "image/png"].includes(item.asset.mime)) throw new Error("Finished review asset is incomplete.");
+  if (!item.asset || typeof item.asset.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(item.asset.sha256) || !ownedURL(item.asset.public_url) || !["video/mp4", "text/html", "image/png", "audio/mpeg"].includes(item.asset.mime)) throw new Error("Finished review asset is incomplete.");
+  if (item.asset.mime === "audio/mpeg" && !/^https:\/\/robosecure\.github\.io\/momalarmclock\/campaign\/media\/[a-z0-9-]+\.mp3$/.test(item.asset.public_url)) throw new Error("Audio must be an exact owned MP3 URL.");
+  if (Object.prototype.hasOwnProperty.call(item, "transcript") && (item.asset.mime !== "audio/mpeg" || typeof item.transcript !== "string" || !item.transcript.trim() || item.transcript.length > 4000)) throw new Error("Audio transcript must be bounded text.");
   const scope = item.action_scope;
   if (!scope || typeof scope.id !== "string" || !/^[a-z0-9_-]{1,80}$/.test(scope.id) || typeof scope.description !== "string" || !scope.description.trim() || scope.description.length > 600 || typeof scope.destination !== "string" || (scope.id === "organic_beta_static_v1" ? scope.destination !== ORGANIC_STATIC_DESTINATION : !ownedURL(scope.destination))) throw new Error("Exact action scope is missing.");
   if (item.status === "approved_via_review") approvalReceipt(item);
@@ -53,6 +55,8 @@ if (typeof document !== "undefined") {
     if (item.asset) {
       if (item.asset.mime === "video/mp4") { const video = element("video"); video.controls = true; video.playsInline = true; video.preload = "none"; video.src = item.asset.public_url; video.setAttribute("aria-label", item.title); e.append(video); }
       if (item.asset.mime === "image/png") { const image = element("img"); image.src = item.asset.public_url; image.alt = item.title; image.title = item.description; image.loading = "lazy"; image.decoding = "async"; e.append(image); }
+      if (item.asset.mime === "audio/mpeg") { const audio = element("audio"); audio.controls = true; audio.preload = "none"; audio.src = item.asset.public_url; audio.setAttribute("aria-label", item.title); e.append(audio); }
+      if (item.transcript !== undefined) { const script = element("details", undefined, "transcript"); script.append(element("summary", "Read the exact narration script")); for (const paragraph of item.transcript.split(/\n\s*\n/)) script.append(element("p", paragraph)); e.append(script); }
       const asset = element("a", "Open the finished review file"); asset.href = item.asset.public_url; e.append(asset);
       e.append(element("p", item.action_scope.description, "scope"));
       const details = element("details", undefined, "metadata"); details.append(element("summary", "Exact version and action"), element("p", "Version: " + item.version), element("p", "SHA256: " + item.asset.sha256), element("p", "Action: " + item.action_scope.id), element("p", "Destination: " + item.action_scope.destination)); e.append(details);

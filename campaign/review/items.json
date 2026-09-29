@@ -5,6 +5,25 @@
   "checkpoint_date": "2026-09-28",
   "items": [
     {
+      "id": "full-feature-narration-v1",
+      "version": "v1",
+      "title": "Full feature film · narration draft · alarms and reminders",
+      "description": "Listen to this 49.56-second natural 1× Emily narration draft. Please review pronunciation, natural pace and wording. Technical audio decode and loudness checks passed; human listening and word timing are unverified. The full feature film is unfinished: genuine current-build footage and final assembly are still missing. This voice review does not verify feature parity or approve a finished film.",
+      "transcript": "Another trip to their room? Another reminder about the chores?\nMom Alarm Clock brings morning alarms and everyday reminders together.\n\nSet your child’s alarm from your iPhone. They use the wake-up check on their phone, and you see its recorded result on yours.\n\nSchedule reminders for everyday jobs, like taking out the trash or walking the dog. Check the reminder’s recorded status from your phone, too.\n\nGet alarm and reminder status updates as both phones sync, so you can check in on both routines.\n\nTry the iPhone beta with two iPhones. Update in TestFlight before testing.\nFor feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback.\n\nMom Alarm Clock. See how it works.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#full-feature-narration-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/full-feature-narration-review.mp3",
+        "sha256": "6b839d387b092fb6a06d836dc7f40524c20748733aee21ec89765e62d8f0f336",
+        "mime": "audio/mpeg"
+      },
+      "action_scope": {
+        "id": "full_beta_film_narration_v1",
+        "description": "Approve only this exact spoken wording and voice delivery for later full beta-film assembly. No permission to publish an unfinished film, create social posts, spend on ads, or alter this voice take. The final assembled film has a new file hash and needs its own exact review. Feature/runtime verification remains required.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#full-feature-narration-v1"
+      }
+    },
+    {
       "id": "beta-alarm-reminder-square-v1",
       "version": "v1",
       "title": "Alarms and everyday reminders · square iPhone beta invitation",
