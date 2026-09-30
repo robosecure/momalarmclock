@@ -1,0 +1,49 @@
+{
+  "schema": "momalarm-ga-remote-review-v1",
+  "render_script_sha256": "0049f68b4b2ae7310610c1ab0ebcbe33e49f8ccd86d016247fbfaf59e2712bae",
+  "transcript_sha256": "930706b02b888b23e41751f9ad0f94f91e9bbc81374c35710e1588805f8468c7",
+  "fps": 24,
+  "voice_speed": 1.0,
+  "audio_duration_seconds": 34.56,
+  "timeline": {
+    "state": "EDITORIAL_ESTIMATE_HUMAN_ALIGNMENT_PENDING",
+    "frame_boundaries": [
+      0,
+      48,
+      108,
+      204,
+      293,
+      394,
+      504,
+      600,
+      732,
+      840,
+      912
+    ],
+    "human_listening": "UNVERIFIED"
+  },
+  "inputs": {
+    ".github/render-status-v2/assets/parent-scene.mp4": "66485839c97757b2dfeda9e38209437eda9440f747ffae727aa2c05190afa734",
+    ".github/render-status-v2/assets/cartoon-scene.mp4": "2a219552717cd0bdebddddc99a8cf21b828c50ff79abc126dc544ac755e69d0c",
+    ".github/render-status-v2/assets/parent-opening-1.png": "b67a57d1b96295c79542e8536bd0c62f827011eed9254b0b9be3b636cd01d54c",
+    ".github/render-status-v2/assets/parent-opening-2.png": "134bace3aa52e50fdec6afeb93096a05f04fc4692fb60a89dd7bacc9f7202475",
+    ".github/render-status-v2/assets/cartoon-opening-1.png": "5cd0476685dd2d88cca24311983dea5c6016792a826da3c51862665466c928e0",
+    ".github/render-status-v2/assets/cartoon-opening-2.png": "234143ed8f8c4d13b95f01ed7bc06e42d67b62539a90152839cb68177ccaab67",
+    ".github/render-status-v2/assets/end-hold.png": "2238d86d5726c5cb4f9a334951cfc85690d05274774af8763fec55f0f4883d7b",
+    "campaign/media/ga-feature-narration-v1-review.mp3": "ec51f67d95a77ea295bfbdde376d63331a6dc3a8c51d9ed4a136d28b903733a3",
+    ".github/render-ga-v1/assets/intro.png": "06a83469bfeea4b5dc5297edd7f88c557bb8fba51a5d781f03124ce9ff45cd3d",
+    ".github/render-ga-v1/assets/alarm.png": "7a7543e6dfb5d16130da17f2a98621bdfb266b0a0598646f74e3a6fc39f3bb9b",
+    ".github/render-ga-v1/assets/wake.png": "83ab2c3a68f20078c36dbd86b42dcc4f65b07629fd6a89a5f43a559807a9d6c3",
+    ".github/render-ga-v1/assets/reminder.png": "1f7114386bb2e50dc13edc9dbb31a5239a83572442459ef7115e4e128edf35ea",
+    ".github/render-ga-v1/assets/reminder-status.png": "b76db179715955873410e4ef637f4d5aea1956fdd15196673d04c5ae8cdda5c6",
+    ".github/render-ga-v1/assets/sync.png": "0601e4f3bb70ea9e2f8a1e288c5f9fc3f14f53844eabbe30f571129ee9898f73",
+    ".github/render-ga-v1/assets/cta.png": "8f2861cccd905a8295bb13eb6979c5b8010988ff2c2df4460184cab04b81e767"
+  },
+  "mix": "voice_only",
+  "publication": "REVIEW_HOLD_NOT_GA_LIVE",
+  "limitations": [
+    "No current app UI or full app demonstration.",
+    "GA availability and exact owner review pending.",
+    "Human listening, spoken word alignment and full motion review pending."
+  ]
+}

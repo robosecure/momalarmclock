@@ -1,0 +1,38 @@
+name: Render future GA editorial review cuts
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ga-v1-review-render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact workflow revision
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Validate pinned sources and editorial timing
+        run: python3 .github/render-ga-v1/render.py --check
+      - name: Ensure standard FFmpeg is available
+        shell: bash
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends -y ffmpeg
+          fi
+          ffmpeg -version
+      - name: Render and verify parent then cartoon
+        run: python3 .github/render-ga-v1/render.py --render --output "$RUNNER_TEMP/momalarm-ga-v1"
+      - name: Retain review cuts and QA evidence for one day
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ga-v1-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/momalarm-ga-v1/
+          retention-days: 1
+          if-no-files-found: ignore
+          compression-level: 0
