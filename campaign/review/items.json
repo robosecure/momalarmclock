@@ -364,6 +364,28 @@
       "revision_reason": "The opening is odd.. why show the animation when it doesn't depict anything?"
     },
     {
+      "id": "cartoon-wake-beta-v2",
+      "version": "v2",
+      "title": "Cartoon beta story cut · 20.375 seconds · pending review",
+      "description": "Exact 20.375-second fictional cartoon beta story cut with sourced cartoon scene motion, approved parent beta narration at its original pace, captions and a beta CTA. It is an editorial story, not actual app UI or proof that a child woke up or completed a chore. This file is pending owner review; human listening, motion, caption, word-alignment and current-build-parity QA remain open. No publication approval is implied.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v2",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-wake-beta-v2-review.mp4",
+        "sha256": "ec206ee179c0243e8d06a9768051d8eb350ab3e38bc9f834cba3772bcccaa16a",
+        "mime": "video/mp4"
+      },
+      "transcript": "Set your child’s alarm from your iPhone. You choose their wake-up check: play a game, answer a quiz, or scan a QR code to turn off the alarm. Schedule everyday reminders, too. See recorded alarm and reminder status as both phones sync. Try the two-iPhone beta.",
+      "action_scope": {
+        "id": "organic_beta_cartoon_wake_v2",
+        "description": "Approve only this exact fictional cartoon beta story cut for future owned organic beta placement after current-build parity plus human listening, motion, caption and word-alignment QA. This grants no publication, paid activation, finished full-demo claim, other cut or future-version approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v2"
+      },
+      "approval": null,
+      "historical_status": null,
+      "revision_reason": null
+    },
+    {
       "id": "parent-ga-v2",
       "version": "v1",
       "title": "Parent launch video · 40 seconds",
