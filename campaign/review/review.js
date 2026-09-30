@@ -24,21 +24,42 @@ function validateItem(item) {
   if (item.status === "revision_required" && item.historical_status !== "approved_via_chat") throw new Error("Revision history is incomplete.");
   return item;
 }
-function decisionURL(item, action, feedback = "") {
+function decisionPacket(item, action, feedback = "") {
   validateItem(item);
   if (item.status !== "pending" || !["approve", "request_changes"].includes(action)) throw new Error("This item is read-only.");
   if (typeof feedback !== "string") throw new Error("Feedback must be text.");
   feedback = feedback.trim();
   if (feedback.length > 800) throw new Error("Please keep feedback within 800 characters.");
   if (action === "request_changes" && (feedback.length < 10 || feedback.split(/\s+/).length < 3)) throw new Error("Please describe the requested change in at least three words and ten characters.");
-  const packet = { schema: "momalarm-review-decision-v1", item_id: item.id, version: item.version, asset_sha256: item.asset.sha256, asset_url: item.asset.public_url, action_scope: item.action_scope, review_url: item.review_url, decision: action, feedback };
+  return { schema: "momalarm-review-decision-v1", item_id: item.id, version: item.version, asset_sha256: item.asset.sha256, asset_url: item.asset.public_url, action_scope: item.action_scope, review_url: item.review_url, decision: action, feedback };
+}
+function chatDecisionText(item, action, feedback = "") {
+  const packet = decisionPacket(item, action, feedback);
+  return "Copy for the Mom Alarm marketing chat. This decision is not submitted or recorded until Rob pastes it into that chat. It applies only to the exact item, file, version and full action scope below. Root must verify the chat decision and exact packet before any scoped action.\n\nMOMALARM_REVIEW_DECISION_V1\n```json\n" + JSON.stringify(packet, null, 2) + "\n```";
+}
+async function copyChatDecision(item, action, feedback, clipboard, manual, localStatus) {
+  const text = chatDecisionText(item, action, feedback);
+  try {
+    if (!clipboard || typeof clipboard.writeText !== "function") throw new Error("Clipboard unavailable.");
+    await clipboard.writeText(text);
+    manual.hidden = true; manual.value = "";
+    localStatus.textContent = "Copied. Paste the exact decision into the Mom Alarm marketing chat. It is not submitted or recorded by this click.";
+    return true;
+  } catch (_) {
+    manual.value = text; manual.readOnly = true; manual.hidden = false; manual.focus(); manual.select();
+    localStatus.textContent = "Clipboard unavailable. Select and copy the decision text below, then paste it into the Mom Alarm marketing chat. Nothing has been submitted.";
+    return false;
+  }
+}
+function decisionURL(item, action, feedback = "") {
+  const packet = decisionPacket(item, action, feedback);
   const title = "[Mom Alarm review] " + (action === "approve" ? "APPROVE" : "REQUEST CHANGES") + " · " + item.id + " · " + item.version;
   const body = "Owner decision for this exact item. Submit while signed in as " + OWNER + ".\n\nOpening this draft is not a decision. This applies only to the recorded file/version/scope, not future assets or unrelated spend. Keep feedback public-safe.\n\nMOMALARM_REVIEW_DECISION_V1\n```json\n" + JSON.stringify(packet, null, 2) + "\n```\n\nRoot must verify the submitted issue author and exact packet before executing the scoped action. An agent-created request is not owner approval.";
   const url = new URL("https://github.com/" + REPO + "/issues/new"); url.searchParams.set("title", title); url.searchParams.set("body", body);
   if (url.href.length > 7500) throw new Error("Decision link is too long; shorten the feedback.");
   return url.href;
 }
-if (typeof module !== "undefined") module.exports = { validateItem, decisionURL, ownedURL };
+if (typeof module !== "undefined") module.exports = { validateItem, decisionURL, chatDecisionText, copyChatDecision, ownedURL };
 if (typeof document !== "undefined") {
   const status = document.getElementById("status");
   function element(tag, text, className) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (className) e.className = className; return e; }
@@ -47,6 +68,7 @@ if (typeof document !== "undefined") {
     const badges = { pending: "READY FOR OWNER REVIEW", approved_via_chat: "APPROVED VIA CHAT · READ-ONLY", approved_via_review: "APPROVED VIA REVIEW · READ-ONLY", revision_required: "REVISION REQUIRED · REFERENCE ONLY", awaiting_asset: "NOT READY FOR A DECISION" };
     e.append(element("p", badges[item.status], "badge"), element("h3", item.title), element("p", item.description));
     const link = element("a", "Direct link to this exact item"); link.href = item.review_url; e.append(link);
+    if (item.status === "pending") { const jump = element("a", "Go to chat decision controls ↓", "decision-jump"); jump.href = "#actions-" + item.id; e.append(jump); }
     if (item.status === "approved_via_review") {
       const a = approvalReceipt(item);
       e.append(element("p", "Owner submitted approval: " + a.approved_at + ". Root verified the authenticated GitHub author, exact version, asset and complete action scope. This is a published receipt snapshot; approval is separate from execution.", "notice"));
@@ -64,12 +86,21 @@ if (typeof document !== "undefined") {
     if (item.status === "pending") {
       const label = element("label", "Feedback for changes (required when rejecting)", "feedback-label"); label.htmlFor = "feedback-" + item.id;
       const feedback = element("textarea"); feedback.id = label.htmlFor; feedback.maxLength = 800; feedback.rows = 4; feedback.placeholder = "Describe what needs to change. No private tester details.";
-      const actions = element("div", undefined, "actions");
-      for (const [action, text, className] of [["approve", "Approve", "approve"], ["request_changes", "Reject / request changes", "reject"]]) {
+      const actions = element("div", undefined, "actions"); actions.id = "actions-" + item.id;
+      const localStatus = element("p", "Copy a decision, then paste it into the Mom Alarm marketing chat. Copying does not submit or record approval.", "notice"); localStatus.setAttribute("role", "status"); localStatus.setAttribute("aria-live", "polite");
+      const manual = element("textarea"); manual.hidden = true; manual.readOnly = true; manual.rows = 12; manual.setAttribute("aria-label", "Decision text for manual copy"); manual.className = "manual-decision";
+      for (const [action, text, className] of [["approve", "Copy approval for chat", "approve"], ["request_changes", "Copy requested changes for chat", "reject"]]) {
         const button = element("button", text, className); button.type = "button";
-        button.addEventListener("click", () => { try { const url = decisionURL(item, action, feedback.value); window.open(url, "_blank", "noopener,noreferrer"); status.textContent = "GitHub draft opened. Sign in as robosecure and select Submit new issue to record the decision. Nothing is saved by opening the draft."; } catch (error) { status.textContent = error.message; feedback.focus(); } }); actions.append(button);
+        button.addEventListener("click", async () => { try { await copyChatDecision(item, action, feedback.value, navigator.clipboard, manual, localStatus); } catch (error) { manual.hidden = true; manual.value = ""; localStatus.textContent = error.message; feedback.focus(); } }); actions.append(button);
       }
-      e.append(label, feedback, actions, element("p", "Both buttons open GitHub. Final GitHub submission records your signed-in decision; it does not instantly publish the item.", "notice"));
+      const github = element("details", undefined, "github-option"); github.append(element("summary", "Optional: submit through GitHub instead"));
+      const githubActions = element("div", undefined, "actions");
+      for (const [action, text, className] of [["approve", "Open GitHub approval draft", "approve"], ["request_changes", "Open GitHub changes draft", "reject"]]) {
+        const button = element("button", text, className); button.type = "button";
+        button.addEventListener("click", () => { try { const url = decisionURL(item, action, feedback.value); window.open(url, "_blank", "noopener,noreferrer"); localStatus.textContent = "GitHub draft opened. Sign in as robosecure and select Submit new issue to record the decision. Nothing is saved by opening the draft."; } catch (error) { localStatus.textContent = error.message; feedback.focus(); } }); githubActions.append(button);
+      }
+      github.append(githubActions, element("p", "GitHub submission is optional. Opening a draft does not record a decision.", "notice"));
+      e.append(label, feedback, actions, localStatus, manual, github);
     } else e.append(element("p", item.status === "revision_required" ? "Historical chat approval for gallery hosting is retained. This earlier ad is not approved for the current campaign: every launch ad must include both alarms AND reminders. A revised file and scope need fresh exact review." : item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
     return e;
   }
@@ -80,7 +111,7 @@ if (typeof document !== "undefined") {
     const pending = registry.items.filter(i => i.status === "pending");
     if (!pending.length) { const empty = element("div", undefined, "empty"); empty.append(element("p", "No pending owner decisions at this published checkpoint. Verified approvals and revision history are below. Approval does not mean the scoped action has executed; changed files or scopes need fresh review.")); document.getElementById("pending").append(empty); }
     for (const item of registry.items) document.getElementById(item.status === "pending" ? "pending" : item.status === "awaiting_asset" ? "waiting" : "history").append(card(item));
-    status.textContent = pending.length ? pending.length + " item(s) ready for owner review. This queue is a published checkpoint, not live decision receipt." : "No pending decisions at this checkpoint. GitHub submission and owner verification remain required for future items.";
+    status.textContent = pending.length ? pending.length + " item(s) ready for owner review. Copy a decision and paste it into the Mom Alarm marketing chat; this queue is not live receipt." : "No pending decisions at this checkpoint. Future exact decisions still need owner verification.";
     const historyTitle = document.getElementById("history-title"); if (historyTitle) historyTitle.textContent = "Approval receipts and revision history";
     const target = document.getElementById(location.hash.slice(1)); if (target) target.scrollIntoView();
   } catch (error) { status.textContent = error.message + " No approval controls have been enabled."; } })();
