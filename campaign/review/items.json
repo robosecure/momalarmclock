@@ -366,9 +366,9 @@
     {
       "id": "cartoon-wake-beta-v2",
       "version": "v2",
-      "title": "Cartoon beta story cut · 20.375 seconds · pending review",
-      "description": "Exact 20.375-second fictional cartoon beta story cut with sourced cartoon scene motion, approved parent beta narration at its original pace, captions and a beta CTA. It is an editorial story, not actual app UI or proof that a child woke up or completed a chore. This file is pending owner review; human listening, motion, caption, word-alignment and current-build-parity QA remain open. No publication approval is implied.",
-      "status": "pending",
+      "title": "Cartoon beta story cut · 20.375 seconds · revision required",
+      "description": "Exact 20.375-second fictional cartoon beta story cut retained as a rejected reference. It is an editorial story, not actual app UI or proof that a child woke up or completed a chore. No approval is solicited for this file; a revised beta asset needs a fresh exact review.",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v2",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-wake-beta-v2-review.mp4",
@@ -382,8 +382,8 @@
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v2"
       },
       "approval": null,
-      "historical_status": null,
-      "revision_reason": null
+      "historical_status": "pending",
+      "revision_reason": "Rejected: the child is never shown with their own phone or tablet; the acting does not clearly show the parent's repeated wake-up burden or how the app solves it. Beta marketing also needs authorized, verified Android sign-up alongside iOS."
     },
     {
       "id": "parent-ga-v2",
