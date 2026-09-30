@@ -17,11 +17,15 @@ function validateItem(item) {
   if (item.status === "awaiting_asset") { if (item.asset !== null || item.action_scope !== null) throw new Error("Unfinished items cannot request approval."); return item; }
   if (!item.asset || typeof item.asset.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(item.asset.sha256) || !ownedURL(item.asset.public_url) || !["video/mp4", "text/html", "image/png", "audio/mpeg"].includes(item.asset.mime)) throw new Error("Finished review asset is incomplete.");
   if (item.asset.mime === "audio/mpeg" && !/^https:\/\/robosecure\.github\.io\/momalarmclock\/campaign\/media\/[a-z0-9-]+\.mp3$/.test(item.asset.public_url)) throw new Error("Audio must be an exact owned MP3 URL.");
-  if (Object.prototype.hasOwnProperty.call(item, "transcript") && (item.asset.mime !== "audio/mpeg" || typeof item.transcript !== "string" || !item.transcript.trim() || item.transcript.length > 4000)) throw new Error("Audio transcript must be bounded text.");
+  if (Object.prototype.hasOwnProperty.call(item, "transcript") && (!["audio/mpeg", "video/mp4"].includes(item.asset.mime) || typeof item.transcript !== "string" || !item.transcript.trim() || item.transcript.length > 4000)) throw new Error("Media transcript must be bounded text.");
   const scope = item.action_scope;
   if (!scope || typeof scope.id !== "string" || !/^[a-z0-9_-]{1,80}$/.test(scope.id) || typeof scope.description !== "string" || !scope.description.trim() || scope.description.length > 600 || typeof scope.destination !== "string" || (scope.id === "organic_beta_static_v1" ? scope.destination !== ORGANIC_STATIC_DESTINATION : !ownedURL(scope.destination))) throw new Error("Exact action scope is missing.");
   if (item.status === "approved_via_review") approvalReceipt(item);
-  if (item.status === "revision_required" && item.historical_status !== "approved_via_chat") throw new Error("Revision history is incomplete.");
+  if (item.status === "revision_required") {
+    if (!["pending", "approved_via_chat", "approved_via_review"].includes(item.historical_status)) throw new Error("Revision history is incomplete.");
+    if (item.revision_reason != null && (typeof item.revision_reason !== "string" || !item.revision_reason.trim() || item.revision_reason.length > 600)) throw new Error("Revision reason is invalid.");
+    if (item.historical_status === "approved_via_review") approvalReceipt(item);
+  }
   return item;
 }
 function decisionPacket(item, action, feedback = "") {
@@ -101,7 +105,7 @@ if (typeof document !== "undefined") {
       }
       github.append(githubActions, element("p", "GitHub submission is optional. Opening a draft does not record a decision.", "notice"));
       e.append(label, feedback, actions, localStatus, manual, github);
-    } else e.append(element("p", item.status === "revision_required" ? "Historical chat approval for gallery hosting is retained. This earlier ad is not approved for the current campaign: every launch ad must include both alarms AND reminders. A revised file and scope need fresh exact review." : item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
+    } else e.append(element("p", item.status === "revision_required" ? (item.revision_reason || "Historical approval is retained as read-only reference. This earlier item is not approved for the current campaign; a revised file and scope need fresh exact review.") : item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
     return e;
   }
   (async () => { try {
