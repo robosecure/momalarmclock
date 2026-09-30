@@ -41,6 +41,33 @@ function chatDecisionText(item, action, feedback = "") {
   const packet = decisionPacket(item, action, feedback);
   return "Copy for the Mom Alarm marketing chat. This decision is not submitted or recorded until Rob pastes it into that chat. It applies only to the exact item, file, version and full action scope below. Root must verify the chat decision and exact packet before any scoped action.\n\nMOMALARM_REVIEW_DECISION_V1\n```json\n" + JSON.stringify(packet, null, 2) + "\n```";
 }
+function revisionFeedbackPacket(item, feedback = "") {
+  validateItem(item);
+  if (!["revision_required", "approved_via_chat", "approved_via_review"].includes(item.status) || !item.asset) throw new Error("This item cannot receive feedback on an exact historical file.");
+  if (typeof feedback !== "string") throw new Error("Feedback must be text.");
+  feedback = feedback.trim();
+  if (feedback.length > 800) throw new Error("Please keep feedback within 800 characters.");
+  if (feedback.length < 10 || feedback.split(/\s+/).length < 3) throw new Error("Please describe the requested change in at least three words and ten characters.");
+  return { schema: "momalarm-revision-feedback-v1", item_id: item.id, version: item.version, asset_sha256: item.asset.sha256, asset_url: item.asset.public_url, review_url: item.review_url, feedback };
+}
+function revisionFeedbackText(item, feedback = "") {
+  const packet = revisionFeedbackPacket(item, feedback);
+  return "Copy feedback on this exact file for the Mom Alarm marketing chat. It is not submitted or recorded until Rob pastes it there. Feedback grants no approval or action authorization and does not automatically revoke or broaden an existing approval.\n\nMOMALARM_REVISION_FEEDBACK_V1\n```json\n" + JSON.stringify(packet, null, 2) + "\n```";
+}
+async function copyRevisionFeedback(item, feedback, clipboard, manual, localStatus) {
+  const text = revisionFeedbackText(item, feedback);
+  try {
+    if (!clipboard || typeof clipboard.writeText !== "function") throw new Error("Clipboard unavailable.");
+    await clipboard.writeText(text);
+    manual.hidden = true; manual.value = "";
+    localStatus.textContent = "Copied feedback on this exact file. Rob must paste it into the Mom Alarm marketing chat; this click does not submit, approve, revoke or broaden an existing approval.";
+    return true;
+  } catch (_) {
+    manual.value = text; manual.readOnly = true; manual.hidden = false; manual.focus(); manual.select();
+    localStatus.textContent = "Clipboard unavailable. Select and copy the feedback below, then Rob must paste it into the Mom Alarm marketing chat. Nothing has been submitted, approved or authorized; existing approval is unchanged.";
+    return false;
+  }
+}
 async function copyChatDecision(item, action, feedback, clipboard, manual, localStatus) {
   const text = chatDecisionText(item, action, feedback);
   try {
@@ -63,7 +90,7 @@ function decisionURL(item, action, feedback = "") {
   if (url.href.length > 7500) throw new Error("Decision link is too long; shorten the feedback.");
   return url.href;
 }
-if (typeof module !== "undefined") module.exports = { validateItem, decisionURL, chatDecisionText, copyChatDecision, ownedURL };
+if (typeof module !== "undefined") module.exports = { validateItem, decisionURL, chatDecisionText, copyChatDecision, revisionFeedbackText, copyRevisionFeedback, ownedURL };
 if (typeof document !== "undefined") {
   const status = document.getElementById("status");
   function element(tag, text, className) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (className) e.className = className; return e; }
@@ -105,7 +132,16 @@ if (typeof document !== "undefined") {
       }
       github.append(githubActions, element("p", "GitHub submission is optional. Opening a draft does not record a decision.", "notice"));
       e.append(label, feedback, actions, localStatus, manual, github);
-    } else e.append(element("p", item.status === "revision_required" ? (item.revision_reason || "Historical approval is retained as read-only reference. This earlier item is not approved for the current campaign; a revised file and scope need fresh exact review.") : item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
+    } else if (["revision_required", "approved_via_chat", "approved_via_review"].includes(item.status) && item.asset) {
+      const label = element("label", "Feedback on this exact file", "feedback-label"); label.htmlFor = "revision-feedback-" + item.id;
+      const feedback = element("textarea"); feedback.id = label.htmlFor; feedback.maxLength = 800; feedback.rows = 4; feedback.placeholder = "Describe the change you suggest. No private tester details.";
+      const actions = element("div", undefined, "actions");
+      const button = element("button", "Copy feedback for chat", "reject"); button.type = "button";
+      const localStatus = element("p", "This exact file can receive feedback only. Rob must paste it into the Mom Alarm marketing chat. Feedback does not automatically revoke or broaden an existing approval and cannot authorize action.", "notice"); localStatus.setAttribute("role", "status"); localStatus.setAttribute("aria-live", "polite");
+      const manual = element("textarea"); manual.hidden = true; manual.readOnly = true; manual.rows = 12; manual.setAttribute("aria-label", "Feedback text for manual copy"); manual.className = "manual-decision";
+      button.addEventListener("click", async () => { try { await copyRevisionFeedback(item, feedback.value, navigator.clipboard, manual, localStatus); } catch (error) { manual.hidden = true; manual.value = ""; localStatus.textContent = error.message; feedback.focus(); } });
+      actions.append(button); e.append(element("p", item.status === "revision_required" ? item.revision_reason || "Historical item needs a revised file and new exact review." : "Approval remains limited to this exact file and recorded scope; a changed file or placement needs fresh review.", "notice"), label, feedback, actions, localStatus, manual);
+    } else e.append(element("p", item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
     return e;
   }
   (async () => { try {
