@@ -2,8 +2,50 @@
   "schema": "momalarm-review-registry-v1",
   "repository": "robosecure/momalarmclock",
   "owner": "robosecure",
-  "checkpoint_date": "2026-09-29",
+  "checkpoint_date": "2026-09-30",
   "items": [
+    {
+      "id": "cartoon-ga-v1",
+      "version": "v1",
+      "title": "Future GA cartoon editorial cut · 38 seconds · review HOLD",
+      "description": "Exact 38-second future GA editorial review cut with a disclosed fictional AI-generated animated family dramatization, blue/yellow story cards and 1.05× Emily narration. It covers morning alarms, everyday reminders, recorded results and parent status as both phones sync. No app UI or full product demo appears. Technical decode and audio measurements passed; human listening, motion, word alignment and release parity remain pending. GA availability and the final destination are unverified. This file is pending owner review; no publication approval is implied.",
+      "narration_source_id": "ga-feature-narration-v1",
+      "narration_review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ga-feature-narration-v1",
+      "narration_text": "Another trip to their room? Another reminder about the chores?\nMom Alarm Clock brings morning alarms and everyday reminders together.\n\nSet your child’s alarm from your iPhone. They use the wake-up check on their phone, and you see its recorded result on yours.\n\nSchedule reminders for everyday jobs, like taking out the trash or walking the dog. Check the reminder’s recorded status from your phone, too.\n\nGet alarm and reminder status updates as both phones sync, so you can check in on both routines.\n\nDownload Mom Alarm Clock for iPhone.\nSee how it works.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-ga-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-ga-review.mp4",
+        "sha256": "497f058e21d4f4e4bfae5980b8be4bf946cdec62bf4c46121ddf2ffe2defb74d",
+        "mime": "video/mp4"
+      },
+      "action_scope": {
+        "id": "organic_ga_cartoon_v1",
+        "description": "Approve only this exact 38-second cartoon cut (SHA-256 497f058e21d4f4e4bfae5980b8be4bf946cdec62bf4c46121ddf2ffe2defb74d) for future owned organic GA placements after the public iPhone release, shipping-build alarm/reminder/status parity, verified destination, and listening, motion and caption QA. This grants no present posting, beta placement, paid activation, other cut or full app demo approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-ga-v1"
+      }
+    },
+    {
+      "id": "parent-ga-v1",
+      "version": "v1",
+      "title": "Future GA parent editorial cut · 38 seconds · review HOLD",
+      "description": "Exact 38-second future GA editorial review cut with a disclosed AI-generated adult dramatization, blue/yellow story cards and 1.05× Emily narration. It covers morning alarms, everyday reminders, recorded results and parent status as both phones sync. No app UI or full product demo appears. Technical decode and audio measurements passed; human listening, motion, word alignment and release parity remain pending. GA availability and the final destination are unverified. This file is pending owner review; no publication approval is implied.",
+      "narration_source_id": "ga-feature-narration-v1",
+      "narration_review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ga-feature-narration-v1",
+      "narration_text": "Another trip to their room? Another reminder about the chores?\nMom Alarm Clock brings morning alarms and everyday reminders together.\n\nSet your child’s alarm from your iPhone. They use the wake-up check on their phone, and you see its recorded result on yours.\n\nSchedule reminders for everyday jobs, like taking out the trash or walking the dog. Check the reminder’s recorded status from your phone, too.\n\nGet alarm and reminder status updates as both phones sync, so you can check in on both routines.\n\nDownload Mom Alarm Clock for iPhone.\nSee how it works.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#parent-ga-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/parent-ga-review.mp4",
+        "sha256": "08e4bb4f99150873ea2475ce41fedd13632674dd6b6250557a4b6326c39105fc",
+        "mime": "video/mp4"
+      },
+      "action_scope": {
+        "id": "organic_ga_parent_v1",
+        "description": "Approve only this exact 38-second parent cut (SHA-256 08e4bb4f99150873ea2475ce41fedd13632674dd6b6250557a4b6326c39105fc) for future owned organic GA placements after the public iPhone release, shipping-build alarm/reminder/status parity, verified destination, and listening, motion and caption QA. This grants no present posting, beta placement, paid activation, other cut or full app demo approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#parent-ga-v1"
+      }
+    },
     {
       "id": "full-feature-narration-v2",
       "version": "v2",
