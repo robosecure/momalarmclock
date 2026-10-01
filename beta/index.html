@@ -49,6 +49,11 @@
     .action.secondary { background:var(--yellow); border-color:var(--yellow); color:var(--blue-deep); }
     .action.secondary:hover { background:#ffc817; border-color:#ffc817; }
     .section { padding-top:4rem; }
+    .pairing { max-width:52rem; padding:1.5rem; border:1px solid #c8d9ee; border-radius:1rem; background:var(--blue-pale); }
+    .pairing p { margin:.4rem 0 1.25rem; color:var(--muted); }
+    .pairing ol { display:grid; gap:1rem; margin:0; padding-left:1.35rem; }
+    .pairing li { padding-left:.2rem; }
+    .pairing strong { color:var(--ink); }
     .feature-list { display:grid; gap:1px; overflow:hidden; border-radius:1rem; background:#c8d9ee; border:1px solid #c8d9ee; }
     .feature { padding:1.25rem 1.35rem; background:var(--blue-pale); }
     .feature h3 { margin:0 0 .3rem; font-size:1.1rem; }
@@ -91,6 +96,18 @@
           <a class="action secondary" href="https://groups.google.com/g/momalarmclock-beta">Join Android sign-up</a>
           <p class="detail">There is no Play install link on this page.</p>
         </article>
+      </div>
+    </section>
+    <section class="wrap section" aria-labelledby="pairing-title">
+      <div class="pairing">
+        <h2 id="pairing-title">Pair the two iPhones first</h2>
+        <p>Set up the parent phone before testing alarms and reminders on the child phone.</p>
+        <ol>
+          <li>On the parent iPhone, create an account or sign in, then add the child.</li>
+          <li>On the parent iPhone, show that child’s pairing QR code or pairing code.</li>
+          <li>On the second iPhone, choose child-phone setup, scan the QR code or type the code, then assign that phone to the child.</li>
+          <li>Set one alarm and one reminder, then check the recorded status after the phones sync.</li>
+        </ol>
       </div>
     </section>
     <section class="wrap section" aria-labelledby="try-title">
