@@ -2,7 +2,7 @@
   "schema": "momalarm-review-registry-v1",
   "repository": "robosecure/momalarmclock",
   "owner": "robosecure",
-  "checkpoint_date": "2026-09-30",
+  "checkpoint_date": "2026-10-01",
   "items": [
     {
       "id": "cartoon-ga-v1",
@@ -390,7 +390,7 @@
       "version": "v3",
       "title": "Cartoon beta story cut · 20.416667 seconds · pending owner review",
       "description": "Exact 20.416667-second fictional cartoon editorial beta story cut. The child visibly holds a phone. Wake game, quiz, QR and chore-reminder depictions are captions and narration, not actual app screen recordings. Android is sign-up only; this makes no Play-install or GA claim. This exact file is pending owner review and no publication approval is implied.",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v3",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-wake-beta-v3-review.mp4",
@@ -402,6 +402,28 @@
         "id": "organic_beta_cartoon_wake_v3",
         "description": "Approve only this exact fictional cartoon beta story cut for future owned organic beta placement after exact owner approval, current-build parity, and full-speed human listening, motion and caption QA. This grants no publication before those gates, paid activation, GA claim or release, other cut, or future-version approval.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v3"
+      },
+      "approval": null,
+      "historical_status": "pending",
+      "revision_reason": "Internally superseded by a new exact cut with a platform-neutral narration and separate iPhone TestFlight and Android sign-up calls to action. No owner rejection or approval is implied."
+    },
+    {
+      "id": "cartoon-wake-beta-v4",
+      "version": "v4",
+      "title": "Cartoon beta story · iPhone TestFlight and Android sign-up · 20 seconds",
+      "description": "Exact new fictional cartoon dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Join with the Google account you will use on every test phone, including the child phone. The Android install link is not available yet. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is pending Rob review; no social placement is approved.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v4",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-wake-beta-v4-review.mp4",
+        "sha256": "7da06753bd04d0df0295527cdabd03cb65d1dbfefc400eaf59a20b5f2ce24d8e",
+        "mime": "video/mp4"
+      },
+      "transcript": "Still waking them up? Set their alarm from your phone. They can play a game, answer a quiz, or scan a QR code to turn it off. Set chore reminders, too, and see the status on your phone. Try the iPhone beta now, or join the Android beta list. Links in the post.",
+      "action_scope": {
+        "id": "organic_beta_cartoon_wake_v4",
+        "description": "Approve only this exact fictional cartoon dramatization for future owned organic beta placement after an exact Rob decision, current-build parity, and full-speed listening, motion, caption and word-alignment QA. Android remains sign-up only until approved install readiness. No paid activation, immediate social posting, GA claim, other cut or future-version approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v4"
       },
       "approval": null
     },
@@ -454,7 +476,7 @@
       "version": "v3",
       "title": "Adult beta story cut · 20.375 seconds · pending owner review",
       "description": "Exact 20.375-second AI-generated adult editorial dramatization with the corrected calm ending. It contains no actual app screen, product demo, or proof that a child woke. Proposed post copy: This video is an editorial dramatization, not a product demo. iPhone beta (test with two iPhones): https://testflight.apple.com/join/j28Ec4ZB Install the latest build offered in TestFlight on both phones before testing. Android sign-up only (not an Android installation or Play Store route): https://groups.google.com/g/momalarmclock-beta Feedback: while using the iPhone beta, take an in-app screenshot, tap its thumbnail, choose Done, then Share Beta Feedback. Describe what happened and submit. This exact file is pending owner review; no publication approval is implied.",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#adult-beta-story-v3",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/adult-beta-story-v3-review.mp4",
@@ -467,6 +489,28 @@
         "description": "Approve only this exact AI-generated adult editorial dramatization for future owned organic iPhone beta placement after an exact owner decision, current-build parity, and full-speed human listening, motion, caption and word-alignment QA. This grants no current publication, paid activation, GA claim or release, Android installation, other cut, or future-version approval.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#adult-beta-story-v3"
       },
+      "approval": null,
+      "historical_status": "pending",
+      "revision_reason": "Internally superseded by a new exact cut with a platform-neutral narration and separate iPhone TestFlight and Android sign-up calls to action. No owner rejection or approval is implied."
+    },
+    {
+      "id": "adult-beta-story-v4",
+      "version": "v4",
+      "title": "Adult beta story · iPhone TestFlight and Android sign-up · 20 seconds",
+      "description": "Exact new fictional adult dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Join with the Google account you will use on every test phone, including the child phone. The Android install link is not available yet. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is pending Rob review; no social placement is approved.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#adult-beta-story-v4",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/adult-beta-story-v4-review.mp4",
+        "sha256": "7fbc1338773f74d99ece09c69ce60b82c171f031038920f7ae5de20bc5809c8c",
+        "mime": "video/mp4"
+      },
+      "transcript": "Still waking them up? Set their alarm from your phone. They can play a game, answer a quiz, or scan a QR code to turn it off. Set chore reminders, too, and see the status on your phone. Try the iPhone beta now, or join the Android beta list. Links in the post.",
+      "action_scope": {
+        "id": "organic_beta_adult_story_v4",
+        "description": "Approve only this exact fictional adult dramatization for future owned organic beta placement after an exact Rob decision, current-build parity, and full-speed listening, motion, caption and word-alignment QA. Android remains sign-up only until approved install readiness. No paid activation, immediate social posting, GA claim, other cut or future-version approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#adult-beta-story-v4"
+      },
       "approval": null
     },
     {
@@ -474,7 +518,7 @@
       "version": "v2",
       "title": "Brown father beta story · 20.375 seconds · pending owner review",
       "description": "Exact 20.375-second AI-generated adult dramatization with the corrected calm ending. It contains no actual app screen, product demo, or proof that a child woke. Proposed post copy: This video is an AI-generated adult dramatization, not a product demo. iPhone beta (test with two iPhones): https://testflight.apple.com/join/j28Ec4ZB Install the latest build offered in TestFlight on both phones before testing. Android sign-up only (not an Android installation or Play Store route): https://groups.google.com/g/momalarmclock-beta Feedback: while using the iPhone beta, take an in-app screenshot, tap its thumbnail, choose Done, then Share Beta Feedback. Describe what happened and submit. This exact file is pending owner review; no publication approval is implied.",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v2",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/brown-father-beta-story-v2-review.mp4",
@@ -486,6 +530,28 @@
         "id": "organic_beta_brown_father_story_v2",
         "description": "Approve only this exact AI-generated adult dramatization for future owned organic iPhone beta placement after an exact owner decision, current-build parity, and full-speed human listening, motion, caption and word-alignment QA. This grants no current publication, paid activation, GA claim or release, Android installation, other cut, or future-version approval.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v2"
+      },
+      "approval": null,
+      "historical_status": "pending",
+      "revision_reason": "Internally superseded by a new exact cut with a platform-neutral narration and separate iPhone TestFlight and Android sign-up calls to action. No owner rejection or approval is implied."
+    },
+    {
+      "id": "brown-father-beta-story-v3",
+      "version": "v3",
+      "title": "Brown father beta story · iPhone TestFlight and Android sign-up · 20 seconds",
+      "description": "Exact new fictional adult dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Join with the Google account you will use on every test phone, including the child phone. The Android install link is not available yet. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is pending Rob review; no social placement is approved.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v3",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/brown-father-beta-story-v3-review.mp4",
+        "sha256": "78ca5922404fb590e62da364ffe0488cbbdb9e79b6532c46c12cd3ce60f61704",
+        "mime": "video/mp4"
+      },
+      "transcript": "Still waking them up? Set their alarm from your phone. They can play a game, answer a quiz, or scan a QR code to turn it off. Set chore reminders, too, and see the status on your phone. Try the iPhone beta now, or join the Android beta list. Links in the post.",
+      "action_scope": {
+        "id": "organic_beta_brown_father_story_v3",
+        "description": "Approve only this exact fictional adult dramatization for future owned organic beta placement after an exact Rob decision, current-build parity, and full-speed listening, motion, caption and word-alignment QA. Android remains sign-up only until approved install readiness. No paid activation, immediate social posting, GA claim, other cut or future-version approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v3"
       },
       "approval": null
     },
