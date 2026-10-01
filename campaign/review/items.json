@@ -498,9 +498,9 @@
       "id": "adult-beta-story-v4",
       "version": "v4",
       "title": "Adult beta story · iPhone TestFlight and Android sign-up · 20 seconds",
-      "description": "Exact new fictional adult dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Eligible adults can join the Google Group now. Android installation and child-device account steps will follow only after the exact build, eligible account, and two-phone setup have been verified and Rob gives the ready signal. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is pending Rob review; no social placement is approved.",
+      "description": "Exact new fictional adult dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Eligible adults can join the Google Group now. Android installation and child-device account steps will follow only after the exact build, eligible account, and two-phone setup have been verified and Rob gives the ready signal. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is retained as a rejected reference; no publication is approved.",
       "proposed_post_copy_sha256": "4d044338c8dd7ac6280928ad32aa88036a821c1a1fb8f48b750c4b96f7b722b0",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#adult-beta-story-v4",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/adult-beta-story-v4-review.mp4",
@@ -513,7 +513,9 @@
         "description": "Approve only this exact fictional adult dramatization and proposed post copy revision r2 (SHA-256 4d044338c8dd7ac6280928ad32aa88036a821c1a1fb8f48b750c4b96f7b722b0) for future owned organic beta placement after an exact Rob decision, current-build parity, and full-speed listening, motion, caption and word-alignment QA. Android remains sign-up only until approved install readiness. No paid activation, immediate social posting, GA claim, other cut or future-version approval.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#adult-beta-story-v4"
       },
-      "approval": null
+      "approval": null,
+      "historical_status": "pending",
+      "revision_reason": "Rob rejected this beta story because the frustrated-knock-to-happy-phone-at-table ending does not show how Mom Alarm Clock solves the problem. Retained as a rejected reference; no further beta cuts or Creatify/Gemini spending on beta videos is planned; GA film work continues."
     },
     {
       "id": "brown-father-beta-story-v2",
