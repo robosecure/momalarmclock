@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#073b82" />
+  <meta name="description" content="Choose the Mom Alarm Clock iPhone beta or Android sign-up route." />
+  <title>Mom Alarm Clock beta</title>
+  <style>
+    :root { color-scheme: light; --blue:#073b82; --blue-deep:#052b61; --blue-pale:#edf5ff; --yellow:#ffd447; --ink:#10233d; --muted:#435b78; --white:#fff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--white); font:1rem/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+    a { color:inherit; }
+    a:focus-visible { outline:3px solid var(--yellow); outline-offset:4px; }
+    .skip { position:absolute; left:-999px; top:0; background:var(--yellow); color:var(--blue-deep); padding:.7rem 1rem; font-weight:800; }
+    .skip:focus { left:1rem; z-index:2; }
+    .wrap { width:min(100% - 2rem, 68rem); margin-inline:auto; }
+    .masthead { background:var(--blue); color:var(--white); padding:.9rem 0; }
+    .brand { display:flex; align-items:center; gap:.65rem; width:max-content; font-size:1.05rem; font-weight:800; text-decoration:none; }
+    .mark { display:grid; place-items:center; width:2rem; height:2rem; border-radius:.5rem; background:var(--yellow); color:var(--blue-deep); font-weight:900; }
+    .hero { background:var(--blue); color:var(--white); padding:3.75rem 0 4.25rem; }
+    .hero h1 { max-width:12ch; margin:0 0 1rem; font-size:clamp(2.55rem,11vw,4.7rem); line-height:1.02; letter-spacing:-.055em; }
+    .hero p { max-width:37rem; margin:0; color:#dbeaff; font-size:clamp(1.08rem,3vw,1.28rem); }
+    .promise { display:inline-block; margin-bottom:1rem; padding:.32rem .68rem; background:var(--yellow); color:var(--blue-deep); border-radius:999px; font-size:.88rem; font-weight:800; }
+    main { padding:3rem 0 4.5rem; }
+    .intro { max-width:42rem; margin:0 0 1.8rem; font-size:1.08rem; color:var(--muted); }
+    h2 { margin:0 0 .65rem; font-size:clamp(1.7rem,6vw,2.65rem); line-height:1.12; letter-spacing:-.04em; }
+    .routes { display:grid; gap:1rem; }
+    .route { display:flex; flex-direction:column; padding:1.5rem; border:2px solid #c8d9ee; border-radius:1rem; background:var(--white); }
+    .route.featured { border-color:var(--blue); box-shadow:0 .65rem 0 var(--blue-pale); }
+    .route h3 { margin:0 0 .45rem; font-size:1.38rem; }
+    .route p { margin:0 0 1.3rem; color:var(--muted); }
+    .route .detail { margin-top:auto; font-size:.94rem; }
+    .action { display:inline-flex; min-height:3.25rem; align-items:center; justify-content:center; padding:.75rem 1rem; border:2px solid var(--blue); border-radius:.7rem; background:var(--blue); color:var(--white); font-weight:800; text-align:center; text-decoration:none; }
+    .action:hover { background:var(--blue-deep); border-color:var(--blue-deep); }
+    .action.secondary { background:var(--yellow); border-color:var(--yellow); color:var(--blue-deep); }
+    .action.secondary:hover { background:#ffc817; border-color:#ffc817; }
+    .section { padding-top:4rem; }
+    .feature-list { display:grid; gap:1px; overflow:hidden; border-radius:1rem; background:#c8d9ee; border:1px solid #c8d9ee; }
+    .feature { padding:1.25rem 1.35rem; background:var(--blue-pale); }
+    .feature h3 { margin:0 0 .3rem; font-size:1.1rem; }
+    .feature p { margin:0; color:var(--muted); }
+    .note { margin-top:1.5rem; padding:1.2rem 1.3rem; border-left:.4rem solid var(--yellow); background:#fff8d9; color:#3f3520; }
+    .note p { margin:0; }
+    .feedback { display:grid; gap:1.5rem; padding:1.5rem; border-radius:1rem; background:var(--blue-deep); color:var(--white); }
+    .feedback p, .feedback li { color:#dbeaff; }
+    .feedback p { margin:.4rem 0 0; }
+    .feedback ol { margin:0; padding-left:1.35rem; }
+    .feedback li + li { margin-top:.6rem; }
+    footer { padding:1.8rem 0; background:#f1f6fc; color:var(--muted); font-size:.92rem; }
+    footer p { margin:0; }
+    @media (min-width:43rem) { .routes { grid-template-columns:1fr 1fr; } .feature-list { grid-template-columns:repeat(3,1fr); } .feedback { grid-template-columns:.8fr 1.2fr; align-items:center; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead"><div class="wrap"><a class="brand" href="#main"><span class="mark" aria-hidden="true">m</span>Mom Alarm Clock</a></div></header>
+  <main id="main">
+    <section class="hero"><div class="wrap">
+      <span class="promise">Beta testing</span>
+      <h1>Choose your beta route.</h1>
+      <p>Mom Alarm Clock helps parents set child alarms, schedule everyday reminders, and see recorded status as phones sync.</p>
+    </div></section>
+    <section class="wrap section" aria-labelledby="routes-title">
+      <h2 id="routes-title">Start with the phone you have</h2>
+      <p class="intro">The iPhone beta is ready to test with two iPhones. Android is sign-up only while we prepare future test steps.</p>
+      <div class="routes">
+        <article class="route featured">
+          <h3>Test on iPhone</h3>
+          <p>Use TestFlight with two iPhones: one parent phone and one child phone. Install the latest build offered in TestFlight before testing.</p>
+          <a class="action" href="https://testflight.apple.com/join/j28Ec4ZB">Test on iPhone</a>
+          <p class="detail">This is beta software. Keep your usual backup alarm while you test.</p>
+        </article>
+        <article class="route">
+          <h3>Join Android sign-up</h3>
+          <p>Join the Google Group for Android beta updates and future test steps. This is a sign-up route, not an Android installation.</p>
+          <a class="action secondary" href="https://groups.google.com/g/momalarmclock-beta">Join Android sign-up</a>
+          <p class="detail">There is no Play install link on this page.</p>
+        </article>
+      </div>
+    </section>
+    <section class="wrap section" aria-labelledby="try-title">
+      <h2 id="try-title">What to try together</h2>
+      <div class="feature-list">
+        <article class="feature"><h3>Parent-set alarms</h3><p>Set a child alarm from the parent iPhone.</p></article>
+        <article class="feature"><h3>Wake check choice</h3><p>Choose a game, quiz, or QR scan for the wake check.</p></article>
+        <article class="feature"><h3>Everyday reminders</h3><p>Schedule reminders and see recorded alarm and reminder status as phones sync.</p></article>
+      </div>
+      <aside class="note" aria-label="Beta alarm reminder"><p><strong>Keep a backup alarm.</strong> Beta testing is useful, but it should not be the only way someone wakes up.</p></aside>
+    </section>
+    <section class="wrap section" aria-labelledby="feedback-title">
+      <div class="feedback">
+        <div><h2 id="feedback-title">Tell us what happened</h2><p>A screenshot gives the beta team a useful starting point.</p></div>
+        <ol>
+          <li>Take a screenshot in the beta app.</li>
+          <li>Tap its thumbnail, then tap <strong>Done</strong>.</li>
+          <li>Choose <strong>Share Beta Feedback</strong>, describe what happened, and send it.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><p>Mom Alarm Clock beta.</p></div></footer>
+</body>
+</html>

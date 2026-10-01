@@ -426,6 +426,26 @@
       "approval": null
     },
     {
+      "id": "brown-father-beta-story-v1",
+      "version": "v1",
+      "title": "Brown father beta story · 20.375 seconds · pending owner review",
+      "description": "Exact 20.375-second AI-generated adult dramatization. It contains no actual app screen, product demo, or proof that a child woke. Proposed post copy: This video is an AI-generated adult dramatization, not a product demo. iPhone beta (test with two iPhones): https://testflight.apple.com/join/j28Ec4ZB Install the latest build offered in TestFlight on both phones before testing. Android sign-up only (not an Android installation or Play Store route): https://groups.google.com/g/momalarmclock-beta Feedback: while using the iPhone beta, take an in-app screenshot, tap its thumbnail, choose Done, then Share Beta Feedback. Describe what happened and submit. This exact file is pending owner review; no publication approval is implied.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/brown-father-beta-story-v1-review.mp4",
+        "sha256": "53d59d9a1b53728421cae45741a3ecdfd0401d6f52fd005ab29bce708c9858a0",
+        "mime": "video/mp4"
+      },
+      "transcript": "Set your child’s alarm from your iPhone. You choose their wake-up check: play a game, answer a quiz, or scan a QR code to turn off the alarm. Schedule everyday reminders, too. See recorded alarm and reminder status as both phones sync. Try the two-iPhone beta.",
+      "action_scope": {
+        "id": "organic_beta_brown_father_story_v1",
+        "description": "Approve only this exact AI-generated adult dramatization for future owned organic iPhone beta placement after current-build parity and full-speed human listening, motion, caption and word-alignment QA. This grants no current publication, paid activation, GA claim or release, Android installation, other cut, or future-version approval.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v1"
+      },
+      "approval": null
+    },
+    {
       "id": "parent-ga-v2",
       "version": "v1",
       "title": "Parent launch video · 40 seconds",
