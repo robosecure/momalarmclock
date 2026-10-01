@@ -1,0 +1,32 @@
+(() => {
+  const itemId = 'beta-recruitment-copy-v1';
+  const version = 'v1';
+  const draftSha256 = 'c6054f2a0e76822d99afd0b9385ca1ee6f6b9a5b9ce25b0b520a1ae7a253fb78';
+  const publicReviewUrl = 'https://robosecure.github.io/momalarmclock/campaign/review/beta-recruiting/';
+  const draftUrl = 'https://robosecure.github.io/momalarmclock/campaign/review/beta-recruiting/draft.md';
+  const scope = { approval: 'copy only', placement: 'future owned organic beta placement after readiness', excludes: ['video', 'paid spend', 'posting', 'emailing', 'release', 'execution'] };
+  const approve = document.querySelector('#approve');
+  const requestChanges = document.querySelector('#request-changes');
+  const feedback = document.querySelector('#feedback');
+  const feedbackLabel = document.querySelector('#feedback-label');
+  const generateChanges = document.querySelector('#generate-changes');
+  const packet = document.querySelector('#decision-packet');
+  const copy = document.querySelector('#copy-packet');
+  const note = document.querySelector('#decision-note');
+  const fullDraft = document.querySelector('#full-draft');
+  const invalidate = message => { packet.value = ''; copy.disabled = true; if (message) note.textContent = message; };
+  const feedbackIsValid = value => value.length >= 10 && value.length <= 800 && (value.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) || []).length >= 3;
+  const write = (decision, feedbackText = null) => {
+    packet.value = JSON.stringify({ type: 'MOMALARM_COPY_REVIEW_DECISION_V1', item_id: itemId, version, draft_sha256: draftSha256, public_review_url: publicReviewUrl, draft_url: draftUrl, scope, decision, feedback: feedbackText, manual_instruction: 'Paste this packet manually into the Mom Alarm marketing chat. Root must verify the pasted decision.' }, null, 2);
+    copy.disabled = false;
+    packet.focus();
+    packet.select();
+    note.textContent = 'Packet generated. Copy it, then paste it manually in the Mom Alarm marketing chat.';
+  };
+  approve.addEventListener('click', () => { feedback.hidden = true; feedbackLabel.hidden = true; generateChanges.hidden = true; feedback.required = false; feedback.value = ''; invalidate(); write('approve'); });
+  requestChanges.addEventListener('click', () => { invalidate('Add specific feedback before generating a requested-changes packet.'); feedback.hidden = false; feedbackLabel.hidden = false; generateChanges.hidden = false; feedback.required = true; feedback.value = ''; feedback.focus(); });
+  feedback.addEventListener('input', () => invalidate('Feedback changed. Generate a new requested-changes packet when it meets the requirements.'));
+  generateChanges.addEventListener('click', () => { const value = feedback.value.trim(); if (!feedbackIsValid(value)) { feedback.setCustomValidity('Use at least 3 meaningful words and 10 to 800 characters.'); feedback.reportValidity(); invalidate('Feedback must contain at least 3 meaningful words and 10 to 800 characters.'); return; } feedback.setCustomValidity(''); write('request_changes', value); });
+  copy.addEventListener('click', async () => { try { await navigator.clipboard.writeText(packet.value); note.textContent = 'Packet copied. Paste it manually in the Mom Alarm marketing chat.'; } catch { packet.focus(); packet.select(); note.textContent = 'Clipboard access is unavailable. The packet is selected for manual copy.'; } });
+  fetch('draft.md').then(response => { if (!response.ok) throw new Error(); return response.text(); }).then(text => { fullDraft.textContent = text; }).catch(() => { fullDraft.textContent = 'The exact local draft could not be loaded. Open draft.md directly before deciding.'; });
+})();
