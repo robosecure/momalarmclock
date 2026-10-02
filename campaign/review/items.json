@@ -413,7 +413,7 @@
       "title": "Cartoon beta story · iPhone TestFlight and Android sign-up · 20 seconds",
       "description": "Exact new fictional cartoon dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Eligible adults can join the Google Group now. Android installation and child-device account steps will follow only after the exact build, eligible account, and two-phone setup have been verified and Rob gives the ready signal. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is pending Rob review; no social placement is approved.",
       "proposed_post_copy_sha256": "4d044338c8dd7ac6280928ad32aa88036a821c1a1fb8f48b750c4b96f7b722b0",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v4",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/cartoon-wake-beta-v4-review.mp4",
@@ -426,7 +426,9 @@
         "description": "Approve only this exact fictional cartoon dramatization and proposed post copy revision r2 (SHA-256 4d044338c8dd7ac6280928ad32aa88036a821c1a1fb8f48b750c4b96f7b722b0) for future owned organic beta placement after an exact Rob decision, current-build parity, and full-speed listening, motion, caption and word-alignment QA. Android remains sign-up only until approved install readiness. No paid activation, immediate social posting, GA claim, other cut or future-version approval.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-wake-beta-v4"
       },
-      "approval": null
+      "approval": null,
+      "historical_status": "pending",
+      "revision_reason": "Internally superseded because its Android sign-up-only CTA is outdated now that Group-first Play opt-in/install is available for each joined Play Store account. Rob asked to focus GA rather than more beta videos. No owner rejection or approval is implied."
     },
     {
       "id": "adult-beta-story-v2",
@@ -545,7 +547,7 @@
       "title": "Brown father beta story · iPhone TestFlight and Android sign-up · 20 seconds",
       "description": "Exact new fictional adult dramatization with dual-platform beta call to action. Android is sign-up only; no Play install or Android beta availability is claimed. The acting is an editorial story, not an app screen recording or proof a child woke. Proposed post copy: Still making repeat trips to wake them up? Mom Alarm Clock lets you set their alarm from your phone, choose a game, quiz, or QR scan as the wake-up check, and schedule chore reminders. See recorded status on your phone as devices sync. iPhone beta with two iPhones: https://testflight.apple.com/join/j28Ec4ZB Install the latest TestFlight build on both phones. Android beta sign-up: https://groups.google.com/g/momalarmclock-beta Eligible adults can join the Google Group now. Android installation and child-device account steps will follow only after the exact build, eligible account, and two-phone setup have been verified and Rob gives the ready signal. For iPhone feedback, take an in-app screenshot, tap its thumbnail, then Done and Share Beta Feedback. Tell us what happened. This exact file is pending Rob review; no social placement is approved.",
       "proposed_post_copy_sha256": "4d044338c8dd7ac6280928ad32aa88036a821c1a1fb8f48b750c4b96f7b722b0",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v3",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/brown-father-beta-story-v3-review.mp4",
@@ -558,7 +560,9 @@
         "description": "Approve only this exact fictional adult dramatization and proposed post copy revision r2 (SHA-256 4d044338c8dd7ac6280928ad32aa88036a821c1a1fb8f48b750c4b96f7b722b0) for future owned organic beta placement after an exact Rob decision, current-build parity, and full-speed listening, motion, caption and word-alignment QA. Android remains sign-up only until approved install readiness. No paid activation, immediate social posting, GA claim, other cut or future-version approval.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#brown-father-beta-story-v3"
       },
-      "approval": null
+      "approval": null,
+      "historical_status": "pending",
+      "revision_reason": "Internally superseded because its Android sign-up-only CTA is outdated now that Group-first Play opt-in/install is available for each joined Play Store account. Rob asked to focus GA rather than more beta videos. No owner rejection or approval is implied."
     },
     {
       "id": "parent-ga-v2",
@@ -687,6 +691,24 @@
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#marquee-adult",
       "asset": null,
       "action_scope": null
+    },
+    {
+      "id": "ios-ga-listing-v1",
+      "version": "v1",
+      "title": "iPhone GA App Store metadata · wording draft · review only",
+      "description": "Exact six-field iPhone GA App Store metadata wording draft: App name, Subtitle, Promotional text, Description, Keywords, and What’s New, with measured limits. It is DRAFT/NOT LIVE. Before submission, the exact release candidate must prove named paired-iPhone alarm, reminder, check, and sync behavior; release-matched screenshots and Rob’s final approval of the exact App Store Connect metadata are also required. After public release, verify the US listing has replaced legacy 1.0.3 before the GA campaign gate. No private tester data appears here.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ios-ga-listing-v1",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/review/ios-ga-listing-v1.html",
+        "sha256": "80233e6d36755fab0de4786d36bbfa863df3a7cb3e4b05cc036ce83f4d9efdc7",
+        "mime": "text/html"
+      },
+      "action_scope": {
+        "id": "ios_ga_app_store_wording_v1",
+        "description": "Approve only the exact six-field iPhone GA App Store wording in this HTML draft for further release-evidence review. This does not approve App Store Connect entry, submission, screenshots, social posting, ads, release, or a GA campaign. Exact release-candidate parity, release-matched screenshots, Rob’s final approval of the App Store Connect metadata, and public-live US App Store proof remain required.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#ios-ga-listing-v1"
+      }
     },
     {
       "id": "cartoon-feature-film",
