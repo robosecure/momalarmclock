@@ -1,0 +1,7 @@
+Still going back to wake them up? Still reminding them about chores? Set alarms and everyday reminders for your child from your phone. Their iPhone rings for an alarm, and you can choose a game, quick quiz, or QR scan as the wake-up check. See recorded alarm and reminder status as the phones sync.
+
+Help test one morning alarm and one chore reminder with two iPhones. Install the latest build offered in TestFlight on both iPhones. The U.S. Android closed beta is also open to eligible accounts: on each Android phone, first join the tester Google Group with that phone's selected Play Store account, then use the same account to opt in and install from Play. Both routes are at the link in our bio. If a child account cannot join the Group, contact us privately; please do not post account details.
+
+Tell us what failed or confused you. On iPhone, take an in-app screenshot, tap its thumbnail, choose Done, then Share Beta Feedback. On Android, use Help & feedback in the app or email us at momalarmclock@gmail.com. Use demo child details and keep a backup alarm during testing. The parent's result can be slow after a wake-up check.
+
+Which is harder at home, mornings or chores? Tag a caregiver who could test with us.
