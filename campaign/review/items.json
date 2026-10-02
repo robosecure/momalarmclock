@@ -9,7 +9,7 @@
       "version": "v1",
       "title": "New GA cartoon two-phone animation/source review · v1",
       "description": "New 8-second fictional AI-animation source review: the child holds their own phone at a printed prop code while the parent holds a separate phone in a kitchen. This is not actual app UI, a functioning QR code, or proof that a child is awake. The final film still needs genuine alarm AND reminder captures, approved narration, full QA, exact Rob approval, and live-store proof.",
-      "status": "pending",
+      "status": "approved_via_email",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ga-cartoon-two-phone-source-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/ga-cartoon-two-phone-source-v1-review.mp4",
@@ -21,7 +21,17 @@
         "description": "Approve only this exact fictional AI-animation source acting/action (SHA-256 1baac21999c22d08434254b89743fb4e00a49fe49b0cc96fa236272f33140e9b) for possible future GA film assembly after listening and motion QA. This grants no social, paid, final-film, beta, functioning-QR, awake-proof, feature-parity, availability, or future-version approval. The final film still needs genuine alarm AND reminder captures, approved narration, full QA, exact Rob approval, and live-store proof.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#ga-cartoon-two-phone-source-v1"
       },
-      "approval": null
+      "approval": {
+        "source": "authenticated_owner_email_reply",
+        "owner": "robosecure",
+        "approved_at": "2026-10-02T18:11:53Z",
+        "verified_at": "2026-10-02T18:30:36.766160Z",
+        "item_id": "ga-cartoon-two-phone-source-v1",
+        "version": "v1",
+        "asset_sha256": "1baac21999c22d08434254b89743fb4e00a49fe49b0cc96fa236272f33140e9b",
+        "scope_sha256": "f8d310581cdcf293aa82a989bad2294bc0cee9b6341611cff7810f6622e0acec",
+        "private_evidence_sha256": "a635cd9bb887b06cde86851f67b665319fc3d5e53862144ed46d8f6dfdc597bc"
+      }
     },
     {
       "id": "cartoon-ga-v1",

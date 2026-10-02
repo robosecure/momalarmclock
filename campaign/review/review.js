@@ -4,6 +4,7 @@ const OWNER = "robosecure";
 const SITE = "https://robosecure.github.io/momalarmclock/";
 const REVIEW = SITE + "campaign/review/";
 const ORGANIC_STATIC_DESTINATION = "https://www.facebook.com/momalarmclock/ | https://www.instagram.com/momalarmclock/ | https://www.youtube.com/@momalarmclock | https://www.tiktok.com/@momalarmclock | https://x.com/momalarmclock";
+const EMAIL_SCOPE_BINDINGS = { "ga-cartoon-two-phone-source-v1": { version: "v1", asset_sha256: "1baac21999c22d08434254b89743fb4e00a49fe49b0cc96fa236272f33140e9b", public_url: "https://robosecure.github.io/momalarmclock/campaign/media/ga-cartoon-two-phone-source-v1-review.mp4", scope_sha256: "f8d310581cdcf293aa82a989bad2294bc0cee9b6341611cff7810f6622e0acec", private_evidence_sha256: "a635cd9bb887b06cde86851f67b665319fc3d5e53862144ed46d8f6dfdc597bc", id: "ga_cartoon_source_scene_v1", description: "Approve only this exact fictional AI-animation source acting/action (SHA-256 1baac21999c22d08434254b89743fb4e00a49fe49b0cc96fa236272f33140e9b) for possible future GA film assembly after listening and motion QA. This grants no social, paid, final-film, beta, functioning-QR, awake-proof, feature-parity, availability, or future-version approval. The final film still needs genuine alarm AND reminder captures, approved narration, full QA, exact Rob approval, and live-store proof.", destination: "https://robosecure.github.io/momalarmclock/campaign/review/#ga-cartoon-two-phone-source-v1" } };
 function ownedURL(value) { if (typeof value !== "string") return false; try { const url = new URL(value); return url.href.startsWith(SITE) && url.origin === new URL(SITE).origin && !url.username && !url.password; } catch (_) { return false; } }
 function approvalReceipt(item) {
   const a = item.approval;
@@ -11,9 +12,17 @@ function approvalReceipt(item) {
   if (!a || a.source !== "authenticated_owner_github_issue" || a.owner !== OWNER || typeof a.issue_url !== "string" || !/^https:\/\/github\.com\/robosecure\/momalarmclock\/issues\/[1-9][0-9]*$/.test(a.issue_url) || !timestamp(a.approved_at) || typeof a.verified_at !== "string" || !Number.isFinite(Date.parse(a.verified_at)) || a.item_id !== item.id || a.version !== item.version || a.asset_sha256 !== item.asset.sha256 || typeof a.scope_sha256 !== "string" || !/^[0-9a-f]{64}$/.test(a.scope_sha256)) throw new Error("Verified approval receipt is incomplete.");
   return a;
 }
+function emailApprovalReceipt(item) {
+  const a = item.approval;
+  const binding = EMAIL_SCOPE_BINDINGS[item.id];
+  const timestamp = value => typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(Date.parse(value)).toISOString().slice(0, 19) === value.slice(0, 19);
+  const keys = ["source", "owner", "approved_at", "verified_at", "item_id", "version", "asset_sha256", "scope_sha256", "private_evidence_sha256"];
+  if (!a || !binding || Object.keys(a).length !== keys.length || !keys.every(key => Object.prototype.hasOwnProperty.call(a, key)) || a.source !== "authenticated_owner_email_reply" || a.owner !== OWNER || !timestamp(a.approved_at) || !timestamp(a.verified_at) || a.item_id !== item.id || a.version !== binding.version || item.version !== binding.version || a.asset_sha256 !== binding.asset_sha256 || item.asset.sha256 !== binding.asset_sha256 || item.asset.public_url !== binding.public_url || a.scope_sha256 !== binding.scope_sha256 || a.private_evidence_sha256 !== binding.private_evidence_sha256 || item.action_scope.id !== binding.id || item.action_scope.description !== binding.description || item.action_scope.destination !== binding.destination) throw new Error("Verified email approval receipt is incomplete.");
+  return a;
+}
 function validateItem(item) {
   if (!item || typeof item.id !== "string" || typeof item.version !== "string" || !/^[a-z0-9-]{1,80}$/.test(item.id) || !/^[A-Za-z0-9_-]{1,60}$/.test(item.version) || typeof item.title !== "string" || typeof item.description !== "string") throw new Error("Invalid review item.");
-  if (!["pending", "approved_via_chat", "approved_via_review", "revision_required", "awaiting_asset"].includes(item.status) || item.review_url !== REVIEW + "#" + item.id) throw new Error("Invalid review status or URL.");
+  if (!["pending", "approved_via_chat", "approved_via_review", "approved_via_email", "revision_required", "awaiting_asset"].includes(item.status) || item.review_url !== REVIEW + "#" + item.id) throw new Error("Invalid review status or URL.");
   if (item.status === "awaiting_asset") { if (item.asset !== null || item.action_scope !== null) throw new Error("Unfinished items cannot request approval."); return item; }
   if (!item.asset || typeof item.asset.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(item.asset.sha256) || !ownedURL(item.asset.public_url) || !["video/mp4", "text/html", "image/png", "audio/mpeg"].includes(item.asset.mime)) throw new Error("Finished review asset is incomplete.");
   if (item.asset.mime === "audio/mpeg" && !/^https:\/\/robosecure\.github\.io\/momalarmclock\/campaign\/media\/[a-z0-9-]+\.mp3$/.test(item.asset.public_url)) throw new Error("Audio must be an exact owned MP3 URL.");
@@ -21,10 +30,12 @@ function validateItem(item) {
   const scope = item.action_scope;
   if (!scope || typeof scope.id !== "string" || !/^[a-z0-9_-]{1,80}$/.test(scope.id) || typeof scope.description !== "string" || !scope.description.trim() || scope.description.length > 600 || typeof scope.destination !== "string" || (scope.id === "organic_beta_static_v1" ? scope.destination !== ORGANIC_STATIC_DESTINATION : !ownedURL(scope.destination))) throw new Error("Exact action scope is missing.");
   if (item.status === "approved_via_review") approvalReceipt(item);
+  if (item.status === "approved_via_email") emailApprovalReceipt(item);
   if (item.status === "revision_required") {
-    if (!["pending", "approved_via_chat", "approved_via_review"].includes(item.historical_status)) throw new Error("Revision history is incomplete.");
+    if (!["pending", "approved_via_chat", "approved_via_review", "approved_via_email"].includes(item.historical_status)) throw new Error("Revision history is incomplete.");
     if (item.revision_reason != null && (typeof item.revision_reason !== "string" || !item.revision_reason.trim() || item.revision_reason.length > 600)) throw new Error("Revision reason is invalid.");
     if (item.historical_status === "approved_via_review") approvalReceipt(item);
+    if (item.historical_status === "approved_via_email") emailApprovalReceipt(item);
   }
   return item;
 }
@@ -43,7 +54,7 @@ function chatDecisionText(item, action, feedback = "") {
 }
 function revisionFeedbackPacket(item, feedback = "") {
   validateItem(item);
-  if (!["revision_required", "approved_via_chat", "approved_via_review"].includes(item.status) || !item.asset) throw new Error("This item cannot receive feedback on an exact historical file.");
+  if (!["revision_required", "approved_via_chat", "approved_via_review", "approved_via_email"].includes(item.status) || !item.asset) throw new Error("This item cannot receive feedback on an exact historical file.");
   if (typeof feedback !== "string") throw new Error("Feedback must be text.");
   feedback = feedback.trim();
   if (feedback.length > 800) throw new Error("Please keep feedback within 800 characters.");
@@ -90,13 +101,13 @@ function decisionURL(item, action, feedback = "") {
   if (url.href.length > 7500) throw new Error("Decision link is too long; shorten the feedback.");
   return url.href;
 }
-if (typeof module !== "undefined") module.exports = { validateItem, decisionURL, chatDecisionText, copyChatDecision, revisionFeedbackText, copyRevisionFeedback, ownedURL };
+if (typeof module !== "undefined") module.exports = { validateItem, approvalReceipt, emailApprovalReceipt, decisionPacket, decisionURL, chatDecisionText, revisionFeedbackPacket, revisionFeedbackText, copyChatDecision, copyRevisionFeedback, ownedURL };
 if (typeof document !== "undefined") {
   const status = document.getElementById("status");
   function element(tag, text, className) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (className) e.className = className; return e; }
   function card(item) {
     const e = element("article", undefined, "review"); e.id = item.id;
-    const badges = { pending: "READY FOR OWNER REVIEW", approved_via_chat: "APPROVED VIA CHAT · READ-ONLY", approved_via_review: "APPROVED VIA REVIEW · READ-ONLY", revision_required: "REVISION REQUIRED · REFERENCE ONLY", awaiting_asset: "NOT READY FOR A DECISION" };
+    const badges = { pending: "READY FOR OWNER REVIEW", approved_via_chat: "APPROVED VIA CHAT · READ-ONLY", approved_via_review: "APPROVED VIA REVIEW · READ-ONLY", approved_via_email: "APPROVED VIA EMAIL · READ-ONLY", revision_required: "REVISION REQUIRED · REFERENCE ONLY", awaiting_asset: "NOT READY FOR A DECISION" };
     e.append(element("p", badges[item.status], "badge"), element("h3", item.title), element("p", item.description));
     const link = element("a", "Direct link to this exact item"); link.href = item.review_url; e.append(link);
     if (item.status === "pending") { const jump = element("a", "Go to chat decision controls ↓", "decision-jump"); jump.href = "#actions-" + item.id; e.append(jump); }
@@ -104,6 +115,10 @@ if (typeof document !== "undefined") {
       const a = approvalReceipt(item);
       e.append(element("p", "Owner submitted approval: " + a.approved_at + ". Root verified the authenticated GitHub author, exact version, asset and complete action scope. This is a published receipt snapshot; approval is separate from execution.", "notice"));
       const receipt = element("a", "Open the submitted owner approval"); receipt.href = a.issue_url; e.append(receipt);
+    }
+    if (item.status === "approved_via_email") {
+      const a = emailApprovalReceipt(item);
+      e.append(element("p", "Authenticated owner email approval recorded: " + a.approved_at + ". It covers only this exact version, asset and action scope; approval is separate from execution. No public email receipt is linked.", "notice"));
     }
     if (item.asset) {
       if (item.asset.mime === "video/mp4") { const video = element("video"); video.controls = true; video.playsInline = true; video.preload = "none"; video.src = item.asset.public_url; video.setAttribute("aria-label", item.title); e.append(video); }
@@ -132,7 +147,7 @@ if (typeof document !== "undefined") {
       }
       github.append(githubActions, element("p", "GitHub submission is optional. Opening a draft does not record a decision.", "notice"));
       e.append(label, feedback, actions, localStatus, manual, github);
-    } else if (["revision_required", "approved_via_chat", "approved_via_review"].includes(item.status) && item.asset) {
+    } else if (["revision_required", "approved_via_chat", "approved_via_review", "approved_via_email"].includes(item.status) && item.asset) {
       const label = element("label", "Feedback on this exact file", "feedback-label"); label.htmlFor = "revision-feedback-" + item.id;
       const feedback = element("textarea"); feedback.id = label.htmlFor; feedback.maxLength = 800; feedback.rows = 4; feedback.placeholder = "Describe the change you suggest. No private tester details.";
       const actions = element("div", undefined, "actions");
@@ -141,7 +156,7 @@ if (typeof document !== "undefined") {
       const manual = element("textarea"); manual.hidden = true; manual.readOnly = true; manual.rows = 12; manual.setAttribute("aria-label", "Feedback text for manual copy"); manual.className = "manual-decision";
       button.addEventListener("click", async () => { try { await copyRevisionFeedback(item, feedback.value, navigator.clipboard, manual, localStatus); } catch (error) { manual.hidden = true; manual.value = ""; localStatus.textContent = error.message; feedback.focus(); } });
       actions.append(button); e.append(element("p", item.status === "revision_required" ? item.revision_reason || "Historical item needs a revised file and new exact review." : "Approval remains limited to this exact file and recorded scope; a changed file or placement needs fresh review.", "notice"), label, feedback, actions, localStatus, manual);
-    } else e.append(element("p", item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
+    } else e.append(element("p", item.status === "approved_via_review" ? "No duplicate decision requested. The approval covers only the displayed file, version and scope. Remaining runtime/listening gates still apply; no social posting, paid activation or future version is implied." : item.status === "approved_via_email" ? "No duplicate decision requested. The email approval covers only the displayed file, version and scope; a changed file or placement needs fresh review." : item.status === "approved_via_chat" ? "No duplicate approval requested. A new cut or placement needs its own exact review." : "The finished export, file hash and publication scope must be verified before approval controls appear.", "notice"));
     return e;
   }
   (async () => { try {
