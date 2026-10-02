@@ -730,6 +730,25 @@
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#cartoon-feature-film",
       "asset": null,
       "action_scope": null
+    },
+    {
+      "id": "ios-ga-listing-v2",
+      "version": "v2",
+      "title": "iPhone GA App Store metadata · wording draft v2 · review only",
+      "description": "Exact six-field iPhone GA App Store metadata wording v2: App name, Subtitle, Promotional text, Description, Keywords, and What’s New, with measured limits. It is DRAFT/NOT LIVE. This v2 item changes only the Subtitle and What’s New wording from the approved v1 item for further release-evidence review. Before submission, the exact release candidate must prove named paired-iPhone alarm, reminder, check, and sync behavior; release-matched screenshots and Rob’s final approval of the exact App Store Connect metadata are also required. After public release, verify the US listing has replaced legacy 1.0.3 before the GA campaign gate. No private tester data appears here.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ios-ga-listing-v2",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/review/ios-ga-listing-v2.html",
+        "sha256": "2c2eefba673390a48d723da4f672ca3538360d481d36558541965f7f51e3bca7",
+        "mime": "text/html"
+      },
+      "action_scope": {
+        "id": "ios_ga_app_store_wording_v2",
+        "description": "Approve only the exact six-field iPhone GA App Store wording in this HTML v2 draft for further release-evidence review. This does not approve App Store Connect entry, submission, screenshots, social posting, ads, release, or a GA campaign. Exact release-candidate parity, release-matched screenshots, Rob’s final approval of the App Store Connect metadata, and public-live US App Store proof remain required.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#ios-ga-listing-v2"
+      },
+      "approval": null
     }
   ]
 }
