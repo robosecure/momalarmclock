@@ -697,7 +697,7 @@
       "version": "v1",
       "title": "iPhone GA App Store metadata · wording draft · review only",
       "description": "Exact six-field iPhone GA App Store metadata wording draft: App name, Subtitle, Promotional text, Description, Keywords, and What’s New, with measured limits. It is DRAFT/NOT LIVE. Before submission, the exact release candidate must prove named paired-iPhone alarm, reminder, check, and sync behavior; release-matched screenshots and Rob’s final approval of the exact App Store Connect metadata are also required. After public release, verify the US listing has replaced legacy 1.0.3 before the GA campaign gate. No private tester data appears here.",
-      "status": "pending",
+      "status": "approved_via_review",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ios-ga-listing-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/review/ios-ga-listing-v1.html",
@@ -708,6 +708,17 @@
         "id": "ios_ga_app_store_wording_v1",
         "description": "Approve only the exact six-field iPhone GA App Store wording in this HTML draft for further release-evidence review. This does not approve App Store Connect entry, submission, screenshots, social posting, ads, release, or a GA campaign. Exact release-candidate parity, release-matched screenshots, Rob’s final approval of the App Store Connect metadata, and public-live US App Store proof remain required.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#ios-ga-listing-v1"
+      },
+      "approval": {
+        "source": "authenticated_owner_github_issue",
+        "owner": "robosecure",
+        "issue_url": "https://github.com/robosecure/momalarmclock/issues/4",
+        "approved_at": "2026-10-02T02:05:00Z",
+        "verified_at": "2026-10-02T03:12:42Z",
+        "item_id": "ios-ga-listing-v1",
+        "version": "v1",
+        "asset_sha256": "80233e6d36755fab0de4786d36bbfa863df3a7cb3e4b05cc036ce83f4d9efdc7",
+        "scope_sha256": "892dd8c2d174026d6d1708e18961db954c6623e9de62c4a1f738fb199ed5a0ea"
       }
     },
     {
