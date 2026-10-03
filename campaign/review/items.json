@@ -795,7 +795,7 @@
       "version": "v1",
       "title": "TikTok two-platform beta QR invitation · v1",
       "description": "Pending owner review only. Exact 1080 × 1350 blue/yellow static invitation for a future owned @momalarmclock TikTok organic beta placement. It contains no app UI, people, price, availability, or awake-proof claim; the QR routes to the beta guide without relying on a clickable bio link. Proposed caption:\nStill walking back to your child's room after their alarm? Set their alarm from your phone. Their phone rings; they finish a wake-up check by holding a button, answering a question, playing a quick game, or scanning a printed code. Your phone reports if they aren't up after the wait you chose.\n\nU.S. parents with two Android phones: join the closed beta in this order. (1) https://groups.google.com/g/momalarmclock-beta (2) Opt in and install on each phone with its joined Google account: https://play.google.com/apps/testing/com.momclock.momalarmclock\n\niPhone beta: https://testflight.apple.com/join/j28Ec4ZB\n\nPlease test real mornings for at least 14 days, keep a backup alarm, and report problems through Help & feedback in the app or momalarmclock@gmail.com. The parent's result may appear slowly after a wake-up check. Tag a parent who could use this. Please don't put children's details in comments.\n\nBeta guide: https://robosecure.github.io/momalarmclock/beta/",
-      "status": "pending",
+      "status": "revision_required",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#tiktok-beta-qr-v1",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/tiktok-beta-qr-v1-review.png",
@@ -806,7 +806,9 @@
         "id": "organic_beta_tiktok_qr_v1",
         "description": "After Rob's decision, permit only exact PNG SHA-256 802b30172e97575778dd3ca4e8723e1c2ba5429f8d813d1baec410ce88c594c6 and caption SHA-256 b2d9b72cf1188a9f7b04d2a39c2f3fc95ebd62dde91f8cb4080be73f8182008b for a future owned @momalarmclock TikTok organic beta invitation, only after current-readiness and native crop, QR, and link checks. Excludes paid activation, GA, every other profile, and every other version.",
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/#tiktok-beta-qr-v1"
-      }
+      },
+      "historical_status": "pending",
+      "revision_reason": "Rob requested that the invitation explain rewards for motivating the child. Revised wording awaits current-build and platform-parity verification; v1 must not be posted."
     }
   ]
 }
