@@ -1,0 +1,9 @@
+Still walking back to your child's room after their alarm? Set their alarm from your phone. Their phone rings; they finish a wake-up check by holding a button, answering a question, playing a quick game, or scanning a printed code. Your phone reports if they aren't up after the wait you chose.
+
+U.S. parents with two Android phones: join the closed beta in this order. (1) https://groups.google.com/g/momalarmclock-beta (2) Opt in and install on each phone with its joined Google account: https://play.google.com/apps/testing/com.momclock.momalarmclock
+
+iPhone beta: https://testflight.apple.com/join/j28Ec4ZB
+
+Please test real mornings for at least 14 days, keep a backup alarm, and report problems through Help & feedback in the app or momalarmclock@gmail.com. The parent's result may appear slowly after a wake-up check. Tag a parent who could use this. Please don't put children's details in comments.
+
+Beta guide: https://robosecure.github.io/momalarmclock/beta/
