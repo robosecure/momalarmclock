@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "candidate": "beta-index.html",
+  "candidate_sha256": "fd1b985cb7270d36c9b89063473fe3158886ecad930f74adc8fb0ea770d08999",
+  "source_sha256": "cb3560260ca15ae9c2dce750bfa355ff023d0a2662446dc5b69905e207742105",
+  "scope_sha256": "9a1c76ae844ea484d455e22c3b52e1f8de25ed426e8ff082469079ed6572e239",
+  "review_desk_sha256": "3a981ea2195975415e03339d890f77440bb35657f98e041a44d23cc7c1b3e6da",
+  "checks": [
+    "candidate and review HTML parse",
+    "required beta links are exact and Android Group precedes Play",
+    "scope and review desk bind the exact candidate SHA",
+    "candidate has restored production metadata, no tracking scripts, and no production write",
+    "forbidden internal-progress, count, and unsupported-claim phrases are absent",
+    "review desk exposes full scope, exclusions, and manual-decision fallback"
+  ],
+  "runtime_metadata": "UNKNOWN",
+  "root_metadata_correction": {
+    "reason": "Existing social-card.png visually still says Android sign-up only; closed beta is active",
+    "changes": "Only og:image, twitter:image and og:image:alt now refer to existing correct brand avatar; no raster/source image edited",
+    "previous_hashes": {
+      "beta-index.html": "6536e11cc4c1372a2dff7999cde8f4f42bb73fa531f160eac44d5b4713043ea2",
+      "index.html": "4c9c5fd560e15a76cdd975d32a324398b4ce3abb5c14bf1a42b0f25000913258",
+      "scope.json": "07b17417ad47ff3a3316f0fcb2cc81c8e749035c129db1a59d0bd4225528054f",
+      "VERIFY.json": "92baee707a1d3605b25c2a875bc5a8920a78c537b547ff02eeec3fe61fe0149b"
+    },
+    "production_social_card_unchanged": true,
+    "candidate_production_metadata": "Preserved except these deliberate OG asset-reference corrections; no new GA claim"
+  }
+}

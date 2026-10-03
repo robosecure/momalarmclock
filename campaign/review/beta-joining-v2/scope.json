@@ -1,0 +1,28 @@
+{
+  "item": "beta-joining-v2-candidate",
+  "version": "v2",
+  "approval_token": "BETA_JOINING_V2",
+  "status": "review_pending_not_published",
+  "candidate": {
+    "path": "beta-index.html",
+    "sha256": "fd1b985cb7270d36c9b89063473fe3158886ecad930f74adc8fb0ea770d08999"
+  },
+  "source": {
+    "path": "beta/index.html",
+    "route": "https://robosecure.github.io/momalarmclock/beta/"
+  },
+  "future_publication_scope": "Only beta/index.html may be replaced with the exact candidate after an exact Rob decision and current link/readiness verification.",
+  "excluded": [
+    "paid activity",
+    "store release",
+    "social or video",
+    "legal or policy modification",
+    "analytics cookies",
+    "account setup"
+  ],
+  "prohibited_actions": [
+    "automatic approval state",
+    "automatic email sending",
+    "automatic or unapproved production or public write"
+  ]
+}
