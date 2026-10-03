@@ -4,3 +4,4 @@
 .review img{display:block;width:min(100%,540px);max-width:100%;height:auto;margin:18px 0;border-radius:12px}
 .review audio{display:block;width:100%;max-width:540px;margin:18px 0}.review audio:focus-visible{outline:3px solid var(--blue);outline-offset:4px}.transcript{max-width:72ch;margin:16px 0}.transcript summary{cursor:pointer;font-weight:700}.transcript p{overflow-wrap:anywhere}
 .decision-jump{display:block;margin:10px 0 16px}.manual-decision{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:260px}.manual-decision[hidden]{display:none}.github-option{margin-top:24px}.github-option summary{cursor:pointer;font-weight:700}
+.review>p:not([class]){overflow-wrap:anywhere;white-space:pre-line}
