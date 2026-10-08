@@ -791,6 +791,34 @@
       }
     },
     {
+      "id": "beta-family-routines-r2-static",
+      "version": "r2",
+      "title": "Family routines beta invitation · R2 static",
+      "description": "Owner-approved R2 static invitation for matching owned Mom Alarm Clock website descriptions and graphics. It presents parent-set alarms and reminders. For wake-ups, you choose the wake check: take a quiz, play a game, or scan a printed QR code. See the recorded wake-check status on your phone. Recorded status does not prove that someone is awake or that a chore is complete. This approval does not claim the beta is live in a store, that a current build is ready, or authorize paid activity.",
+      "status": "approved_via_chat",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#beta-family-routines-r2-static",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/beta-family-routines-r2-square.png",
+        "sha256": "a9b9714e2e10e8d62c0478175c4656117271ed5c40f619057f64131d50a99ef2",
+        "mime": "image/png"
+      },
+      "action_scope": {
+        "id": "owned_website_beta_family_routines_r2",
+        "description": "Use only the R2 portrait PNG SHA-256 808049a32153e0839c16464db390bfdd560e39ded0266187d153d658f24ee315 and square PNG SHA-256 a9b9714e2e10e8d62c0478175c4656117271ed5c40f619057f64131d50a99ef2, with the approved R2 feature and CTA copy, on matching owned Mom Alarm Clock website surfaces. This does not authorize posting, paid activity, store changes, or any claim about current build readiness.",
+        "destination": "https://robosecure.github.io/momalarmclock/beta/"
+      },
+      "chat_approval": {
+        "source": "explicit_owner_chat",
+        "owner_display_name": "Rob",
+        "recorded_at": "2026-10-08T22:46:42.430421+00:00",
+        "user_quote": "much better, approved for everywhere!",
+        "item_id": "beta-family-routines-r2-static",
+        "version": "r2",
+        "asset_sha256": "a9b9714e2e10e8d62c0478175c4656117271ed5c40f619057f64131d50a99ef2",
+        "limits": "Matching owned website graphics and descriptions only; no paid activity, store change, readiness, or publication claim."
+      }
+    },
+    {
       "id": "tiktok-beta-qr-v1",
       "version": "v1",
       "title": "TikTok two-platform beta QR invitation · v1",
