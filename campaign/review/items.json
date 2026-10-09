@@ -837,6 +837,33 @@
       },
       "historical_status": "pending",
       "revision_reason": "Rob requested that the invitation explain rewards for motivating the child. Revised wording awaits current-build and platform-parity verification; v1 must not be posted."
+    },
+    {
+      "id": "ga-family-story-r2",
+      "version": "r2",
+      "title": "Illustrated family GA lifestyle film and seven staged captions · R2",
+      "description": "Owner review only. This 40.125-second AI illustrated family scene uses approved GA narration and accompanies seven staged iPhone captions. No app UI, full product demo, functioning wake QR or verified waking/chore outcome appears. Technical checks passed; human A/V review, paired-phone parity and public V2 Store proof remain open.",
+      "status": "pending",
+      "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ga-family-story-r2",
+      "asset": {
+        "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/ga-family-story-40s-r2-review.mp4",
+        "sha256": "3d71ca6c19c9ab76ae5298b1e8c1671cccaf4a970714ff8670f43429937918d3",
+        "mime": "video/mp4"
+      },
+      "action_scope": {
+        "id": "organic_ios_ga_family_story_r2_copy",
+        "description": "Approve only R2 lifestyle video SHA-256 3d71ca6c19c9ab76ae5298b1e8c1671cccaf4a970714ff8670f43429937918d3 and seven exact staged iPhone captions on its review page, copy-pack SHA-256 fd39f7f9b73f1f9aeca4a47dcbcc37dc618be03e05a3f701a4e90af12814dbee, for possible future owned organic iPhone GA after Rob’s live cue, public V2 Store/destination verification, final paired physical-phone parity, and human full-speed A/V and caption QA. Facebook and YouTube remain held for trusted policy resolution. No immediate posting, paid ads, Android GA, full app demo, or other versions.",
+        "destination": "https://robosecure.github.io/momalarmclock/campaign/review/ga-family-story-r2/"
+      },
+      "approval": null,
+      "dedicated_review_url": "https://robosecure.github.io/momalarmclock/campaign/review/ga-family-story-r2/",
+      "copy_pack_sha256": "fd39f7f9b73f1f9aeca4a47dcbcc37dc618be03e05a3f701a4e90af12814dbee"
+    }
+  ],
+  "review_updates": [
+    {
+      "date": "2026-10-09",
+      "context": "New GA lifestyle R2 and seven staged captions added for owner review. October 2 checkpoint and prior approval/revision history remain unchanged. No publication or paid authority."
     }
   ]
 }
