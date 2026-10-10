@@ -842,8 +842,8 @@
       "id": "ga-family-story-r2",
       "version": "r2",
       "title": "Illustrated family GA lifestyle film and seven staged captions · R2",
-      "description": "Owner review only. This 40.125-second AI illustrated family scene uses approved GA narration and accompanies seven staged iPhone captions. No app UI, full product demo, functioning wake QR or verified waking/chore outcome appears. Technical checks passed; human A/V review, paired-phone parity and public V2 Store proof remain open.",
-      "status": "pending",
+      "description": "Rob explicitly approved this exact R2 lifestyle video and seven staged iPhone captions in chat. It is eligible for future owned organic iPhone GA only after Rob’s live cue, public US V2 Store/destination proof, final paired physical-phone parity, human full-speed A/V and caption QA, and native identity, rules and disclosure preflight. Facebook and YouTube remain held. This does not approve immediate campaign publication, paid activation, Android GA, a full demo, another cut or a future version.",
+      "status": "approved_via_chat",
       "review_url": "https://robosecure.github.io/momalarmclock/campaign/review/#ga-family-story-r2",
       "asset": {
         "public_url": "https://robosecure.github.io/momalarmclock/campaign/media/ga-family-story-40s-r2-review.mp4",
@@ -856,6 +856,18 @@
         "destination": "https://robosecure.github.io/momalarmclock/campaign/review/ga-family-story-r2/"
       },
       "approval": null,
+      "chat_approval": {
+        "source": "explicit_owner_chat",
+        "owner_display_name": "Rob",
+        "recorded_at": "2026-10-10T16:04:47.612308+00:00",
+        "owner_quote": "i approve https://robosecure.github.io/momalarmclock/campaign/review/ga-family-story-r2/ ( i didn't see an approval link)",
+        "item_id": "ga-family-story-r2",
+        "version": "r2",
+        "asset_sha256": "3d71ca6c19c9ab76ae5298b1e8c1671cccaf4a970714ff8670f43429937918d3",
+        "copy_pack_sha256": "fd39f7f9b73f1f9aeca4a47dcbcc37dc618be03e05a3f701a4e90af12814dbee",
+        "scope_sha256": "4e1eb817154711ec3571670dc9f8f690ce13a6a24a0437c5dd8ac4d07dd42b7c",
+        "limits": "Exact current video, seven captions and immutable organic iPhone GA scope only; owner live cue, public US V2 Store/destination proof, final paired physical-phone parity, human full-speed A/V and caption QA, and native identity/rules/disclosure preflight remain. Facebook and YouTube remain held. No immediate publication, paid activation, Android GA, full demo, other cut or future version."
+      },
       "dedicated_review_url": "https://robosecure.github.io/momalarmclock/campaign/review/ga-family-story-r2/",
       "copy_pack_sha256": "fd39f7f9b73f1f9aeca4a47dcbcc37dc618be03e05a3f701a4e90af12814dbee"
     }
@@ -864,6 +876,10 @@
     {
       "date": "2026-10-09",
       "context": "New GA lifestyle R2 and seven staged captions added for owner review. October 2 checkpoint and prior approval/revision history remain unchanged. No publication or paid authority."
+    },
+    {
+      "date": "2026-10-10",
+      "context": "Rob explicitly approved the exact R2 lifestyle video and seven staged iPhone captions by chat for the existing immutable future owned organic iPhone GA scope. No separate approval link was required. Owner live cue, public US V2 Store/destination proof, final paired physical-phone parity, human full-speed A/V and caption QA, and native identity/rules/disclosure preflight remain; Facebook and YouTube stay held. No immediate publication or paid authority."
     }
   ]
 }
