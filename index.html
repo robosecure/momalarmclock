@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#102950">
-  <title>Mom Alarm Clock — Morning alarms and everyday reminders</title>
-  <meta name="description" content="Mom Alarm Clock is live on iPhone with iOS 26 or later. Set parent-selected alarms and reminders; Android closed beta joining is available.">
+  <title>Mom Alarm Clock — Family alarms, reminders &amp; iPhone setup</title>
+  <meta name="description" content="Set up family alarms and everyday reminders on two iPhones with iOS 26 or later. Mom Alarm Clock is live on iPhone; Android access is coming soon.">
   <link rel="canonical" href="https://robosecure.github.io/momalarmclock/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://robosecure.github.io/momalarmclock/">
-  <meta property="og:title" content="Mom Alarm Clock — Morning alarms and everyday reminders">
-  <meta property="og:description" content="Mom Alarm Clock is live on iPhone with iOS 26 or later. Android closed beta joining is available.">
+  <meta property="og:title" content="Mom Alarm Clock — Family alarms, reminders &amp; iPhone setup">
+  <meta property="og:description" content="Set up family alarms and everyday reminders on two iPhones with iOS 26 or later. Mom Alarm Clock is live on iPhone; Android access is coming soon.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Mom Alarm Clock — Morning alarms and everyday reminders">
-  <meta name="twitter:description" content="Mom Alarm Clock is live on iPhone with iOS 26 or later. Android closed beta joining is available.">
+  <meta name="twitter:title" content="Mom Alarm Clock — Family alarms, reminders &amp; iPhone setup">
+  <meta name="twitter:description" content="Set up family alarms and everyday reminders on two iPhones with iOS 26 or later. Mom Alarm Clock is live on iPhone; Android access is coming soon.">
   <link rel="icon" type="image/png" href="avatar.png">
   <style>
     :root { color-scheme: light; --navy:#102950; --blue:#174686; --sky:#eaf3ff; --yellow:#ffdc6a; --ink:#172c4c; --muted:#455b78; --white:#fff; }
@@ -32,7 +32,8 @@
     .hero-grid { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr); align-items:center; gap:clamp(30px,6vw,80px); }
     .eyebrow { display:inline-block; background:var(--yellow); color:var(--navy); border-radius:100px; padding:5px 13px; font-size:.82rem; font-weight:850; letter-spacing:.05em; text-transform:uppercase; }
     h1,h2,h3,p { margin-top:0; }
-    h1 { max-width:12ch; margin:22px 0 20px; font-size:clamp(2.7rem,6.5vw,5rem); line-height:1.07; letter-spacing:-.055em; }
+    h1 { margin:22px 0 20px; font-size:clamp(1.35rem,3.2vw,3rem); line-height:1.07; letter-spacing:-.055em; }
+    .hero-title-line { display:block; white-space:nowrap; }
     .lead { max-width:60ch; color:#e4efff; font-size:clamp(1.1rem,2vw,1.3rem); }
     .hero .lead strong { color:var(--white); }
     .actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; margin:27px 0 12px; }
@@ -79,6 +80,7 @@
     footer nav { display:flex; flex-wrap:wrap; gap:10px 18px; }
     @media (max-width:760px) {
       .hero-grid,.two-col { grid-template-columns:1fr; }
+      h1 { font-size:clamp(1.35rem,7.5vw,3rem); }
       .hero-card { max-width:480px; transform:none; }
       .grid { grid-template-columns:1fr; }
       .topbar .label { display:none; }
@@ -96,22 +98,23 @@
   <div class="topbar">
     <div class="wrap">
       <a class="brand" href="https://robosecure.github.io/momalarmclock/" aria-label="Mom Alarm Clock home"><img src="avatar.png" alt="" width="42" height="42">Mom Alarm Clock</a>
-      <span class="label">iPhone live · Android closed beta</span>
+      <span class="label">iPhone live · Android coming soon</span>
     </div>
   </div>
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">Now live on iPhone</span>
-        <h1>Morning alarms. Everyday reminders.</h1>
+        <h1><span class="hero-title-line">Morning alarms.</span><span class="hero-title-line">Everyday reminders.</span></h1>
         <p class="lead">Still making repeat trips to wake your child—or reminding them about chores they keep forgetting? <strong>Set their alarms and reminders from your phone.</strong> For wake-ups, you choose the wake check: take a quiz, play a game, or scan a printed QR code. See the recorded wake-check status on your phone; it does not guarantee someone is awake.</p>
         <div class="actions">
           <a class="button" href="https://apps.apple.com/us/app/mom-alarm-clock/id6762470545">Get it on the App Store</a>
-          <a class="button" href="https://testflight.apple.com/join/j28Ec4ZB">Try the iPhone beta</a>
-          <a class="button" href="https://groups.google.com/g/momalarmclock-beta">Join the Android beta group</a>
+          <a class="button" href="#setup">iPhone setup guide</a>
+          <a class="button" href="#android-setup">Android setup guide</a>
+          <a class="button" href="mailto:momalarmclock@gmail.com?subject=Mom%20Alarm%20Clock%20Android%20beta%20access">Android coming in days! Contact me for beta access.</a>
         </div>
-        <p class="fine"><strong>iPhone requirement:</strong> Mom Alarm Clock requires iOS 26 or later. The TestFlight link is an optional beta route.</p>
-        <p class="fine"><strong>Android closed beta: two steps.</strong> On each phone, first <a href="https://groups.google.com/g/momalarmclock-beta">join the Google Group</a>; then <a href="https://play.google.com/apps/testing/com.momclock.momalarmclock">opt into Play testing</a> using that phone's selected Play Store Google account; accounts can differ per phone. If Play says “App not available,” check Group membership and the selected Google account; publication or region eligibility can also affect access. If a supervised child Google account cannot join the Group, email <a href="mailto:momalarmclock@gmail.com">momalarmclock@gmail.com</a> for eligibility help. If you continue participating, please stay opted in for the full 14 days; don't leave and rejoin. We observed the opt-in page, not an installation or a completed two-phone test.</p>
+        <p class="fine"><strong>iPhone requirement:</strong> iPhone 11 or newer, or iPhone SE (2nd/3rd generation). Both phones must run iOS 26 or later.</p>
+        <p class="fine"><strong>Android:</strong> Android is not available yet. Email <a href="mailto:momalarmclock@gmail.com?subject=Mom%20Alarm%20Clock%20Android%20beta%20access">momalarmclock@gmail.com</a> to ask about beta access.</p>
       </div>
       <aside class="hero-card" aria-label="What we are testing">
         <div class="kicker">How it works</div>
@@ -138,6 +141,35 @@
         </div>
       </div>
     </section>
+    <section id="android-setup" aria-labelledby="android-setup-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="android-setup-title">Android setup — when access is available</h2>
+          <p>Android is not available yet. When access is available, start by emailing us to ask about beta access.</p>
+        </div>
+        <ol>
+          <li>Use the same supplied app version on both phones and follow the current in-app parent and child pairing instructions.</li>
+          <li>Follow the current notification and alarm permission prompts on each phone.</li>
+          <li>Test a short daytime alarm and a reminder together before relying on the routine. Reported status is not proof that someone is awake or that a chore is complete.</li>
+          <li>Existing beta users should contact support before switching. Do not uninstall or erase app data.</li>
+        </ol>
+      </div>
+    </section>
+    <section id="setup" aria-labelledby="setup-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="setup-title">Set up Mom Alarm Clock on two iPhones</h2>
+          <p>Before the first school morning, choose a quiet time to set up and test alarms and everyday reminders together.</p>
+        </div>
+        <p>iOS 26 supports iPhone 11 and newer, plus iPhone SE (2nd and 3rd generation). Both phones must be updated to iOS 26 or later. <a href="https://support.apple.com/guide/iphone/iphone-models-compatible-with-ios-26-iphe3fa5df43/26/ios/26">Check Apple’s compatible iPhone models</a>.</p>
+        <ol>
+          <li><strong>Start with both phones.</strong> Use two iPhones with iOS 26 or later on both, and install Mom Alarm Clock on each.</li>
+          <li><strong>Connect the intended devices.</strong> Follow the app’s current parent and child setup screens. Review permissions and reported alarm readiness, check that you are pairing the intended phones, and keep pairing codes private.</li>
+          <li><strong>Test an alarm and a reminder.</strong> Choose a parent-selected quiz, game, or printed QR alarm check. Test the complete alarm flow in both roles together, then try one everyday reminder. For printed QR checks, use the actual code supplied by the app.</li>
+          <li><strong>Read the result carefully.</strong> Check the reported date and status. A completed alarm check does not guarantee waking, and reported reminder activity is not proof a chore is finished. Check in directly when needed and keep a backup routine for important mornings.</li>
+        </ol>
+      </div>
+    </section>
     <section class="band" aria-labelledby="fit-title">
       <div class="wrap two-col">
         <div>
@@ -156,32 +188,27 @@
     <section class="closing" aria-labelledby="join-title">
       <div class="wrap">
         <h2 id="join-title">Start the family routine</h2>
-        <p>Mom Alarm Clock is live for iPhone on iOS 26 or later. Get the public App Store version for alarms and reminders, or choose the clearly marked TestFlight beta route. Android is not generally available; its closed-beta joining route remains available.</p>
+        <p>Mom Alarm Clock is live for iPhone on iOS 26 or later. Get the public App Store version for alarms and reminders. Android is not available yet; contact us to ask about beta access.</p>
         <div class="actions">
           <a class="button" href="https://apps.apple.com/us/app/mom-alarm-clock/id6762470545">Get it on the App Store</a>
-          <a class="button" href="https://testflight.apple.com/join/j28Ec4ZB">Try the iPhone beta</a>
-          <a class="button" href="https://groups.google.com/g/momalarmclock-beta">Join the Android beta group</a>
+          <a class="button" href="#setup">iPhone setup guide</a>
+          <a class="button" href="#android-setup">Android setup guide</a>
+          <a class="button" href="mailto:momalarmclock@gmail.com?subject=Mom%20Alarm%20Clock%20Android%20beta%20access">Android coming in days! Contact me for beta access.</a>
         </div>
-        <p class="fine">Android closed beta: on each phone, <a href="https://groups.google.com/g/momalarmclock-beta">join the group</a> first, then <a href="https://play.google.com/apps/testing/com.momclock.momalarmclock">opt into Play testing</a> using that phone's selected Play Store Google account; accounts can differ per phone. A group page permission error can still leave <strong>Join group</strong> near the title. “App not available” can mean the group or selected account does not match; publication or region eligibility can also affect access. The route is observed; installation and two-phone functionality remain unverified.</p>
+        <p class="fine">Android is coming soon. Email <a href="mailto:momalarmclock@gmail.com?subject=Mom%20Alarm%20Clock%20Android%20beta%20access">momalarmclock@gmail.com</a> to ask about beta access.</p>
+        <p class="fine"><strong>iPhone requirement:</strong> iPhone 11 or newer, or iPhone SE (2nd/3rd generation). Both phones must run iOS 26 or later.</p>
         <span class="store">Existing customer on an earlier iOS version? Do not uninstall or erase the app. <a href="https://robosecure.github.io/mom-alarm-clock-legal/support.html">Contact support</a> for help.</span>
-      </div>
-    </section>
-    <section aria-labelledby="feedback-title" id="beta-feedback">
-      <div class="wrap">
-        <h2 id="feedback-title">Show us the moment</h2>
-        <p>If you choose the optional TestFlight beta, update to the latest available beta before testing. Take an in-app screenshot, tap its thumbnail, then tap <strong>Done → Share Beta Feedback</strong>. Add what happened and tap <strong>Submit</strong>.</p>
-        <p>You can also open TestFlight, select Mom Alarm Clock, and tap <strong>Send Beta Feedback</strong>. Use demo details and check screenshots for private family information. <a href="https://testflight.apple.com/">Apple’s feedback instructions</a>.</p>
       </div>
     </section>
   </main>
   <footer>
     <div class="wrap">
-      <div><p>Beta feedback: <a href="#beta-feedback">send a screenshot through TestFlight</a>. For other questions, <a href="https://robosecure.github.io/mom-alarm-clock-legal/support.html">see support</a>.</p><small>© 2026 Mom Alarm Clock. All rights reserved.</small></div>
+      <div><p>For questions or feedback, <a href="https://robosecure.github.io/mom-alarm-clock-legal/support.html">see support</a>.</p><small>© 2026 Mom Alarm Clock. All rights reserved.</small></div>
       <nav aria-label="Footer links">
         <a href="https://robosecure.github.io/mom-alarm-clock-legal/privacy.html">Privacy Policy</a>
         <a href="https://robosecure.github.io/mom-alarm-clock-legal/support.html">Support</a>
         <a href="mailto:momalarmclock@gmail.com?subject=Mom%20Alarm%20Clock%20feature%20request">Request a feature</a>
-        <a href="campaign/">Campaign review</a>
+        <a href="https://robosecure.github.io/momalarmclock/campaign/">Campaign review</a>
       </nav>
     </div>
   </footer>
