@@ -1,226 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="46VX0aT1cftfeGAcHgJyWKGA2MNFhOSHYKz4CVU1IHo" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#102950">
-  <title>Mom Alarm Clock — Family alarms, reminders &amp; iPhone setup</title>
-  <meta name="description" content="Set up family alarms and everyday reminders on two iPhones with iOS 26 or later. Find Mom Alarm Clock on the App Store and Google Play.">
-  <link rel="canonical" href="https://robosecure.github.io/momalarmclock/">
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="46VX0aT1cftfeGAcHgJyWKGA2MNFhOSHYKz4CVU1IHo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Mom Alarm Clock — Our official website</title>
+  <meta name="description" content="Visit Mom Alarm Clock’s official website for parent-set alarms, reported wake-check results, rewards, setup guides and iPhone and Android downloads.">
+  <link rel="canonical" href="https://momalarmclock.com/">
+  <meta property="og:title" content="Mom Alarm Clock — Alarms for your family">
+  <meta property="og:description" content="Visit our official website for features, setup guides and download links.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://robosecure.github.io/momalarmclock/">
-  <meta property="og:title" content="Mom Alarm Clock — Family alarms, reminders &amp; iPhone setup">
-  <meta property="og:description" content="Set up family alarms and everyday reminders on two iPhones with iOS 26 or later. Find Mom Alarm Clock on the App Store and Google Play.">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Mom Alarm Clock — Family alarms, reminders &amp; iPhone setup">
-  <meta name="twitter:description" content="Set up family alarms and everyday reminders on two iPhones with iOS 26 or later. Find Mom Alarm Clock on the App Store and Google Play.">
-  <link rel="icon" type="image/png" href="avatar.png">
+  <meta property="og:url" content="https://momalarmclock.com/">
+  <noscript><meta http-equiv="refresh" content="0; url=https://momalarmclock.com/"></noscript>
+  <script>
+    try {
+      const destination = new URL("https://momalarmclock.com/");
+      destination.search = window.location.search;
+      destination.hash = window.location.hash;
+      window.location.replace(destination.href);
+    } catch (_) {
+      // The official website and direct downloads remain available below.
+    }
+  </script>
   <style>
-    :root { color-scheme: light; --navy:#102950; --blue:#174686; --sky:#eaf3ff; --yellow:#ffdc6a; --ink:#172c4c; --muted:#455b78; --white:#fff; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; background:#f7faff; color:var(--ink); font:1rem/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
-    .wrap { width:min(100% - 40px,1060px); margin-inline:auto; }
-    a { color:var(--blue); text-underline-offset:.16em; }
-    a:focus-visible { outline:3px solid #d39200; outline-offset:4px; border-radius:3px; }
-    .topbar { background:var(--navy); color:var(--white); }
-    .topbar .wrap { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-    .brand { display:flex; align-items:center; gap:12px; color:var(--white); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
-    .brand img { width:42px; height:42px; border-radius:11px; }
-    .topbar .label { color:#dceaff; font-size:.83rem; font-weight:750; letter-spacing:.09em; text-transform:uppercase; }
-    .hero { background:radial-gradient(circle at 82% 25%,#2a66ae 0,#173d72 38%,#102950 78%); color:var(--white); padding:clamp(56px,8vw,105px) 0 76px; }
-    .hero-grid { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr); align-items:center; gap:clamp(30px,6vw,80px); }
-    .eyebrow { display:inline-block; background:var(--yellow); color:var(--navy); border-radius:100px; padding:5px 13px; font-size:.82rem; font-weight:850; letter-spacing:.05em; text-transform:uppercase; }
-    h1,h2,h3,p { margin-top:0; }
-    h1 { margin:22px 0 20px; font-size:clamp(1.35rem,3.2vw,3rem); line-height:1.07; letter-spacing:-.055em; }
-    .hero-title-line { display:block; white-space:nowrap; }
-    .lead { max-width:60ch; color:#e4efff; font-size:clamp(1.1rem,2vw,1.3rem); }
-    .hero .lead strong { color:var(--white); }
-    .actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; margin:27px 0 12px; }
-    .button { display:inline-flex; justify-content:center; align-items:center; min-height:54px; padding:13px 24px; border-radius:12px; background:var(--yellow); color:var(--navy); text-align:center; text-decoration:none; font-weight:850; box-shadow:0 7px 0 rgba(0,0,0,.12); }
-    .button:hover { background:#ffe58e; }
-    .hero .fine { color:#d6e7fd; font-size:.92rem; }
-    .hero .fine a { color:var(--white); }
-    .hero-card { background:#fff; color:var(--ink); border:1px solid #cbdfff; border-radius:26px; padding:clamp(22px,4vw,34px); box-shadow:0 20px 45px rgba(5,20,45,.24); transform:rotate(2deg); }
-    .hero-card .kicker { color:#225797; text-transform:uppercase; letter-spacing:.1em; font-size:.78rem; font-weight:850; }
-    .hero-card h2 { margin:13px 0 18px; font-size:clamp(1.55rem,3vw,2.1rem); line-height:1.2; letter-spacing:-.035em; }
-    .hero-card ol { padding-left:23px; margin:0; }
-    .hero-card li { padding:0 0 12px 5px; }
-    .hero-card li::marker { color:var(--blue); font-weight:850; }
-    .hero-card li:last-child { padding-bottom:0; }
-    .hero-creative { display:block; width:100%; margin:0 0 20px; border-radius:15px; }
-    section { padding:clamp(55px,7vw,82px) 0; }
-    .section-head { max-width:680px; margin-bottom:32px; }
-    .section-head h2 { font-size:clamp(2rem,4vw,3rem); line-height:1.14; letter-spacing:-.045em; margin-bottom:12px; }
-    .section-head p { color:var(--muted); font-size:1.06rem; }
-    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-    .tile { background:var(--white); border:1px solid #dce7f6; border-radius:20px; padding:25px; box-shadow:0 8px 24px rgba(16,41,80,.04); }
-    .number { display:grid; place-items:center; width:38px; height:38px; border-radius:50%; background:var(--yellow); color:var(--navy); font-weight:850; margin-bottom:18px; }
-    .tile h3 { font-size:1.14rem; line-height:1.3; margin-bottom:8px; }
-    .tile p { color:var(--muted); margin-bottom:0; }
-    .band { background:var(--sky); }
-    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:clamp(25px,6vw,80px); align-items:start; }
-    .two-col h2 { font-size:clamp(2rem,4vw,3rem); line-height:1.16; letter-spacing:-.04em; }
-    .two-col p { color:var(--muted); }
-    .checklist { margin:0; padding:0; list-style:none; }
-    .checklist li { position:relative; padding:0 0 20px 34px; }
-    .checklist li::before { content:"✓"; position:absolute; left:0; top:0; display:grid; place-items:center; width:23px; height:23px; border-radius:50%; background:var(--yellow); color:var(--navy); font-size:.84rem; font-weight:850; }
-    .note { background:#fff; border-left:5px solid #d99d00; border-radius:0 12px 12px 0; padding:15px 19px; color:var(--ink); }
-    .note p { margin:0; color:inherit; }
-    .closing { background:var(--navy); color:#fff; text-align:center; }
-    .closing .wrap { max-width:700px; }
-    .closing h2 { font-size:clamp(2rem,4vw,3rem); line-height:1.16; letter-spacing:-.04em; }
-    .closing p { color:#dceaff; }
-    .closing .actions { justify-content:center; }
-    .closing .store { display:block; color:#e5efff; margin-top:23px; font-size:.93rem; }
-    .closing .store a { color:#fff; font-weight:700; }
-    footer { background:#0b203f; color:#d7e5f8; padding:32px 0 40px; font-size:.9rem; }
-    footer .wrap { display:flex; flex-wrap:wrap; align-items:start; justify-content:space-between; gap:20px 32px; }
-    footer p { margin-bottom:8px; }
-    footer a { color:#fff; }
-    footer nav { display:flex; flex-wrap:wrap; gap:10px 18px; }
-    @media (max-width:760px) {
-      .hero-grid,.two-col { grid-template-columns:1fr; }
-      h1 { font-size:clamp(1.35rem,7.5vw,3rem); }
-      .hero-card { max-width:480px; transform:none; }
-      .grid { grid-template-columns:1fr; }
-      .topbar .label { display:none; }
-    }
-    @media (max-width:450px) {
-      .wrap { width:min(100% - 32px,1060px); }
-      .hero { padding-top:48px; }
-      .button { width:100%; }
-      .hero-card { padding:23px; }
-    }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    :root { color-scheme: light; font-family: system-ui, -apple-system, sans-serif; color: #15323d; background: #f5faf9; }
+    body { margin: 0; padding: 3rem 1.25rem; }
+    main { max-width: 42rem; margin: auto; padding: clamp(1.5rem, 5vw, 3rem); background: white; border: 1px solid #c9dcd8; border-radius: 1.25rem; }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.15; margin-top: 0; }
+    p { line-height: 1.65; }
+    a { color: #075e58; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid #15323d; outline-offset: 5px; }
+    .primary { display: inline-block; background: #075e58; color: white; padding: .85rem 1.15rem; border-radius: .6rem; font-weight: 700; }
+    .downloads { display: flex; flex-wrap: wrap; gap: 1rem; padding: 0; list-style: none; }
+    .downloads a { display: inline-block; padding: .7rem 1rem; border: 1px solid #075e58; border-radius: .6rem; }
+    .details { font-size: .95rem; }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="wrap">
-      <a class="brand" href="https://robosecure.github.io/momalarmclock/" aria-label="Mom Alarm Clock home"><img src="avatar.png" alt="" width="42" height="42">Mom Alarm Clock</a>
-      <span class="label">App Store · Google Play</span>
-    </div>
-  </div>
-  <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">Live on iPhone and Android in the U.S.</span>
-        <h1><span class="hero-title-line">Morning alarms.</span><span class="hero-title-line">Everyday reminders.</span></h1>
-        <p class="lead">Still making repeat trips to wake your child—or reminding them about chores they keep forgetting? <strong>Set their alarms and reminders from your phone.</strong> For iPhone wake-ups, you choose the wake check: take a quiz, play a game, or scan a printed QR code. See the recorded wake-check status on your phone; it does not guarantee someone is awake.</p>
-        <div class="actions">
-          <a class="button" href="https://apps.apple.com/us/app/mom-alarm-clock/id6762470545">Get it on the App Store</a>
-          <a class="button" href="#setup">iPhone setup guide</a>
-          <a class="button" href="#android-setup">Android setup guide</a>
-          <a class="button" href="https://play.google.com/store/apps/details?id=com.varrstack.momalarmclock">View on Google Play</a>
-        </div>
-        <p class="fine"><strong>iPhone requirement:</strong> iPhone 11 or newer, or iPhone SE (2nd/3rd generation). Both phones must run iOS 26 or later.</p>
-        <p class="fine"><strong>Android:</strong> Check Google Play for availability on your device.</p>
-      </div>
-      <aside class="hero-card" aria-label="How it works">
-        <div class="kicker">How it works</div>
-        <h2>Set it. Check it. Stay informed.</h2>
-        <ol>
-          <li>Set their wake-up alarm from your phone.</li>
-          <li>For iPhone wake-ups, choose a quiz, game, or scan of a printed QR code; then schedule reminders for everyday chores.</li>
-          <li>See recorded wake-check and reminder status as both phones sync. A recorded status does not prove someone is awake or a chore is complete.</li>
-        </ol>
-      </aside>
-    </div>
-  </header>
   <main>
-    <section aria-labelledby="testing-title">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 id="testing-title">Make mornings and everyday chores easier to follow</h2>
-          <p>Set a parent-selected alarm and a scheduled chore reminder. Check the wake-check result and reminder status recorded in your parent view. Recorded status is information for you to review, not proof that someone is awake or a chore is complete.</p>
-        </div>
-        <div class="grid">
-          <div class="tile"><span class="number" aria-hidden="true">1</span><h3>Set their alarm</h3><p>On iPhone with iOS 26 or later, pair both phones, set an alarm from the parent phone, and check the child phone’s wake-up check and recorded result.</p></div>
-          <div class="tile"><span class="number" aria-hidden="true">2</span><h3>Schedule a chore reminder</h3><p>Schedule taking out the trash or walking the dog from the parent phone. Check whether the reminder appears on the child phone.</p></div>
-          <div class="tile"><span class="number" aria-hidden="true">3</span><h3>See their recorded updates</h3><p>Check the alarm result and reminder status as both phones sync. Compare the app’s reported status with what you actually observe.</p></div>
-        </div>
-      </div>
-    </section>
-    <section id="android-setup" aria-labelledby="android-setup-title">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 id="android-setup-title">Android setup</h2>
-          <p>Check Google Play for availability on each Android phone before setting up.</p>
-        </div>
-        <ol>
-          <li>Use the same app version on both phones and follow the current in-app parent and child pairing instructions.</li>
-          <li>Follow the current notification and alarm permission prompts on each phone.</li>
-          <li>Test a short daytime alarm and a reminder together before relying on the routine. Reported status is not proof that someone is awake or that a chore is complete.</li>
-          <li>Used an earlier test version? <a href="https://momclock-v2.web.app/support.html">Contact support</a> before switching. Do not uninstall or erase app data.</li>
-        </ol>
-      </div>
-    </section>
-    <section id="setup" aria-labelledby="setup-title">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 id="setup-title">Set up Mom Alarm Clock on two iPhones</h2>
-          <p>Before the first school morning, choose a quiet time to set up and test alarms and everyday reminders together.</p>
-        </div>
-        <p>iOS 26 supports iPhone 11 and newer, plus iPhone SE (2nd and 3rd generation). Both phones must be updated to iOS 26 or later. <a href="https://support.apple.com/guide/iphone/iphone-models-compatible-with-ios-26-iphe3fa5df43/26/ios/26">Check Apple’s compatible iPhone models</a>.</p>
-        <ol>
-          <li><strong>Start with both phones.</strong> Use two iPhones with iOS 26 or later on both, and install Mom Alarm Clock on each.</li>
-          <li><strong>Connect the intended devices.</strong> Follow the app’s current parent and child setup screens. Review permissions and reported alarm readiness, check that you are pairing the intended phones, and keep pairing codes private.</li>
-          <li><strong>Test an alarm and a reminder.</strong> Choose a parent-selected quiz, game, or printed QR alarm check. Test the complete alarm flow in both roles together, then try one everyday reminder. For printed QR checks, use the actual code supplied by the app.</li>
-          <li><strong>Read the result carefully.</strong> Check the reported date and status. A completed alarm check does not guarantee waking, and reported reminder activity is not proof a chore is finished. Check in directly when needed and keep a backup routine for important mornings.</li>
-        </ol>
-      </div>
-    </section>
-    <section class="band" aria-labelledby="fit-title">
-      <div class="wrap two-col">
-        <div>
-          <h2 id="fit-title">Is your family a good fit?</h2>
-          <p>Mom Alarm Clock is for families who repeat wake-up calls or chore reminders. Use the parent view to review the recorded alarm and reminder status.</p>
-          <div class="note"><p><strong>Keep your normal backup alarm.</strong> A recorded wake-check status does not guarantee wakefulness.</p></div>
-        </div>
-        <ul class="checklist">
-          <li>For iPhone setup, use two iPhones running iOS 26 or later, one for the parent and one for the child.</li>
-          <li>For Android setup, check device compatibility on Google Play and follow the Android setup guide above.</li>
-          <li>Use demo child details while setting up and avoid sharing private family information in feedback.</li>
-          <li>For iPhone alarms, choose a wake check: a quiz, game, or scan of a printed QR code.</li>
-          <li>Try a chore reminder separately from the morning alarm, and compare the recorded updates with what you actually observe.</li>
-        </ul>
-      </div>
-    </section>
-    <section class="closing" aria-labelledby="join-title">
-      <div class="wrap">
-        <h2 id="join-title">Start the family routine</h2>
-        <p>In the United States, download the public iPhone or Android app below. The app is currently in English. Check your phone’s requirements in its store listing.</p>
-        <div class="actions">
-          <a class="button" href="https://apps.apple.com/us/app/mom-alarm-clock/id6762470545">Get it on the App Store</a>
-          <a class="button" href="#setup">iPhone setup guide</a>
-          <a class="button" href="#android-setup">Android setup guide</a>
-          <a class="button" href="https://play.google.com/store/apps/details?id=com.varrstack.momalarmclock">View on Google Play</a>
-        </div>
-        <p class="fine">Check Google Play for availability on your device.</p>
-        <p class="fine"><strong>iPhone requirement:</strong> iPhone 11 or newer, or iPhone SE (2nd/3rd generation). Both phones must run iOS 26 or later.</p>
-        <span class="store">Existing customer on an earlier iOS version? Do not uninstall or erase the app. <a href="https://momclock-v2.web.app/support.html">Contact support</a> for help.</span>
-      </div>
-    </section>
+    <h1>Mom Alarm Clock has a new home.</h1>
+    <p>Our official website has the latest app details, setup guides and download links.</p>
+    <p><a class="primary" href="https://momalarmclock.com/">Continue to momalarmclock.com</a></p>
+    <p>Set family alarms, see reported wake-check results and customize rewards. Reminders and calendar events are currently supported on Android.</p>
+    <ul class="downloads" aria-label="Download Mom Alarm Clock">
+      <li><a href="https://apps.apple.com/us/app/mom-alarm-clock/id6762470545">Download for iPhone</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.varrstack.momalarmclock">Download for Android</a></li>
+    </ul>
+    <p class="details">U.S. download links. The app is currently in English. For family pairing on iPhone, both family iPhones need iOS 26+. Reported status is informational and does not prove someone is awake or a task is complete.</p>
+    <p><a href="https://momalarmclock.com/guides.html">Read the setup guides</a></p>
   </main>
-  <footer>
-    <div class="wrap">
-      <div><p>For questions or feedback, <a href="https://momclock-v2.web.app/support.html">see support</a>.</p><small>© 2026 Mom Alarm Clock. All rights reserved.</small></div>
-      <nav aria-label="Footer links">
-        <a href="https://momclock-v2.web.app/privacy.html">Privacy Policy</a>
-        <a href="https://momclock-v2.web.app/support.html">Support</a>
-        <a href="mailto:momalarmclock@gmail.com?subject=Mom%20Alarm%20Clock%20feature%20request">Request a feature</a>
-        <a href="https://robosecure.github.io/momalarmclock/campaign/">Campaign review</a>
-      </nav>
-      <nav aria-label="Mom Alarm Clock social profiles">
-        <a href="https://www.facebook.com/momalarmclock/">Facebook</a>
-        <a href="https://www.instagram.com/momalarmclock/">Instagram</a>
-        <a href="https://www.youtube.com/@momalarmclock">YouTube</a>
-        <a href="https://www.tiktok.com/@momalarmclock">TikTok</a>
-        <a href="https://x.com/momalarmclock">X</a>
-      </nav>
-    </div>
-  </footer>
 </body>
 </html>
